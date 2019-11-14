@@ -11,4 +11,14 @@
     <string name="terms_and_conditions">Términos y condiciones</string>
     <string name="i_forgot_my_password">Olvidé mi contraseña</string>
 
+    <!--Error user login/create account-->
+    <string name="mandatory_field">Debe rellenar los campos obligatorios</string>
+    <string name="invalid_email">Correo no válido</string>
+    <string name="password_matches">Contraseña y la confirmación de contraseña deben coincidir</string>
+    <string name="password_length">Contraseña debe tener al menos 8 caracteres</string>
+    <string name="incorrect_user_or_password">Usuario o contraseña incorrecta</string>
+    <string name="user_exist">Ya existe ese usuario registrado</string>
+    <string name="error_terms_and_conditios">Debes aceptar los términos y condiciones</string>
+
+
 </resources>

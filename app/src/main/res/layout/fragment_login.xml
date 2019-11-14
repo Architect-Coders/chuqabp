@@ -2,7 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".LoginFragment">
+        tools:context=".ui.LoginFragment">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="org.sic4change.chuqabp.viewmodel.LoginViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:card_view="http://schemas.android.com/apk/res-auto"

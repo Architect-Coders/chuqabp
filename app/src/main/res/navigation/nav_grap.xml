@@ -6,7 +6,7 @@
             app:startDestination="@id/loginFragment">
 
     <fragment android:id="@+id/loginFragment"
-              android:name="org.sic4change.chuqabp.LoginFragment"
+              android:name="org.sic4change.chuqabp.ui.LoginFragment"
               android:label="@string/app_name"
               tools:layout="@layout/fragment_login">
         <action android:id="@+id/action_medicamentosFragment_to_medicamentoDetailFragment"
@@ -15,7 +15,7 @@
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/createAccount"
-              android:name="org.sic4change.chuqabp.CreateAccountFragment"
+              android:name="org.sic4change.chuqabp.ui.CreateAccountFragment"
               android:label=""
               tools:layout="@layout/fragment_create_account">
         <argument android:name="topicId" app:argType="string"/>

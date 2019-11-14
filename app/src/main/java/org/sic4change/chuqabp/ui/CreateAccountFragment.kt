@@ -1,12 +1,13 @@
-package org.sic4change.chuqabp
+package org.sic4change.chuqabp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.sic4change.chuqabp.R
 
-class LoginFragment: Fragment() {
+class CreateAccountFragment: Fragment() {
 
 
     /**
@@ -37,9 +38,10 @@ class LoginFragment: Fragment() {
      * @return Return the View for the fragment's UI.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.fragment_create_account, container, false)
         return view
     }
+
 
 
 }

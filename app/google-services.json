@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "780810998220",
+    "firebase_url": "https://chuqabp.firebaseio.com",
+    "project_id": "chuqabp",
+    "storage_bucket": "chuqabp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780810998220:android:a0861d95a477d77dca0d69",
+        "android_client_info": {
+          "package_name": "org.sic4change.chuqabp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780810998220-gra3kvh2hfha7il4ohc4q5mep46am2nb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDar0YK8tchHhlajg9zX3l5xGe7jf3C888"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780810998220-gra3kvh2hfha7il4ohc4q5mep46am2nb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

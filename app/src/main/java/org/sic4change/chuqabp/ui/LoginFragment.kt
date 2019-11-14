@@ -11,14 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_login.*
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
 import org.sic4change.chuqabp.domain.Models
 import org.sic4change.chuqabp.extensions.hideKeyboard
 import org.sic4change.chuqabp.viewmodel.LoginViewModel
 import org.sic4change.chuqabp.viewmodel.LoginViewModelFactory
-import timber.log.Timber
 
 class LoginFragment: Fragment() {
 
@@ -78,6 +76,12 @@ class LoginFragment: Fragment() {
         binding.btnLogin.setOnClickListener {
             login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
         }
+
+        // go to create account when click in signup
+        binding.tvSignUp.setOnClickListener {
+            goToCreateAccount()
+        }
+
         //login when click in keyboard enter when password is typed
         binding.etPassword.setOnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
@@ -147,6 +151,14 @@ class LoginFragment: Fragment() {
      * Method to go to main activity
      */
     fun goToMainActivity() {
+        this.findNavController().navigate(R.id.action_loginFragment_to_mainActivity)
+        activity?.finishAffinity()
+    }
+
+    /**
+     * Method to go to main activity
+     */
+    fun goToCreateAccount() {
         this.findNavController().navigate(R.id.action_login_to_createAccount)
     }
 

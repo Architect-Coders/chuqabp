@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Chuqabp</string>
+
+    <!--Login-->
+    <string name="login">BIENVENIDO</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="sign_in">INICIAR SESIÓN</string>
+    <string name="new_user">¿No tienes cuenta?</string>
+    <string name="sign_up">Crear cuenta</string>
+    <string name="terms_and_conditions">Términos y condiciones</string>
+    <string name="i_forgot_my_password">Olvidé mi contraseña</string>
+
 </resources>

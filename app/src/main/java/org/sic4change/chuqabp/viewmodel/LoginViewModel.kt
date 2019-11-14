@@ -2,14 +2,11 @@ package org.sic4change.chuqabp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.repository.LoginRepository
-import java.io.IOException
 
 /**
  * The [ViewModel] that is associated with the [LoginFragment].
@@ -31,54 +28,23 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
      */
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-
     /**
      * The data source this ViewModel will fetch results from.
      */
     private val loginRepository = LoginRepository()
 
     /**
-     * An application user
+     * Login response from repository
      */
-    //val videos = videosRepository.videos
+    val loginResponse = loginRepository.loginResponse
 
     /**
-     * Flag to naviate to main view. This is private to avoid exposing a
-     * way to set this value to observers.
+     * Method to login using repository
      */
-    private val _navigateToMainView = MutableLiveData<Boolean>()
-
-    /**
-     * Flag to naviate to main view. Views should use this to get access
-     * to the data.
-     */
-    val navigateToMainView: LiveData<Boolean>
-        get() = _navigateToMainView
-
-    /**
-     * Event triggered for network error. This is private to avoid exposing a
-     * way to set this value to observers.
-     */
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
-
-    /**
-     * Event triggered for network error. Views should use this to get access
-     * to the data.
-     */
-    val eventNetworkError: LiveData<Boolean>
-        get() = _eventNetworkError
-
-
-
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            try {
-                loginRepository.login(email, password)
-            } catch (networkError: IOException) {
-                _eventNetworkError.value = true
-            }
+            loginRepository.login(email, password)
         }
-
     }
 
     /**

@@ -1,22 +1,24 @@
 package org.sic4change.chuqabp.ui
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_login.*
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
+import org.sic4change.chuqabp.domain.Models
 import org.sic4change.chuqabp.extensions.hideKeyboard
 import org.sic4change.chuqabp.viewmodel.LoginViewModel
 import org.sic4change.chuqabp.viewmodel.LoginViewModelFactory
+import timber.log.Timber
 
 class LoginFragment: Fragment() {
 
@@ -33,7 +35,7 @@ class LoginFragment: Fragment() {
             .get(LoginViewModel::class.java)
     }
 
-
+    private lateinit var binding : FragmentLoginBinding
 
     /**
      * Called when the fragment's activity has been created and this
@@ -44,9 +46,6 @@ class LoginFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as LoginActivity).supportActionBar?.title = getString(R.string.app_name)
-        viewModel.navigateToMainView.observe(viewLifecycleOwner, Observer<Boolean> {
-
-        })
     }
 
     /**
@@ -66,7 +65,7 @@ class LoginFragment: Fragment() {
      * @return Return the View for the fragment's UI.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentLoginBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_login,
             container,
@@ -89,6 +88,17 @@ class LoginFragment: Fragment() {
             false
         }
 
+        viewModel.loginResponse?.observe(this, Observer<Models.LoginResponse> { loginResponse ->
+            if (loginResponse != null) {
+                if (loginResponse.logged) {
+                    goToMainActivity()
+                } else {
+                    showLoginError(loginResponse.error)
+                }
+                enableLoginView()
+            }
+        })
+
         return binding.root
     }
 
@@ -96,11 +106,48 @@ class LoginFragment: Fragment() {
      * Method to login
      */
     fun login(email: String, password: String) {
+        disableLoginView()
         viewModel.login(email, password)
     }
 
+    /**
+     * Method to show login error
+     */
+    fun showLoginError(errorMessage: String) {
+        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_SHORT).show()
+    }
 
+    /**
+     * Method to disable login view
+     */
+    fun disableLoginView() {
+        binding.btnLogin.isClickable = false
+        binding.btnLogin.isEnabled = false
+        binding.tvTermsAndConditions.isClickable = false
+        binding.tvResetPassword.isClickable = false
+        binding.etPassword.isEnabled = false
+        binding.etEmail.isEnabled = false
+        binding.tvNewUser.isClickable = false
+    }
 
+    /**
+     * Method to enable login view
+     */
+    fun enableLoginView() {
+        binding.btnLogin.isClickable = true
+        binding.btnLogin.isEnabled = true
+        binding.tvTermsAndConditions.isClickable = true
+        binding.tvResetPassword.isClickable = true
+        binding.etPassword.isEnabled = true
+        binding.etEmail.isEnabled = true
+        binding.tvNewUser.isClickable = true
+    }
 
+    /**
+     * Method to go to main activity
+     */
+    fun goToMainActivity() {
+        this.findNavController().navigate(R.id.action_login_to_createAccount)
+    }
 
 }

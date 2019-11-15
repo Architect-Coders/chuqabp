@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
 import org.sic4change.chuqabp.domain.Models
@@ -97,12 +96,20 @@ class LoginFragment: Fragment() {
         viewModel.loginResponse.observe(this, Observer<Models.LoginResponse> { loginResponse ->
             if (loginResponse != null) {
                 if (loginResponse.logged) {
-                    goToMainActivity()
+                    getUser(loginResponse.email)
                 } else {
                     showLoginError(loginResponse.error)
                 }
                 enableLoginView()
             }
+        })
+
+        //observe user
+        viewModel.user.observe(this, Observer<Models.User> {
+            if (it != null && it.email.isNotEmpty() ) {
+                goToMainActivity()
+            }
+
         })
 
         return binding.root
@@ -111,9 +118,17 @@ class LoginFragment: Fragment() {
     /**
      * Method to login
      */
-    fun login(email: String, password: String) {
+    private fun login(email: String, password: String) {
         disableLoginView()
         viewModel.login(email, password)
+    }
+
+    /**
+     * Method to get user
+     */
+    private fun getUser(email: String) {
+        disableLoginView()
+        viewModel.getUser(email)
     }
 
     /**

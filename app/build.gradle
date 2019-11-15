@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -71,6 +73,15 @@ dependencies {
 
     //Show/Hide password edittext
     implementation 'com.github.scottyab:showhidepasswordedittext:0.8'
+
+    //Moshi for parsing the JSON format
+    implementation "com.squareup.moshi:moshi:1.6.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.6.0"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.6.0"
+
+    //Room database
+    implementation "androidx.room:room-runtime:2.2.1"
+    kapt "androidx.room:room-compiler:2.2.1"
 
 
 }

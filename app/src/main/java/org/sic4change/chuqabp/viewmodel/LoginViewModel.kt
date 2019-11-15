@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import org.sic4change.chuqabp.database.getDatabase
 import org.sic4change.chuqabp.repository.LoginRepository
 
 /**
@@ -31,7 +32,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     /**
      * The data source this ViewModel will fetch results from.
      */
-    private val loginRepository = LoginRepository()
+    private val loginRepository = LoginRepository(getDatabase(application))
 
     /**
      * Login response from repository
@@ -39,11 +40,25 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val loginResponse = loginRepository.loginResponse
 
     /**
+     * User to show in views
+     */
+    val user = loginRepository.user
+
+    /**
      * Method to login using repository
      */
     fun login(email: String, password: String) {
         viewModelScope.launch {
             loginRepository.login(email, password)
+        }
+    }
+
+    /**
+     * Method to getUser using repository
+     */
+    fun getUser(email: String) {
+        viewModelScope.launch {
+            loginRepository.getUser(email)
         }
     }
 

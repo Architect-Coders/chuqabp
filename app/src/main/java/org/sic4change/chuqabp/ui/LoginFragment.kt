@@ -83,7 +83,7 @@ class LoginFragment: Fragment() {
         }
 
         //login when click in keyboard enter when password is typed
-        binding.etPassword.setOnKeyListener { v, keyCode, event ->
+        binding.etPassword.setOnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 hideKeyboard()
                 login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
@@ -92,7 +92,8 @@ class LoginFragment: Fragment() {
             false
         }
 
-        viewModel.loginResponse?.observe(this, Observer<Models.LoginResponse> { loginResponse ->
+        //observe login response
+        viewModel.loginResponse.observe(this, Observer<Models.LoginResponse> { loginResponse ->
             if (loginResponse != null) {
                 if (loginResponse.logged) {
                     goToMainActivity()

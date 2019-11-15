@@ -15,6 +15,7 @@ import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
 import org.sic4change.chuqabp.domain.Models
 import org.sic4change.chuqabp.extensions.hideKeyboard
+import org.sic4change.chuqabp.extensions.snackbar
 import org.sic4change.chuqabp.viewmodel.LoginViewModel
 import org.sic4change.chuqabp.viewmodel.LoginViewModelFactory
 
@@ -119,7 +120,7 @@ class LoginFragment: Fragment() {
      * Method to show login error
      */
     fun showLoginError(errorMessage: String) {
-        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_SHORT).show()
+        snackbar(binding.root, errorMessage)
     }
 
     /**

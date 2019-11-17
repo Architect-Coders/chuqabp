@@ -14,7 +14,7 @@ import org.sic4change.chuqabp.database.DatabaseUser
  */
 
 /**
- * VideoHolder holds a list of Topics.
+ * VideoHolder holds a list of User.
  *
  * This is to parse first level of our network result which looks like
  *

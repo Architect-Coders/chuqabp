@@ -6,9 +6,9 @@ class Models {
      * LoginResponse represent a result login object
      */
     data class LoginResponse(
-        var logged: Boolean,
-        var email: String,
-        var error: String)
+        val logged: Boolean,
+        val email: String,
+        val error: String)
 
 
     /**

@@ -10,7 +10,6 @@ class Models {
         val email: String,
         val error: String)
 
-
     /**
      * User represent a user object
      */

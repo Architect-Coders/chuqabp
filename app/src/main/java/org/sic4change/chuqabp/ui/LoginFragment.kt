@@ -92,16 +92,32 @@ class LoginFragment: Fragment() {
             false
         }
 
+        binding.tvResetPassword.setOnClickListener {
+            forgotPassword(binding.etEmail.text.toString())
+        }
+
         //observe login response
         viewModel.loginResponse.observe(this, Observer<Models.LoginResponse> { loginResponse ->
             if (loginResponse != null) {
                 if (loginResponse.logged) {
                     getUser(loginResponse.email)
                 } else {
-                    showLoginError(loginResponse.error)
+                    showMessage(loginResponse.error)
                 }
                 enableLoginView()
             }
+        })
+
+        //observe change password response
+        viewModel.changePasswordResponse.observe(this, Observer<Boolean> { changePasswordResponse ->
+            if (changePasswordResponse != null) {
+                if (changePasswordResponse) {
+                    showMessage(getString(R.string.forgot_password_ok))
+                } else {
+                    showMessage(getString(R.string.forgot_password_error))
+                }
+            }
+            enableLoginView()
         })
 
         //observe user
@@ -124,6 +140,14 @@ class LoginFragment: Fragment() {
     }
 
     /**
+     * Method to forgot password
+     */
+    private fun forgotPassword(email: String) {
+        disableLoginView()
+        viewModel.forgotPassword(email)
+    }
+
+    /**
      * Method to get user
      */
     private fun getUser(email: String) {
@@ -132,10 +156,10 @@ class LoginFragment: Fragment() {
     }
 
     /**
-     * Method to show login error
+     * Method to show messages using snackbar
      */
-    fun showLoginError(errorMessage: String) {
-        snackbar(binding.root, errorMessage)
+    fun showMessage(message: String) {
+        snackbar(binding.root, message)
     }
 
     /**

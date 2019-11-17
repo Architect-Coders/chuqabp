@@ -40,6 +40,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val loginResponse = loginRepository.loginResponse
 
     /**
+     * Request change password response from repository
+     */
+    val changePasswordResponse = loginRepository.changePasswordResponse
+
+    /**
      * User to show in views
      */
     val user = loginRepository.user
@@ -50,6 +55,15 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     fun login(email: String, password: String) {
         viewModelScope.launch {
             loginRepository.login(email, password)
+        }
+    }
+
+    /**
+     * Method to forgot password using repository
+     */
+    fun forgotPassword(email: String) {
+        viewModelScope.launch {
+            loginRepository.forgotPassword(email)
         }
     }
 

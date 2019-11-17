@@ -11,6 +11,10 @@
     <string name="terms_and_conditions">Términos y condiciones</string>
     <string name="i_forgot_my_password">Olvidé mi contraseña</string>
 
+    <!--Forgot password-->
+    <string name="forgot_password_ok">Petición recibida. Por favor revise su correo electrónico</string>
+    <string name="forgot_password_error">Correo electrónico no registrado</string>
+
     <!--Error user login/create account-->
     <string name="mandatory_field">Debe rellenar los campos obligatorios</string>
     <string name="invalid_email">Correo no válido</string>

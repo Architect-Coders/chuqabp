@@ -17,7 +17,9 @@ import timber.log.Timber
 
 class LoginRepository(val database: ChuqabpDatabase) {
 
-    var loginResponse : MutableLiveData<Models.LoginResponse> = MutableLiveData<Models.LoginResponse>(null)
+    var loginResponse : MutableLiveData<Models.LoginResponse> = MutableLiveData()
+
+    var changePasswordResponse : MutableLiveData<Boolean> = MutableLiveData()
 
     val user : LiveData<Models.User> = Transformations.map(database.chuqabpDatabaseDao.getUser()) {
         it?.asUserDomainModel()
@@ -34,7 +36,7 @@ class LoginRepository(val database: ChuqabpDatabase) {
                 val user = result.user
                 if (user != null) {
                     Timber.d("Login result: ok")
-                    loginResponse.postValue(Models.LoginResponse(true, user.email!!, ""))
+                    loginResponse.postValue(Models.LoginResponse(true,  user.email!!, ""))
                 }
             } catch (ex : Exception) {
                 Timber.d("Login result: false ${ex.cause}")
@@ -42,6 +44,24 @@ class LoginRepository(val database: ChuqabpDatabase) {
             }
         }
 
+    }
+
+    /**
+     * Method to forgotPassword
+     */
+    suspend fun forgotPassword(email: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to request change password with firebase")
+            try {
+                ChuqabpFirebaseService.fbAuth.sendPasswordResetEmail(email).await()
+                changePasswordResponse.postValue(true)
+                Timber.d("Request change password: ok")
+            } catch (ex : Exception) {
+                Timber.d("Request change password: error ${ex.cause}")
+                changePasswordResponse.postValue(false)
+            }
+            changePasswordResponse.postValue(null)
+        }
     }
 
     /**

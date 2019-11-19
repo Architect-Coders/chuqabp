@@ -2,9 +2,15 @@ package org.sic4change.chuqabp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import kotlinx.android.synthetic.main.activity_login.*
 import org.sic4change.chuqabp.R
 
 class CreateAccountFragment: Fragment() {
@@ -41,6 +47,7 @@ class CreateAccountFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_create_account, container, false)
         return view
     }
+
 
 
 

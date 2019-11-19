@@ -15,6 +15,13 @@
     <string name="forgot_password_ok">Petición recibida. Por favor revise su correo electrónico</string>
     <string name="forgot_password_error">Correo electrónico no registrado</string>
 
+    <!--Create Account-->
+    <string name="createAccount">CREAR CUENTA</string>
+    <string name="name">Nombre</string>
+    <string name="surname">Apellido</string>
+    <string name="sign_up_uppercase">Crear cuenta</string>
+    <string name="acept_terms_and_conditions">Acepto los </string>
+
     <!--Error user login/create account-->
     <string name="mandatory_field">Debe rellenar los campos obligatorios</string>
     <string name="invalid_email">Correo no válido</string>

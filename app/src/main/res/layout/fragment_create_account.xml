@@ -146,7 +146,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/etSurname" />
 
-                    <EditText
+
+                    <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
                             android:id="@+id/etPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -155,12 +156,12 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="@dimen/margin_medium"
                             android:layout_marginRight="@dimen/margin_medium"
-                            android:layout_marginBottom="@dimen/margin_default"
+                            android:layout_marginBottom="@dimen/margin_medium"
                             android:ems="10"
-                            android:inputType="textPassword"
+                            tools:ignore="HardcodedText"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+                            app:layout_constraintTop_toBottomOf="@+id/tvPassword"/>
 
                     <CheckBox
                             android:id="@+id/cbTerms"

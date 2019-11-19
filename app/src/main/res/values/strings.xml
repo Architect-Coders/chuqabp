@@ -18,7 +18,7 @@
     <!--Create Account-->
     <string name="createAccount">CREAR CUENTA</string>
     <string name="name">Nombre</string>
-    <string name="surname">Apellido</string>
+    <string name="surname">Apellidos</string>
     <string name="sign_up_uppercase">Crear cuenta</string>
     <string name="acept_terms_and_conditions">Acepto los </string>
 

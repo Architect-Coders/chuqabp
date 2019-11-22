@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.extensions
+package org.sic4change.chuqabp.utils
 
 import android.app.Activity
 import android.content.Context

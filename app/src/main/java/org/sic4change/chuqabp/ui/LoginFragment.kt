@@ -13,8 +13,9 @@ import androidx.navigation.fragment.findNavController
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
 import org.sic4change.chuqabp.domain.Models
-import org.sic4change.chuqabp.extensions.hideKeyboard
-import org.sic4change.chuqabp.extensions.snackbar
+import org.sic4change.chuqabp.utils.Configuration
+import org.sic4change.chuqabp.utils.hideKeyboard
+import org.sic4change.chuqabp.utils.snackbar
 import org.sic4change.chuqabp.viewmodel.LoginViewModel
 import org.sic4change.chuqabp.viewmodel.LoginViewModelFactory
 
@@ -117,6 +118,10 @@ class LoginFragment: Fragment() {
             }
         })
 
+        binding.tvTermsAndConditions.setOnClickListener {
+            Configuration.showTermsAndConditions(activity)
+        }
+
         return binding.root
     }
 
@@ -191,5 +196,6 @@ class LoginFragment: Fragment() {
     fun goToCreateAccount() {
         findNavController().navigate(R.id.action_login_to_createAccount)
     }
+
 
 }

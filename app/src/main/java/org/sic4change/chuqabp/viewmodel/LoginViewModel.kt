@@ -2,12 +2,14 @@ package org.sic4change.chuqabp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.database.getDatabase
-import org.sic4change.chuqabp.repository.LoginRepository
+import org.sic4change.chuqabp.repository.UserRepository
 
 /**
  * The [ViewModel] that is associated with the [LoginFragment].
@@ -32,7 +34,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     /**
      * The data source this ViewModel will fetch results from.
      */
-    private val loginRepository = LoginRepository(getDatabase(application))
+    private val loginRepository = UserRepository(getDatabase(application))
 
     /**
      * Login response from repository
@@ -43,6 +45,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
      * Request change password response from repository
      */
     val changePasswordResponse = loginRepository.changePasswordResponse
+
+    /**
+     * Create user response from repository
+     */
+    val createUserResponse = loginRepository.createUserResponse
 
     /**
      * User to show in views
@@ -73,6 +80,15 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     fun getUser(email: String) {
         viewModelScope.launch {
             loginRepository.getUser(email)
+        }
+    }
+
+    /**
+     * Method to createUser using repository
+     */
+    fun createUser(email: String, password: String, name: String, surnames: String) {
+        viewModelScope.launch {
+            loginRepository.createUser(email, password, name, surnames)
         }
     }
 

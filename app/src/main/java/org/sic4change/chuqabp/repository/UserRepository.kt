@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import org.sic4change.chuqabp.database.ChuqabpDatabase
+import org.sic4change.chuqabp.database.DatabaseUser
 import org.sic4change.chuqabp.database.asUserDomainModel
 import org.sic4change.chuqabp.domain.Models
 import org.sic4change.chuqabp.network.ChuqabpFirebaseService
@@ -15,11 +16,13 @@ import org.sic4change.chuqabp.network.User
 import org.sic4change.chuqabp.network.asDatabaseModel
 import timber.log.Timber
 
-class LoginRepository(val database: ChuqabpDatabase) {
+class UserRepository(val database: ChuqabpDatabase) {
 
-    var loginResponse : MutableLiveData<Models.LoginResponse> = MutableLiveData()
+    var loginResponse : MutableLiveData<Models.UserManagementResponse> = MutableLiveData()
 
     var changePasswordResponse : MutableLiveData<Boolean> = MutableLiveData()
+
+    var createUserResponse : MutableLiveData<Models.UserManagementResponse> = MutableLiveData()
 
     val user : LiveData<Models.User> = Transformations.map(database.chuqabpDatabaseDao.getUser()) {
         it?.asUserDomainModel()
@@ -36,11 +39,11 @@ class LoginRepository(val database: ChuqabpDatabase) {
                 val user = result.user
                 if (user != null) {
                     Timber.d("Login result: ok")
-                    loginResponse.postValue(Models.LoginResponse(true,  user.email!!, ""))
+                    loginResponse.postValue(Models.UserManagementResponse(true,  user.email!!, ""))
                 }
             } catch (ex : Exception) {
                 Timber.d("Login result: false ${ex.cause}")
-                loginResponse.postValue(Models.LoginResponse(false, "", ex.message.toString()))
+                loginResponse.postValue(Models.UserManagementResponse(false, "", ex.message.toString()))
             }
         }
 
@@ -75,16 +78,41 @@ class LoginRepository(val database: ChuqabpDatabase) {
                 val userRef = db.collection("users")
                 val query = userRef.whereEqualTo("email", email).limit(1)
                 val result = query.get().await()
-                if (result != null) {
+                if (result != null ) {
                     val networkUserContainer = NetworkUserContainer(result.toObjects(User::class.java))
-                    Timber.d("Get user result:  ${networkUserContainer.resultados.get(0).email}")
-                    database.chuqabpDatabaseDao.insertUser(networkUserContainer.resultados.get(0).asDatabaseModel())
+                    Timber.d("Get user result:  ${networkUserContainer.resultados[0].email}")
+                    database.chuqabpDatabaseDao.insertUser(networkUserContainer.resultados[0].asDatabaseModel())
                 }
+
             } catch (ex: Exception) {
                 Timber.d("Get user result: error ${ex.cause}")
             }
 
         }
+    }
+
+    /**
+     * Method to login
+     */
+    suspend fun createUser(email: String, password: String, name: String, surnames: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to create user with firebase")
+            try {
+                ChuqabpFirebaseService.fbAuth.createUserWithEmailAndPassword(email, password).await()
+                val db = ChuqabpFirebaseService.mFirestore
+                val userRef = db.collection("users")
+                val newUser = userRef.add(User("", email, name, surnames, "")).await()
+                userRef.document(newUser.id).set(User(newUser.id, email, name, surnames, "")).await()
+                database.chuqabpDatabaseDao.deleteUser()
+                database.chuqabpDatabaseDao.insertUser(DatabaseUser(newUser.id, email, name, surnames, ""))
+                Timber.d("CreateUser result: ok")
+                createUserResponse.postValue(Models.UserManagementResponse(true, email, ""))
+            } catch (ex : Exception) {
+                Timber.d("Create user result: false ${ex.cause}")
+                createUserResponse.postValue(Models.UserManagementResponse(false, "", ex.message.toString()))
+            }
+        }
+
     }
 
 }

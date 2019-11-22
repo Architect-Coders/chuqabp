@@ -4,6 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ui.LoginActivity">
 
+    <data>
+        <variable
+                name="viewModel"
+                type="org.sic4change.chuqabp.viewmodel.LoginViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/lyCreateAccount"
@@ -105,7 +111,7 @@
                             android:layout_marginEnd="@dimen/margin_medium"
                             android:layout_marginRight="@dimen/margin_medium"
                             android:ems="10"
-                            android:inputType="text"
+                            android:inputType="textPersonName"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvName" />
@@ -130,7 +136,7 @@
                             android:layout_marginEnd="@dimen/margin_medium"
                             android:layout_marginRight="@dimen/margin_medium"
                             android:ems="10"
-                            android:inputType="text"
+                            android:inputType="textPersonName"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvSurname" />

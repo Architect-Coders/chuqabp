@@ -35,6 +35,8 @@ class LoginFragment: Fragment() {
 
     private lateinit var binding : FragmentLoginBinding
 
+
+
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -43,7 +45,7 @@ class LoginFragment: Fragment() {
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity as LoginActivity).supportActionBar?.title = getString(R.string.app_name)
+        //(activity as LoginActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     /**
@@ -97,9 +99,9 @@ class LoginFragment: Fragment() {
         }
 
         //observe login response
-        viewModel.loginResponse.observe(this, Observer<Models.LoginResponse> { loginResponse ->
+        viewModel.loginResponse.observe(this, Observer<Models.UserManagementResponse> { loginResponse ->
             if (loginResponse != null) {
-                if (loginResponse.logged) {
+                if (loginResponse.successful) {
                     getUser(loginResponse.email)
                 } else {
                     showMessage(loginResponse.error)
@@ -122,10 +124,9 @@ class LoginFragment: Fragment() {
 
         //observe user
         viewModel.user.observe(this, Observer<Models.User> {
-            if (it != null && it.email.isNotEmpty() ) {
+            if (it != null && it.email.isNotEmpty()) {
                 goToMainActivity()
             }
-
         })
 
         return binding.root
@@ -192,15 +193,15 @@ class LoginFragment: Fragment() {
      * Method to go to main activity
      */
     fun goToMainActivity() {
-        this.findNavController().navigate(R.id.action_loginFragment_to_mainActivity)
-        activity?.finishAffinity()
+        findNavController().navigate(R.id.action_loginFragment_to_mainActivity)
+        activity?.finish()
     }
 
     /**
      * Method to go to main activity
      */
     fun goToCreateAccount() {
-        this.findNavController().navigate(R.id.action_login_to_createAccount)
+        findNavController().navigate(R.id.action_login_to_createAccount)
     }
 
 }

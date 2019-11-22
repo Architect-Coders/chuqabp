@@ -3,10 +3,10 @@ package org.sic4change.chuqabp.domain
 class Models {
 
     /**
-     * LoginResponse represent a result login object
+     * UserManagementResponse represent a result login object
      */
-    data class LoginResponse(
-        val logged: Boolean,
+    data class UserManagementResponse(
+        var successful: Boolean,
         val email: String,
         val error: String)
 

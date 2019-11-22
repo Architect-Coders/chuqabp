@@ -22,6 +22,14 @@
               android:name="org.sic4change.chuqabp.ui.CreateAccountFragment"
               android:label="@string/app_name"
               tools:layout="@layout/fragment_create_account">
+        <action android:id="@+id/action_createAccount_to_login"
+                app:destination="@id/loginFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_createAccountFragment_to_mainActivity"
+                app:destination="@id/mainActivity" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <activity android:id="@+id/mainActivity" android:name="org.sic4change.chuqabp.ui.MainActivity"
               android:label="activity_main" tools:layout="@layout/activity_main"/>

@@ -36,18 +36,6 @@ class LoginFragment: Fragment() {
     private lateinit var binding : FragmentLoginBinding
 
 
-
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.
-     */
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        //(activity as LoginActivity).supportActionBar?.title = getString(R.string.app_name)
-    }
-
     /**
      * Called to have the fragment instantiate its user interface view.
      *

@@ -34,18 +34,6 @@ class CreateAccountFragment: Fragment() {
 
     private lateinit var binding : FragmentCreateAccountBinding
 
-
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.
-     */
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        //(activity as LoginActivity).supportActionBar?.title = getString(R.string.app_name)
-    }
-
     /**
      * Called to have the fragment instantiate its user interface view.
      *
@@ -97,13 +85,26 @@ class CreateAccountFragment: Fragment() {
         return binding.root
     }
 
-
     /**
      * Method to createAccount
      */
     private fun createAccount(email: String, password: String, name: String, surnames: String) {
         disableCreateAccountView()
-        viewModel.createUser(email, password, name, surnames)
+        if (checkCreateAccountValues()) {
+            viewModel.createUser(email, password, name, surnames)
+        } else {
+            showMessage(getString(R.string.mandatory_field))
+            enableCreateAccountView()
+        }
+    }
+
+    /**
+     * Method to check inputvalues
+     */
+    private fun checkCreateAccountValues() : Boolean {
+        return binding.etEmail.text.isNotEmpty() && binding.etPassword.text.isNotEmpty()
+                && binding.etName.text.isNotEmpty() && binding.etSurname.text.isNotEmpty()
+                && binding.cbTerms.isChecked
     }
 
     /**

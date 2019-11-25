@@ -1,11 +1,9 @@
 package org.sic4change.chuqabp.ui
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentCreateAccountBinding
 import org.sic4change.chuqabp.domain.Models
-import org.sic4change.chuqabp.utils.Configuration
+import org.sic4change.chuqabp.utils.TermsAndConditions
 import org.sic4change.chuqabp.utils.snackbar
 import org.sic4change.chuqabp.viewmodel.LoginViewModel
 import org.sic4change.chuqabp.viewmodel.LoginViewModelFactory
@@ -68,7 +66,7 @@ class CreateAccountFragment: Fragment() {
         }
 
         binding.tvTermsAndConditions.setOnClickListener {
-            Configuration.showTermsAndConditions(activity)
+            TermsAndConditions.showTermsAndConditions(activity)
         }
 
         viewModel.createUserResponse.observe(this, Observer<Models.UserManagementResponse> { createUserResponse ->

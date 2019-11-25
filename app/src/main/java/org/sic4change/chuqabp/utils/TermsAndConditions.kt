@@ -1,12 +1,15 @@
 package org.sic4change.chuqabp.utils
 
 import android.app.AlertDialog
+import android.content.Context
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.webkit.WebView
 import androidx.fragment.app.FragmentActivity
 import org.sic4change.chuqabp.R
 
-class Configuration {
+
+class TermsAndConditions {
 
     companion object  {
 
@@ -24,6 +27,8 @@ class Configuration {
         }
 
     }
+
+
 
 
 }

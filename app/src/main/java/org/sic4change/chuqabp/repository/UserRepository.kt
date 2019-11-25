@@ -92,6 +92,30 @@ class UserRepository(val database: ChuqabpDatabase) {
     }
 
     /**
+     * Method to get user
+     */
+    suspend fun getUser() {
+        withContext(Dispatchers.IO) {
+            try {
+                val user = database.chuqabpDatabaseDao.getUser()
+                val db = ChuqabpFirebaseService.mFirestore
+                val userRef = db.collection("users")
+                val query = userRef.whereEqualTo("email", user.value?.email).limit(1)
+                val result = query.get().await()
+                if (result != null ) {
+                    val networkUserContainer = NetworkUserContainer(result.toObjects(User::class.java))
+                    Timber.d("Get user result:  ${networkUserContainer.resultados[0].email}")
+                    database.chuqabpDatabaseDao.deleteUser()
+                    database.chuqabpDatabaseDao.insertUser(networkUserContainer.resultados[0].asDatabaseModel())
+                }
+            } catch (ex : Exception) {
+                Timber.d("Get user result: error ${ex.cause}")
+            }
+
+        }
+    }
+
+    /**
      * Method to login
      */
     suspend fun createUser(email: String, password: String, name: String, surnames: String) {

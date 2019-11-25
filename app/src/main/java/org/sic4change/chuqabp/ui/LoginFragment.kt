@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
 import org.sic4change.chuqabp.domain.Models
-import org.sic4change.chuqabp.utils.Configuration
+import org.sic4change.chuqabp.utils.TermsAndConditions
 import org.sic4change.chuqabp.utils.hideKeyboard
 import org.sic4change.chuqabp.utils.snackbar
 import org.sic4change.chuqabp.viewmodel.LoginViewModel
@@ -119,7 +119,7 @@ class LoginFragment: Fragment() {
         })
 
         binding.tvTermsAndConditions.setOnClickListener {
-            Configuration.showTermsAndConditions(activity)
+            TermsAndConditions.showTermsAndConditions(activity)
         }
 
         return binding.root

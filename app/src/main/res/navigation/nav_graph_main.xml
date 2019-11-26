@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph_main"
+            app:startDestination="@id/mainFragment">
+
+    <fragment android:id="@+id/mainFragment"
+            android:name="org.sic4change.chuqabp.ui.MainFragment"
+            android:label="@string/app_name"
+            tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_main_to_user"
+                app:destination="@id/userFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/userFragment"
+            android:name="org.sic4change.chuqabp.ui.UserFragment"
+            android:label="@string/app_name"
+            tools:layout="@layout/fragment_user">
+        <action android:id="@+id/action_user_to_main"
+                app:destination="@id/mainFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+</navigation>

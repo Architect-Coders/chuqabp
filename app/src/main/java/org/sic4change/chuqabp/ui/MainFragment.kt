@@ -61,7 +61,7 @@ class MainFragment: Fragment() {
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem?.getItemId() == android.R.id.home) {
-            goToUserView()
+            //goToUserView()
         }
         return super.onOptionsItemSelected(menuItem)
     }

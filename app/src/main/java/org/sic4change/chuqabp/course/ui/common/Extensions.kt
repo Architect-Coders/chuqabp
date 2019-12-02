@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui
+package org.sic4change.chuqabp.course.ui.common
 
 import android.app.Activity
 import android.content.Context

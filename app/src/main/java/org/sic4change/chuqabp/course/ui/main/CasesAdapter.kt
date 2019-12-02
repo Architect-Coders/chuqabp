@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui
+package org.sic4change.chuqabp.course.ui.main
 
 import org.sic4change.chuqabp.course.model.Case
 import android.view.View
@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_case.view.*
 import org.sic4change.chuqabp.R
+import org.sic4change.chuqabp.course.ui.common.basicDiffUtil
+import org.sic4change.chuqabp.course.ui.common.inflate
+import org.sic4change.chuqabp.course.ui.common.loadUrl
 
 
 class CasesAdapter(private val listener: (Case) -> Unit) :

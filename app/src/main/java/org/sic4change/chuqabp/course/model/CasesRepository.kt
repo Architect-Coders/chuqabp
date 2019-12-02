@@ -1,12 +1,13 @@
 package org.sic4change.chuqabp.course.model
 
+import android.app.Activity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 import timber.log.Timber
 
-class CasesRepository {
+class CasesRepository(activity: Activity) {
 
     /**
      * Method to get cases

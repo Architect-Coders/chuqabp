@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui
+package org.sic4change.chuqabp.course.ui.detail
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,8 +7,9 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import org.sic4change.chuqabp.course.model.Case
 
-class CaseDetailInfoView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-    : TextView(context, attrs, defStyleAttr) {
+class CaseDetailInfoView @JvmOverloads
+
+    constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TextView(context, attrs, defStyleAttr) {
 
     fun setCase(case: Case) = with(case) {
         text = buildSpannedString {

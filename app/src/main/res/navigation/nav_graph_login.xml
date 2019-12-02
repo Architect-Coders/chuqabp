@@ -31,6 +31,6 @@
                 app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <activity android:id="@+id/mainActivity" android:name="org.sic4change.chuqabp.course.ui.MainActivity"
+    <activity android:id="@+id/mainActivity" android:name="org.sic4change.chuqabp.course.ui.main.MainActivity"
               android:label="activity_main" tools:layout="@layout/activity_main"/>
 </navigation>

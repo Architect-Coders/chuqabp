@@ -2,7 +2,7 @@ package org.sic4change.chuqabp.course.model
 
 import android.location.Location
 import android.annotation.SuppressLint
-import android.app.Activity
+import android.app.Application
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
@@ -11,8 +11,8 @@ interface LocationDataSource {
     suspend fun findLastLocation(): Location?
 }
 
-class PlayServicesLocationDataSource(activity: Activity) : LocationDataSource {
-    private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+class PlayServicesLocationDataSource(application: Application) : LocationDataSource {
+    private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
 
     @SuppressLint("MissingPermission")
     override suspend fun findLastLocation(): Location? =

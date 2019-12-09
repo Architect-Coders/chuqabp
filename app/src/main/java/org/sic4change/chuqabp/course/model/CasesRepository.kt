@@ -1,19 +1,20 @@
 package org.sic4change.chuqabp.course.model
 
 import android.app.Activity
+import android.app.Application
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 import timber.log.Timber
 
-class CasesRepository(activity: Activity) {
+class CasesRepository(application: Application) {
 
     /**
      * Method to get cases
      */
     suspend fun getCases(): List<Case> {
-        lateinit var cases : List<Case>
+        var cases : List<Case> = emptyList()
         return withContext(Dispatchers.IO) {
             try {
                 val db = ChuqabpFirebaseService.mFirestore

@@ -1,59 +1,56 @@
 package org.sic4change.chuqabp.course.ui.main
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.model.Case
 import org.sic4change.chuqabp.course.model.CasesRepository
+import org.sic4change.chuqabp.course.ui.PermissionRequester
+import org.sic4change.chuqabp.course.ui.common.getViewModel
 import org.sic4change.chuqabp.course.ui.detail.DetailActivity
 import org.sic4change.chuqabp.course.ui.common.startActivity
 
 
-class MainActivity : AppCompatActivity(), MainPresenter.View {
+class MainActivity : AppCompatActivity() {
 
-    private val presenter by lazy {  MainPresenter(CasesRepository(this)) }
+    private lateinit var viewModel : MainViewModel
 
+    private lateinit var adapter : CasesAdapter
 
-    private val adapter = CasesAdapter {
-        presenter.onCaseClicked(it)
-    }
+    private val coarsePermissionRequester = PermissionRequester(this, ACCESS_COARSE_LOCATION)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter.onCreate(this)
+        viewModel = getViewModel{ MainViewModel(CasesRepository(application)) }
 
+        adapter = CasesAdapter(viewModel::onCaseClicked)
         recycler.adapter = adapter
+
+        viewModel.model.observe(this, Observer {
+            //::updateUi
+            updateUI(viewModel.model.value!!)})
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
-    }
-
-    override fun showProgress() {
-        progress.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        progress.visibility = View.GONE
-    }
-
-    override fun updateData(cases: List<Case>) {
-        adapter.cases = cases
-    }
-
-    override fun navigateTo(case: Case) {
-        startActivity<DetailActivity> {
-            putExtra(DetailActivity.CASE, case)
+    private fun updateUI(model: MainViewModel.UIModel) {
+        progress.visibility = if (model == MainViewModel.UIModel.Loading) View.VISIBLE else View.GONE
+        when(model) {
+            is MainViewModel.UIModel.Content -> adapter.cases = model.cases
+            is MainViewModel.UIModel.Navigation -> startActivity<DetailActivity> {
+                putExtra(DetailActivity.CASE, model.case)
+            }
+            MainViewModel.UIModel.RequestLocationPermission -> coarsePermissionRequester.request {
+                viewModel.onCoarsePermissionRequest()
+            }
         }
     }
-
-
 
 
 }

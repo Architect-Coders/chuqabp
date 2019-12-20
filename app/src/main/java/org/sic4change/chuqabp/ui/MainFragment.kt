@@ -12,7 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -20,15 +19,14 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
-import org.sic4change.chuqabp.domain.Models
-import org.sic4change.chuqabp.utils.Sizes
+import org.sic4change.chuqabp.course.model.domain.Models
+import org.sic4change.chuqabp.course.ui.common.Sizes
 import org.sic4change.chuqabp.viewmodel.MainViewModel
 import org.sic4change.chuqabp.viewmodel.MainViewModelFactory
-import timber.log.Timber
 
 class MainFragment: Fragment() {
 
-    private val viewModel: MainViewModel by lazy {
+    /*private val viewModel: MainViewModel by lazy {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
@@ -73,13 +71,15 @@ class MainFragment: Fragment() {
     private fun showUserImage(photoUrl: String) {
         Glide.with(this).asDrawable().load(photoUrl).apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.ic_account_circle).override(
-                Sizes.convertDpToPixel(Sizes.action_bar_photo_dimens, activity!!.applicationContext),
-                Sizes.convertDpToPixel(Sizes.action_bar_photo_dimens, activity!!.applicationContext)).into(object : CustomTarget<Drawable?>() {
+                Sizes.convertDpToPixel(
+                    Sizes.action_bar_photo_dimens, activity!!.applicationContext),
+                Sizes.convertDpToPixel(
+                    Sizes.action_bar_photo_dimens, activity!!.applicationContext)).into(object : CustomTarget<Drawable?>() {
                 override fun onResourceReady(resource: Drawable, @Nullable transition: Transition<in Drawable?>?) {
                     (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(resource)
                 }
                 override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
             })
-    }
+    }*/
 
 }

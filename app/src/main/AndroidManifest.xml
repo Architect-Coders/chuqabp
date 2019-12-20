@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+            android:name=".ChuqabpApp"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -15,7 +16,7 @@
         <activity android:name=".course.ui.main.MainActivity"></activity>
         <activity android:name=".course.ui.detail.DetailActivity"
                 android:parentActivityName=".course.ui.main.MainActivity"/>
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".course.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

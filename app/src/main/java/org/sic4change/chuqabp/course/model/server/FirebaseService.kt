@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.model
+package org.sic4change.chuqabp.course.model.server
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

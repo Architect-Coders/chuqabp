@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.ui
+package org.sic4change.chuqabp.course.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

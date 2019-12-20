@@ -4,9 +4,8 @@ package org.sic4change.chuqabp.course.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.launch
-import org.sic4change.chuqabp.course.model.Case
+import org.sic4change.chuqabp.course.model.database.Case
 import org.sic4change.chuqabp.course.model.CasesRepository
 import org.sic4change.chuqabp.course.ui.common.Scope
 
@@ -39,6 +38,8 @@ class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),
         launch {
             _model.value = UIModel.Loading
             _model.value = UIModel.Content(casesRepository.getCases())
+            casesRepository.refresh()
+            _model.value = UIModel.Content(casesRepository.getCases())
         }
     }
 
@@ -47,7 +48,7 @@ class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),
     }
 
     override fun onCleared() {
-        cancelScope()
+        destroyScope()
     }
 
 }

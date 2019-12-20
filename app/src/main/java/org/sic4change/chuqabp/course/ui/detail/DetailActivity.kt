@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.sic4change.chuqabp.R
+import org.sic4change.chuqabp.course.model.CasesRepository
+import org.sic4change.chuqabp.course.ui.common.app
 import org.sic4change.chuqabp.course.ui.common.getViewModel
 import org.sic4change.chuqabp.course.ui.common.loadUrl
 
@@ -21,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        viewModel = getViewModel {DetailViewModel(intent.getParcelableExtra(CASE))}
+        viewModel = getViewModel {DetailViewModel(intent.getStringExtra(CASE), CasesRepository(app))}
 
         viewModel.model.observe(this, Observer {
             updateUI(viewModel.model.value!!)

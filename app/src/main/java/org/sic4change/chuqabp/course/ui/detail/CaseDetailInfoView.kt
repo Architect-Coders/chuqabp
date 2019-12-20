@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.widget.TextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
-import org.sic4change.chuqabp.course.model.Case
+import org.sic4change.chuqabp.course.model.database.Case
 
 class CaseDetailInfoView @JvmOverloads
 

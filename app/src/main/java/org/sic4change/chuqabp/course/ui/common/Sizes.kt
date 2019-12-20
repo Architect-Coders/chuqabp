@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.utils
+package org.sic4change.chuqabp.course.ui.common
 
 import android.app.AlertDialog
 import android.content.Context

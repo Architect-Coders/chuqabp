@@ -4,22 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.databinding.FragmentUserBinding
-import org.sic4change.chuqabp.domain.Models
-import org.sic4change.chuqabp.utils.loadPhotoUrl
+import org.sic4change.chuqabp.course.model.domain.Models
+import org.sic4change.chuqabp.course.ui.common.loadPhotoUrl
 import org.sic4change.chuqabp.viewmodel.MainViewModel
 import org.sic4change.chuqabp.viewmodel.MainViewModelFactory
 
 class UserFragment: Fragment() {
 
 
-    private lateinit var binding : FragmentUserBinding
+   /* private lateinit var binding : FragmentUserBinding
 
 
     private val viewModel: MainViewModel by lazy {
@@ -54,7 +53,7 @@ class UserFragment: Fragment() {
         binding.ivProfileUser.loadPhotoUrl(user?.photo)
         binding.tvNameAndSurname.text = "${user?.name} ${user?.surnames}"
         binding.tvProfileEmail.text = user?.email
-    }
+    }*/
 
 
 }

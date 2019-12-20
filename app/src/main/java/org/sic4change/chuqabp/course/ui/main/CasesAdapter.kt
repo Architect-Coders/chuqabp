@@ -1,6 +1,6 @@
 package org.sic4change.chuqabp.course.ui.main
 
-import org.sic4change.chuqabp.course.model.Case
+import org.sic4change.chuqabp.course.model.database.Case
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

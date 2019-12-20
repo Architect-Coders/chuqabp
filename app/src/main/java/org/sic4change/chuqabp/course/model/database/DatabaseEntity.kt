@@ -1,8 +1,8 @@
-package org.sic4change.chuqabp.database
+package org.sic4change.chuqabp.course.model.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.sic4change.chuqabp.domain.Models.User
+import org.sic4change.chuqabp.course.model.domain.Models.User
 
 /**
  * DatabaseUser represents a user entity in the database.
@@ -28,3 +28,15 @@ fun DatabaseUser.asUserDomainModel(): User {
         photo = this.photo
     )
 }
+
+@Entity
+data class Case (
+    @PrimaryKey val id: String = "",
+    val name: String = "",
+    val surnames: String = "",
+    val birthdate: String = "",
+    val phone: String = "",
+    val email: String = "",
+    val photo: String = "",
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0)

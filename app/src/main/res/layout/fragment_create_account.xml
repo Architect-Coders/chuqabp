@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.LoginActivity">
+        tools:context=".course.ui.login.LoginActivity">
 
     <data>
         <variable
                 name="viewModel"
-                type="org.sic4change.chuqabp.viewmodel.LoginViewModel" />
+                type="org.sic4change.chuqabp.course.ui.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,56 +92,6 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
                     <TextView
-                            android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_medium"
-                            android:layout_marginLeft="@dimen/margin_medium"
-                            android:layout_marginTop="@dimen/margin_default"
-                            android:text="@string/name"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
-
-                    <EditText
-                            android:id="@+id/etName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_medium"
-                            android:layout_marginLeft="@dimen/margin_medium"
-                            android:layout_marginEnd="@dimen/margin_medium"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvName" />
-
-                    <TextView
-                            android:id="@+id/tvSurname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_medium"
-                            android:layout_marginLeft="@dimen/margin_medium"
-                            android:layout_marginTop="@dimen/margin_default"
-                            android:text="@string/surname"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/etName" />
-
-                    <EditText
-                            android:id="@+id/etSurname"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_medium"
-                            android:layout_marginLeft="@dimen/margin_medium"
-                            android:layout_marginEnd="@dimen/margin_medium"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tvSurname" />
-
-                    <TextView
                             android:id="@+id/tvPassword"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -150,8 +100,7 @@
                             android:layout_marginTop="@dimen/margin_default"
                             android:text="@string/password"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/etSurname" />
-
+                            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
                     <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
                             android:id="@+id/etPassword"

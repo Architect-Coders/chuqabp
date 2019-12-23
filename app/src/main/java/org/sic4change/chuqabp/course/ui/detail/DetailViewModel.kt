@@ -2,26 +2,35 @@ package org.sic4change.chuqabp.course.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.model.CasesRepository
 import org.sic4change.chuqabp.course.model.database.Case
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 
 
-class DetailViewModel(private val caseId: String, private val casesRepository: CasesRepository) : ScopedViewModel(){
+class DetailViewModel(private val caseId: String, private val casesRepository: CasesRepository) : ScopedViewModel() {
 
-    class UIModel(val case: Case)
+    private val _case = MutableLiveData<Case>()
+    val case: LiveData<Case> get() = _case
 
-    private val _model = MutableLiveData<UIModel>()
+    private val _title = MutableLiveData<String>()
+    val title: LiveData<String> get() = _title
 
-    val model : LiveData<UIModel>
-        get() {
-            if (_model.value == null) findCase()
-            return _model
+    private val _url = MutableLiveData<String>()
+    val url: LiveData<String> get() = _url
+
+
+    init {
+        launch {
+            _case.value = casesRepository.findCaseById(caseId)
+            updateUI()
         }
+    }
 
-    private fun findCase() = launch {
-        _model.value = UIModel(casesRepository.findCaseById(caseId))
+    private fun updateUI() {
+        case.value?.run {
+            _title.value = "$name $surnames"
+            _url.value = photo
+        }
     }
 }

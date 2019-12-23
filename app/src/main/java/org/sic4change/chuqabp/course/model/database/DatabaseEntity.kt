@@ -4,9 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.sic4change.chuqabp.course.model.domain.Models.User
 
-/**
- * DatabaseUser represents a user entity in the database.
- */
+
 @Entity
 data class DatabaseUser constructor(
     @PrimaryKey
@@ -16,9 +14,7 @@ data class DatabaseUser constructor(
     val surnames: String,
     val photo: String)
 
-/**
- * Convert DatabaseUser results to domain object
- */
+
 fun DatabaseUser.asUserDomainModel(): User {
     return User(
         id = this.id,

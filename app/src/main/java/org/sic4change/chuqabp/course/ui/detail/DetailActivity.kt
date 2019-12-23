@@ -3,13 +3,12 @@ package org.sic4change.chuqabp.course.ui.detail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.activity_detail.*
+import androidx.databinding.DataBindingUtil
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.model.CasesRepository
 import org.sic4change.chuqabp.course.ui.common.app
 import org.sic4change.chuqabp.course.ui.common.getViewModel
-import org.sic4change.chuqabp.course.ui.common.loadUrl
+import org.sic4change.chuqabp.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
@@ -19,23 +18,15 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var viewModel : DetailViewModel
 
+    private lateinit var binding: ActivityDetailBinding
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         viewModel = getViewModel {DetailViewModel(intent.getStringExtra(CASE), CasesRepository(app))}
-
-        viewModel.model.observe(this, Observer {
-            updateUI(viewModel.model.value!!)
-        })
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = this
     }
-
-
-    private fun updateUI(model: DetailViewModel.UIModel) = with(model.case) {
-        caseDetailToolbar.title = "${name} ${surnames}"
-        caseDetailImage.loadUrl(photo)
-        caseDetailInfo.setCase(this)
-    }
-
 
 }

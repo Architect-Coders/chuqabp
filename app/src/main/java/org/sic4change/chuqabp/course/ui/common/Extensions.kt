@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import org.sic4change.chuqabp.ChuqabpApp
 import org.sic4change.chuqabp.R
+import java.lang.IllegalStateException
 import kotlin.properties.Delegates
 
 fun <T : ViewDataBinding> ViewGroup.bindingInflate(
@@ -120,3 +121,8 @@ inline fun <reified T : ViewModel> Fragment.getViewModel(crossinline factory: ()
 
 val Context.app: ChuqabpApp
     get() = applicationContext as ChuqabpApp
+
+val Fragment.app: ChuqabpApp
+    get() = ((activity?.app)
+        ?: IllegalStateException("Fragment needs to be attach to the activity to access the App instance"))
+        as ChuqabpApp

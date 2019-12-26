@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui.main
+package org.sic4change.chuqabp.course.ui.main.main
 
 import org.sic4change.chuqabp.course.model.database.Case
 import android.view.ViewGroup
@@ -18,7 +18,12 @@ class CasesAdapter(private val listener: (Case) -> Unit) :
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(parent.bindingInflate(R.layout.view_case, false))
+        ViewHolder(
+            parent.bindingInflate(
+                R.layout.view_case,
+                false
+            )
+        )
 
 
     override fun getItemCount(): Int = cases.size

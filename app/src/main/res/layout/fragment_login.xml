@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".course.ui.login.LoginFragment">
+        tools:context=".course.ui.login.login.LoginFragment">
 
     <data>
         <variable
-                name="viewModel"
+                name="viewmodel"
                 type="org.sic4change.chuqabp.course.ui.login.LoginViewModel" />
     </data>
 
@@ -14,7 +14,8 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/lyLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:visible="@{viewmodel.showingLoginView}">
 
         <View
                 android:layout_width="match_parent"

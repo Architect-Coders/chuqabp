@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui.detail
+package org.sic4change.chuqabp.course.ui.main.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,7 +32,10 @@ class DetailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel= getViewModel {
-            DetailViewModel(args.id, CasesRepository(app))
+            DetailViewModel(
+                args.id,
+                CasesRepository(app)
+            )
         }
 
         binding?.apply {

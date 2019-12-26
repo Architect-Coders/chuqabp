@@ -9,7 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sic4change.chuqabp.course.model.database.Case
 import org.sic4change.chuqabp.course.ui.common.loadUrl
-import org.sic4change.chuqabp.course.ui.main.CasesAdapter
+import org.sic4change.chuqabp.course.ui.main.main.CasesAdapter
 
 @BindingAdapter("url")
 fun ImageView.bindUrl(url: String?) {

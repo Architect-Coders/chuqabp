@@ -6,7 +6,7 @@
             app:startDestination="@id/loginFragment">
 
     <fragment android:id="@+id/loginFragment"
-              android:name="org.sic4change.chuqabp.course.ui.login.LoginFragment"
+              android:name="org.sic4change.chuqabp.course.ui.login.login.LoginFragment"
               android:label="@string/app_name"
               tools:layout="@layout/fragment_login">
         <action android:id="@+id/action_login_to_createAccount"
@@ -19,7 +19,7 @@
                 app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment android:id="@+id/createAccountFragment"
-              android:name="org.sic4change.chuqabp.course.ui.login.CreateAccountFragment"
+              android:name="org.sic4change.chuqabp.course.ui.login.create.CreateAccountFragment"
               android:label="@string/app_name"
               tools:layout="@layout/fragment_create_account">
         <action android:id="@+id/action_createAccount_to_login"

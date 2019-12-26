@@ -12,7 +12,6 @@ import org.sic4change.chuqabp.course.ui.common.Scope
 
 class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),  Scope by Scope.Impl() {
 
-
     private val _cases = MutableLiveData<List<Case>>()
     val cases: LiveData<List<Case>> get() = _cases
 
@@ -37,6 +36,7 @@ class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),
     fun onCoarsePermissionRequest() {
         launch {
             _loading.value = true
+            casesRepository.refresh()
             _cases.value = casesRepository.getCases()
             _loading.value = false
         }

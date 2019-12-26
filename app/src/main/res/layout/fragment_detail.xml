@@ -7,13 +7,12 @@
 
         <variable
                 name="viewmodel"
-                type="org.sic4change.chuqabp.course.ui.detail.DetailViewModel" />
+                type="org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".course.ui.detail.DetailActivity">
+            android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"

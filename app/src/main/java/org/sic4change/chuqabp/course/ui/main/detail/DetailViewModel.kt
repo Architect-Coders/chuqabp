@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui.detail
+package org.sic4change.chuqabp.course.ui.main.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

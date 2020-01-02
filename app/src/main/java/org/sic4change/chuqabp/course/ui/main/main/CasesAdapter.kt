@@ -1,6 +1,6 @@
 package org.sic4change.chuqabp.course.ui.main.main
 
-import org.sic4change.chuqabp.course.model.database.Case
+import org.sic4change.domain.Case
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sic4change.chuqabp.R
@@ -24,7 +24,6 @@ class CasesAdapter(private val listener: (Case) -> Unit) :
                 false
             )
         )
-
 
     override fun getItemCount(): Int = cases.size
 

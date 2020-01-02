@@ -1,14 +1,14 @@
-package org.sic4change.chuqabp.course.model
+package org.sic4change.chuqabp.course.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import org.sic4change.chuqabp.ChuqabpApp
-import org.sic4change.chuqabp.course.model.database.DatabaseUser
-import org.sic4change.chuqabp.course.model.server.ChuqabpFirebaseService
-import org.sic4change.chuqabp.course.model.server.NetworkUserContainer
-import org.sic4change.chuqabp.course.model.server.User
-import org.sic4change.chuqabp.course.model.server.asDatabaseModel
+import org.sic4change.chuqabp.course.data.database.DatabaseUser
+import org.sic4change.chuqabp.course.data.server.ChuqabpFirebaseService
+import org.sic4change.chuqabp.course.data.server.NetworkUserContainer
+import org.sic4change.chuqabp.course.data.server.User
+import org.sic4change.chuqabp.course.data.server.asDatabaseModel
 import timber.log.Timber
 
 class UserRepository(application: ChuqabpApp) {

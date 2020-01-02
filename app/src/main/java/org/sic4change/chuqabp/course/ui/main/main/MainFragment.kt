@@ -10,11 +10,13 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.model.CasesRepository
+import org.sic4change.chuqabp.course.data.database.RoomDataSource
+import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.PermissionRequester
 import org.sic4change.chuqabp.course.ui.common.*
-import org.sic4change.chuqabp.course.ui.main.MainViewModel
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
+import org.sic4change.data.repository.CasesRepository
+import org.sic4change.usescases.GetCases
 
 class MainFragment : Fragment() {
 
@@ -41,7 +43,11 @@ class MainFragment : Fragment() {
         navController = view.findNavController()
 
         viewModel = getViewModel {
-            MainViewModel(CasesRepository(app))
+            MainViewModel(
+                GetCases(
+                    CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
+                )
+            )
         }
 
         viewModel.navigateToCase.observe(this, EventObserver{ id ->

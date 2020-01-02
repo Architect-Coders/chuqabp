@@ -1,8 +1,7 @@
-package org.sic4change.chuqabp.course.model.database
+package org.sic4change.chuqabp.course.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.sic4change.chuqabp.course.model.domain.Models.User
 
 
 @Entity
@@ -14,16 +13,6 @@ data class DatabaseUser constructor(
     val surnames: String,
     val photo: String)
 
-
-fun DatabaseUser.asUserDomainModel(): User {
-    return User(
-        id = this.id,
-        email = this.email,
-        name = this.name,
-        surnames = this.surnames,
-        photo = this.photo
-    )
-}
 
 @Entity
 data class Case (

@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.model
+package org.sic4change.chuqabp.course.data
 
 import android.app.Application
 import android.content.pm.PackageManager

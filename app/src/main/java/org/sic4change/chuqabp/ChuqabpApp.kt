@@ -2,7 +2,7 @@ package org.sic4change.chuqabp
 
 import android.app.Application
 import androidx.room.Room
-import org.sic4change.chuqabp.course.model.database.ChuqabpDatabase
+import org.sic4change.chuqabp.course.data.database.ChuqabpDatabase
 
 class ChuqabpApp : Application() {
 

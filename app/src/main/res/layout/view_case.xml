@@ -7,7 +7,7 @@
 
         <variable
                 name="item"
-                type="org.sic4change.chuqabp.course.model.database.Case" />
+                type="org.sic4change.domain.Case" />
     </data>
 
     <LinearLayout

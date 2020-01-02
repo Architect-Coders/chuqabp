@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.model.UserRepository
+import org.sic4change.chuqabp.course.data.UserRepository
 import org.sic4change.chuqabp.course.ui.common.*
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding

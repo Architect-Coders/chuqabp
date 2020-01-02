@@ -3,12 +3,12 @@ package org.sic4change.chuqabp.course.ui.main.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.launch
-import org.sic4change.chuqabp.course.model.CasesRepository
-import org.sic4change.chuqabp.course.model.database.Case
+import org.sic4change.domain.Case
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
+import org.sic4change.usescases.FindCaseById
 
 
-class DetailViewModel(private val caseId: String, private val casesRepository: CasesRepository) : ScopedViewModel() {
+class DetailViewModel(private val caseId: String, private val findCaseById: FindCaseById) : ScopedViewModel() {
 
     private val _case = MutableLiveData<Case>()
     val case: LiveData<Case> get() = _case
@@ -22,7 +22,7 @@ class DetailViewModel(private val caseId: String, private val casesRepository: C
 
     init {
         launch {
-            _case.value = casesRepository.findCaseById(caseId)
+            _case.value = findCaseById.invoke(caseId)
             updateUI()
         }
     }
@@ -33,4 +33,5 @@ class DetailViewModel(private val caseId: String, private val casesRepository: C
             _url.value = photo
         }
     }
+
 }

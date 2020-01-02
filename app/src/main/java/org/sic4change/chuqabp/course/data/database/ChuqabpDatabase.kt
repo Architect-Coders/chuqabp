@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.model.database
+package org.sic4change.chuqabp.course.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

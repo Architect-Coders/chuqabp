@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.model
+package org.sic4change.chuqabp.course.data
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.app.Application

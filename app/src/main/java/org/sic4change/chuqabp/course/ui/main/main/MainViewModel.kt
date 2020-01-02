@@ -1,16 +1,15 @@
-package org.sic4change.chuqabp.course.ui.main
+package org.sic4change.chuqabp.course.ui.main.main
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.launch
-import org.sic4change.chuqabp.course.model.database.Case
-import org.sic4change.chuqabp.course.model.CasesRepository
+import org.sic4change.domain.Case
 import org.sic4change.chuqabp.course.ui.common.Event
-import org.sic4change.chuqabp.course.ui.common.Scope
+import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
+import org.sic4change.usescases.GetCases
 
-class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),  Scope by Scope.Impl() {
+class MainViewModel(private val getCases: GetCases) : ScopedViewModel() {
 
     private val _cases = MutableLiveData<List<Case>>()
     val cases: LiveData<List<Case>> get() = _cases
@@ -36,8 +35,7 @@ class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),
     fun onCoarsePermissionRequest() {
         launch {
             _loading.value = true
-            casesRepository.refresh()
-            _cases.value = casesRepository.getCases()
+            _cases.value = getCases.invoke()
             _loading.value = false
         }
     }
@@ -48,6 +46,7 @@ class MainViewModel(private val casesRepository: CasesRepository) : ViewModel(),
 
     override fun onCleared() {
         destroyScope()
+        super.onCleared()
     }
 
 }

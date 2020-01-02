@@ -2,13 +2,12 @@ package org.sic4change.chuqabp.course.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.launch
-import org.sic4change.chuqabp.course.model.UserRepository
+import org.sic4change.chuqabp.course.data.UserRepository
 import org.sic4change.chuqabp.course.ui.common.Event
-import org.sic4change.chuqabp.course.ui.common.Scope
+import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 
-class LoginViewModel(private val userRepository: UserRepository) : ViewModel(),  Scope by Scope.Impl() {
+class LoginViewModel(private val userRepository: UserRepository) : ScopedViewModel() {
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
@@ -88,6 +87,7 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel(), 
 
     override fun onCleared() {
         destroyScope()
+        super.onCleared()
     }
 
 }

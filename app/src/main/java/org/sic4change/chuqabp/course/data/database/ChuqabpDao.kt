@@ -9,16 +9,16 @@ import androidx.room.Query
 @Dao
 interface ChuqabpDao {
 
-    @Query("select * from databaseuser order by id asc limit 1")
-    fun getUser(): DatabaseUser
+    @Query("select * from user order by id asc limit 1")
+    fun getUser(): User
 
-    @Query("select * from databaseuser where id=:id")
-    fun getUser(id: String): LiveData<List<DatabaseUser>>
+    @Query("select * from user where id=:id")
+    fun getUser(id: String): User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: DatabaseUser)
+    fun insertUser(user: User)
 
-    @Query("delete from databaseuser")
+    @Query("delete from user")
     fun deleteUser()
 
     @Query("SELECT * FROM `case`")

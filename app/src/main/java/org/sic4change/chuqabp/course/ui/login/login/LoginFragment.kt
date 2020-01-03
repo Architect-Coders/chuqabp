@@ -11,10 +11,16 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.data.UserRepository
+import org.sic4change.chuqabp.course.data.database.RoomDataSource
+import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.common.*
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.chuqabp.databinding.FragmentLoginBinding
+import org.sic4change.data.repository.UserRepository
+import org.sic4change.usescases.CreateUser
+import org.sic4change.usescases.ForgotPassword
+import org.sic4change.usescases.GetSavedUser
+import org.sic4change.usescases.Login
 
 class LoginFragment: Fragment() {
 
@@ -34,7 +40,11 @@ class LoginFragment: Fragment() {
         navController = view.findNavController()
 
         viewModel = getViewModel{
-            LoginViewModel(UserRepository(activity!!.app))
+            LoginViewModel(Login(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
+                            ForgotPassword(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
+                            CreateUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
+                            GetSavedUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource()))
+            )
         }
 
         viewModel.showingLoginErrors.observe(viewLifecycleOwner, EventObserver { message ->

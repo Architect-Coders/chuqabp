@@ -3,11 +3,15 @@ package org.sic4change.chuqabp.course.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.launch
-import org.sic4change.chuqabp.course.data.UserRepository
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
+import org.sic4change.usescases.*
 
-class LoginViewModel(private val userRepository: UserRepository) : ScopedViewModel() {
+class LoginViewModel(
+    private val login: Login,
+    private val forgotPassword: ForgotPassword,
+    private val createUser: CreateUser,
+    private val getSavedUser: GetSavedUser) : ScopedViewModel() {
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
@@ -37,7 +41,7 @@ class LoginViewModel(private val userRepository: UserRepository) : ScopedViewMod
 
     private fun refresh() {
         launch {
-            val user = userRepository.getUser()
+            val user = getSavedUser.invoke()
             if (user != null) _navigateToMain.value = Event(Unit) else _showingLoginView.value = true
         }
     }
@@ -45,8 +49,8 @@ class LoginViewModel(private val userRepository: UserRepository) : ScopedViewMod
     fun onLoginClicked(email: String, password: String) {
         launch {
             _loading.value = true
-            val result = userRepository.login(email, password)
-            val user = userRepository.getUser()
+            val result = login.invoke(email, password)
+            val user = getSavedUser.invoke()
             if (user != null) _navigateToMain.value = Event(Unit)
             else _showingLoginErrors.value = Event(result)
             _loading.value = false
@@ -60,7 +64,7 @@ class LoginViewModel(private val userRepository: UserRepository) : ScopedViewMod
     fun onForgotPasswordClicked(email: String) {
         launch {
             _loading.value = true
-            if (userRepository.forgotPassword(email)) {
+            if (forgotPassword.invoke(email)) {
                 _showingForgotPasswordResult.value = Event(true)
             }
             else {
@@ -73,8 +77,8 @@ class LoginViewModel(private val userRepository: UserRepository) : ScopedViewMod
     fun onCreateNewUserClicked(email: String, password: String) {
         launch {
             _loading.value = true
-            val result = userRepository.createUser(email, password)
-            val user = userRepository.getUser()
+            val result = createUser.invoke(email, password)
+            val user = getSavedUser.invoke()
             if (user != null) {
                 _navigateToMain.value = Event(Unit)
             }

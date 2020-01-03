@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity
-data class DatabaseUser constructor(
+data class User constructor(
     @PrimaryKey
     val id: String,
     val email: String,

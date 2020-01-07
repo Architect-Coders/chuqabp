@@ -23,5 +23,4 @@ data class Case (
     val phone: String = "",
     val email: String = "",
     val photo: String = "",
-    val latitude: Double = 0.0,
-    val longitude: Double = 0.0)
+    val location: String = "")

@@ -32,13 +32,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 android:padding="8dp"
                 android:lines="2"
                 android:minLines="2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
                 app:fullname="@{item}" />
-
 
     </LinearLayout>
 

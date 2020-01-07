@@ -32,6 +32,9 @@ fun TextView.updateCaseDetails(case: Case?) = case?.run {
         bold { append("Apellidos: ") }
         appendln(surnames)
 
+        bold { append("Ubicación: ") }
+        appendln(location)
+
         bold { append("Email: ") }
         appendln(email)
 
@@ -47,6 +50,7 @@ fun TextView.updateCaseDetails(case: Case?) = case?.run {
 fun TextView.setFullNameText(case: Case?) = case?.run {
     text = buildSpannedString {
         append(name)
+        append(" ")
         append(surnames)
     }
 }

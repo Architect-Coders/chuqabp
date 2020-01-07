@@ -47,5 +47,12 @@
     <string name="delete_account_first_question">¿Estás seguro que quieres eliminar la cuenta?</string>
     <string name="delete_account_second_question">Esto elimina todos sus datos de forma permanente, ¿desea continuar?</string>
 
+    <!--Create Case-->
+    <string name="location">Ubicación</string>
+    <string name="phone">Teléfono</string>
+    <string name="date">Fecha de nacimiento, Ej. 26/08/1982</string>
+    <string name="crate_case">Dar de Alta</string>
+    <string name="change_photo">Cambiar foto</string>
+    <string name="case_mandatory_field">Nombre, apellidos, fecha de nacimiento y localización son campos obligatorios</string>
 
 </resources>

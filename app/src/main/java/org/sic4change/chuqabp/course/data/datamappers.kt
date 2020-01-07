@@ -8,15 +8,15 @@ import org.sic4change.chuqabp.course.data.database.User as DatabaseUser
 import org.sic4change.chuqabp.course.data.server.User as ServerUser
 
 fun Case.toDatabaseCase() : DatabaseCase =  DatabaseCase(
-    id, name, surnames, birthdate, phone, email, photo, latitude, longitude
+    id, name, surnames, birthdate, phone, email, photo, location
 )
 
 fun DatabaseCase.toDomainCase() : Case = Case(
-    id, name, surnames, birthdate, phone, email, photo, latitude, longitude
+    id, name, surnames, birthdate, phone, email, photo, location
 )
 
 fun ServerCase.toDomainCase() : Case = Case(
-    id, name, surnames, birthdate, phone, email, photo, latitude, longitude
+    id, name, surnames, birthdate, phone, email, photo, location
 )
 
 fun User.toDatabaseUser() : DatabaseUser = DatabaseUser(

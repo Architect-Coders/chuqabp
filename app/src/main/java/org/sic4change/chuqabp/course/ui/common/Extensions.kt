@@ -52,11 +52,11 @@ fun Context.hideKeyboard(view: View) {
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
-fun Context.snackbar (view: View, message: String, length: Int = Snackbar.LENGTH_SHORT) {
-    Snackbar.make(view, message, length).show()
+fun Context.snackbar (view: View?, message: String, length: Int = Snackbar.LENGTH_SHORT) {
+    view?.let { Snackbar.make(it, message, length).show() }
 }
 
-fun Fragment.snackbar(view: View, message: String, length: Int = Snackbar.LENGTH_SHORT) {
+fun Fragment.snackbar(view: View?, message: String, length: Int = Snackbar.LENGTH_SHORT) {
     context?.snackbar(view, message, length)
 }
 

@@ -4,7 +4,8 @@ import org.sic4change.domain.Case
 import org.sic4change.domain.User
 
 interface RemoteDataSource {
-    suspend fun getCases() : List<Case>
+    suspend fun getCases(mentorId: String?) : List<Case>
+    suspend fun createCase(user: User?, case: Case)
     suspend fun getUser(email: String) : User
     suspend fun login(email: String, password: String) : String
     suspend fun forgotPassword(email: String) : Boolean

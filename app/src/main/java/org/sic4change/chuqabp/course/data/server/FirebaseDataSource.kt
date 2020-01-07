@@ -13,13 +13,37 @@ import org.sic4change.chuqabp.course.data.server.User as NewtworkUser
 
 class FirebaseDataSource : RemoteDataSource {
 
-    override suspend fun getCases(): List<org.sic4change.domain.Case> = withContext(Dispatchers.IO) {
+    override suspend fun getCases(mentorId: String?): List<org.sic4change.domain.Case> = withContext(Dispatchers.IO) {
             val firestore = ChuqabpFirebaseService.mFirestore
             val casesRef = firestore.collection("cases")
-            val query = casesRef.whereEqualTo("latitude", 0)
+            val query = casesRef.whereEqualTo("mentorId", mentorId)
             val result = query.get().await()
             val networkCasesContainer = NetworkCasesContainer(result.toObjects(Case::class.java))
             networkCasesContainer.results.map { it.toDomainCase() }
+    }
+
+    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to create case with firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val casesRef = firestore.collection("cases")
+                val newCase = casesRef.add(case).await()
+                casesRef.document(newCase.id).set(
+                    Case(newCase.id,
+                        case.name,
+                        case.surnames,
+                        case.birthdate,
+                        user?.id,
+                        case.phone,
+                        case.email,
+                        case.photo,
+                        case.location)).await()
+                Timber.d("Create case result: ok")
+            } catch (ex : Exception) {
+                Timber.d("Create case result: false ${ex.message}")
+            }
+        }
     }
 
     override suspend fun getUser(email: String): User = withContext(Dispatchers.IO) {

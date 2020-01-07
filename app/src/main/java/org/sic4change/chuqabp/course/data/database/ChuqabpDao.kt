@@ -36,5 +36,8 @@ interface ChuqabpDao {
     @Query("delete from `case`")
     fun deleteCases()
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCase(case: Case)
+
 
 }

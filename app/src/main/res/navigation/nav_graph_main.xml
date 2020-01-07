@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/nav_graph_main"
         app:startDestination="@id/mainFragment">
 
@@ -16,6 +17,13 @@
                 app:exitAnim="@anim/fade_out"
                 app:popEnterAnim="@anim/fade_in"
                 app:popExitAnim="@anim/translate_out" />
+        <action
+                android:id="@+id/action_mainFragment_to_newCaseFragment"
+                app:destination="@id/newCaseFragment"
+                app:enterAnim="@anim/translate_in"
+                app:exitAnim="@anim/fade_out"
+                app:popEnterAnim="@anim/fade_in"
+                app:popExitAnim="@anim/translate_out"/>
     </fragment>
     <fragment
             android:id="@+id/detailFragment"
@@ -25,4 +33,17 @@
                 android:name="id"
                 app:argType="string" />
     </fragment>
+    <fragment
+            android:id="@+id/newCaseFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment"
+            android:label="@string/app_name" >
+        <action
+                android:id="@+id/action_newCaseFragment_to_loginActivity"
+                app:destination="@id/loginActivity" />
+    </fragment>
+    <activity
+            android:id="@+id/loginActivity"
+            android:name="org.sic4change.chuqabp.course.ui.login.LoginActivity"
+            android:label="fragment_create_account"
+            tools:layout="@layout/fragment_create_account" />
 </navigation>

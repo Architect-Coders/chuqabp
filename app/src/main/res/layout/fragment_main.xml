@@ -36,6 +36,22 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:visible="@{viewmodel.loading}"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnNewCase"
+                android:layout_width="@dimen/floating_button"
+                android:layout_height="@dimen/floating_button"
+                app:fabCustomSize="@dimen/floating_button"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:elevation="1dp"
+                app:borderWidth="0dp"
+                app:pressedTranslationZ="1dp"
+                android:src="@drawable/ic_add" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

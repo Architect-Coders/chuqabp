@@ -27,6 +27,12 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         chuqabpDao.getUser(id).toDomainUser()
     }
 
+    override suspend fun createCase(case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.insertCase(case.toDatabaseCase())
+        }
+    }
+
     override suspend fun insertUser(user: DomainUser) {
         withContext(Dispatchers.IO) {
             chuqabpDao.insertUser(user.toDatabaseUser())

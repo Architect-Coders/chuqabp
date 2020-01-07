@@ -20,11 +20,11 @@ data class Case (
     @Exclude val name: String = "",
     @Exclude val surnames: String = "",
     @Exclude val birthdate: String = "",
+    @Exclude val mentorId: String? = "",
     @Exclude val phone: String = "",
     @Exclude val email: String = "",
     @Exclude val photo: String = "",
-    @Exclude val latitude: Double = 0.0,
-    @Exclude val longitude: Double = 0.0)
+    @Exclude val location: String = "")
 
 @JsonClass(generateAdapter = true)
 data class NetworkCasesContainer(val results: List<Case>)

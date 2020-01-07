@@ -68,6 +68,10 @@ class MainFragment : Fragment() {
             viewmodel = viewModel
             lifecycleOwner = this@MainFragment
         }
+
+        btnNewCase.setOnClickListener {
+            navController.navigate(R.id.action_mainFragment_to_newCaseFragment)
+        }
     }
 
 }

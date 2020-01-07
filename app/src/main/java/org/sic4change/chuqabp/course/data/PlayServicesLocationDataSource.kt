@@ -22,16 +22,45 @@ class PlayServicesLocationDataSource(application: Application) : LocationDataSou
                 .addOnCompleteListener {
                     continuation.resume(it.result.toRegion())
                 }
+        }
 
+    @SuppressLint("MissingPermission")
+    override suspend fun findLastLatitude(): Double? =
+        suspendCancellableCoroutine { continuation ->
+            fusedLocationClient.lastLocation
+                .addOnCompleteListener {
+                    continuation.resume(it.result.toLatitude())
+                }
+        }
 
+    @SuppressLint("MissingPermission")
+    override suspend fun findLastLongitude(): Double? =
+        suspendCancellableCoroutine { continuation ->
+            fusedLocationClient.lastLocation
+                .addOnCompleteListener {
+                    continuation.resume(it.result.toLongitude())
+                }
         }
 
     private fun Location?.toRegion(): String? {
         val addresses = this?.let {
             geocoder.getFromLocation(latitude, longitude, 1)
         }
-        return addresses?.firstOrNull()?.countryCode
+        return addresses?.firstOrNull()?.locality + ", " + addresses?.firstOrNull()?.subAdminArea + ", " + addresses?.firstOrNull()?.adminArea + ", " + addresses?.firstOrNull()?.countryName
     }
 
+    private fun Location?.toLatitude(): Double? {
+        val addresses = this?.let {
+            geocoder.getFromLocation(latitude, longitude, 1)
+        }
+        return addresses?.firstOrNull()?.latitude
+    }
+
+    private fun Location?.toLongitude(): Double? {
+        val addresses = this?.let {
+            geocoder.getFromLocation(latitude, longitude, 1)
+        }
+        return addresses?.firstOrNull()?.longitude
+    }
 
 }

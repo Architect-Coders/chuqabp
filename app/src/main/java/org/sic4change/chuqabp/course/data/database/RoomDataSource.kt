@@ -14,20 +14,18 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     private val chuqabpDao = db.chuqabpDao()
 
-    override suspend fun getUser(): DomainUser? =
-        withContext(Dispatchers.IO) {
-            val user = chuqabpDao.getUser()
-            if (user != null) {
-                user.toDomainUser()
-            } else {
-                null
-            }
+    override suspend fun getUser(): DomainUser? = withContext(Dispatchers.IO) {
+        val user = chuqabpDao.getUser()
+        if (user != null) {
+            user.toDomainUser()
+        } else {
+            null
         }
+    }
 
-    override suspend fun getUser(id: String): DomainUser? =
-        withContext(Dispatchers.IO) {
-            chuqabpDao.getUser(id).toDomainUser()
-        }
+    override suspend fun getUser(id: String): DomainUser? = withContext(Dispatchers.IO) {
+        chuqabpDao.getUser(id).toDomainUser()
+    }
 
     override suspend fun insertUser(user: DomainUser) {
         withContext(Dispatchers.IO) {
@@ -51,16 +49,14 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         withContext(Dispatchers.IO) {
             chuqabpDao.insertCases(cases.map { it.toDatabaseCase() })
         }
-
     }
 
-    override suspend fun getCases(): List<DomainCase> =
-        withContext(Dispatchers.IO) {
-            chuqabpDao.getAllCases().map { it.toDomainCase() }
-        }
+    override suspend fun getCases(): List<DomainCase> = withContext(Dispatchers.IO) {
+        chuqabpDao.getAllCases().map { it.toDomainCase() }
+    }
 
     override suspend fun findById(id: String): DomainCase = withContext(Dispatchers.IO) {
-            chuqabpDao.findCaseById(id).toDomainCase()
+        chuqabpDao.findCaseById(id).toDomainCase()
     }
 
 }

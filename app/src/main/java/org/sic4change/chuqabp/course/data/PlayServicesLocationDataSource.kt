@@ -33,5 +33,5 @@ class PlayServicesLocationDataSource(application: Application) : LocationDataSou
         return addresses?.firstOrNull()?.countryCode
     }
 
-    
+
 }

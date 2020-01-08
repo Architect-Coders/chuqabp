@@ -4,9 +4,9 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <item
-            android:id="@+id/action_show_user"
-            android:icon="@drawable/ic_account_circle"
-            android:title="use"
-            app:showAsAction="always" />
+            android:id="@+id/action_add"
+            android:icon="@drawable/ic_add"
+            app:showAsAction="always"
+            android:title="@string/add_menu" />
 
 </menu>

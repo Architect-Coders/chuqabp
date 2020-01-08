@@ -2,6 +2,7 @@ package org.sic4change.chuqabp.course.ui.main.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -23,6 +24,11 @@ class DetailFragment: Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container?.bindingInflate(R.layout.fragment_detail, false)
         return binding?.root
@@ -39,6 +45,11 @@ class DetailFragment: Fragment() {
             viewmodel = viewModel
             lifecycleOwner = this@DetailFragment
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_add).setVisible(false)
+        super.onPrepareOptionsMenu(menu)
     }
 
 }

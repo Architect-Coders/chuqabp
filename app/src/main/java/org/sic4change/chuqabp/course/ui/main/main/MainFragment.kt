@@ -2,9 +2,7 @@ package org.sic4change.chuqabp.course.ui.main.main
 
 import android.Manifest
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -13,10 +11,14 @@ import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.data.database.RoomDataSource
 import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.PermissionRequester
-import org.sic4change.chuqabp.course.ui.common.*
+import org.sic4change.chuqabp.course.ui.common.EventObserver
+import org.sic4change.chuqabp.course.ui.common.app
+import org.sic4change.chuqabp.course.ui.common.bindingInflate
+import org.sic4change.chuqabp.course.ui.common.getViewModel
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
 import org.sic4change.data.repository.CasesRepository
 import org.sic4change.usescases.GetCases
+
 
 class MainFragment : Fragment() {
 
@@ -31,6 +33,26 @@ class MainFragment : Fragment() {
     private var binding: FragmentMainBinding? = null
 
     private lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_add).setVisible(true)
+        super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_add -> {
+                navController.navigate(R.id.action_mainFragment_to_newCaseFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container?.bindingInflate(R.layout.fragment_main, false)
@@ -69,9 +91,8 @@ class MainFragment : Fragment() {
             lifecycleOwner = this@MainFragment
         }
 
-        btnNewCase.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_newCaseFragment)
-        }
     }
+
+
 
 }

@@ -54,5 +54,6 @@
     <string name="crate_case">Dar de Alta</string>
     <string name="change_photo">Cambiar foto</string>
     <string name="case_mandatory_field">Nombre, apellidos, fecha de nacimiento y localización son campos obligatorios</string>
+    <string name="add_menu">Add</string>
 
 </resources>

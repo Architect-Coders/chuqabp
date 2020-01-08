@@ -11,9 +11,6 @@ import org.sic4change.usescases.GetLocation
 
 class NewCaseViewModel (private val getLocation: GetLocation, private val createCase: CreateCase) : ScopedViewModel() {
 
-   /* private val _navigateToMainView = MutableLiveData<Event<Unit>>()
-    val navigateToMainView: LiveData<Event<Unit>> get() = _navigateToMainView*/
-
     private val _showingCreateCaseError = MutableLiveData<Event<Boolean>>()
     val showingCreateCaseError: LiveData<Event<Boolean>> get() = _showingCreateCaseError
 
@@ -32,8 +29,8 @@ class NewCaseViewModel (private val getLocation: GetLocation, private val create
         }
     }
 
-    fun onCreateCaseClicked(name: String, surnames: String, date: String, phone: String, email: String,
-                            photo: String, location: String) {
+    fun onCreateCaseClicked(name: String, surnames: String, date: String, phone: String, email: String, photo: String,
+                            location: String) {
         launch {
             if (name.isEmpty() || surnames.isEmpty() || location.isEmpty() || date.isEmpty()) {
                 _showingCreateCaseError.value = Event(true)
@@ -41,7 +38,6 @@ class NewCaseViewModel (private val getLocation: GetLocation, private val create
                 _showingCreateCaseError.value = Event(false)
                 createCase.invoke(Case("", name, surnames, date, phone, email, photo, location))
             }
-
         }
     }
 

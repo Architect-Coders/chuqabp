@@ -1,5 +1,6 @@
 package org.sic4change.chuqabp.course.data.server
 
+import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -8,6 +9,7 @@ import org.sic4change.chuqabp.course.data.toDomainUser
 import org.sic4change.data.source.RemoteDataSource
 import org.sic4change.domain.User
 import timber.log.Timber
+import java.io.File
 import org.sic4change.chuqabp.course.data.server.User as NewtworkUser
 
 
@@ -22,26 +24,64 @@ class FirebaseDataSource : RemoteDataSource {
             networkCasesContainer.results.map { it.toDomainCase() }
     }
 
-    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case) {
+    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case){
         withContext(Dispatchers.IO) {
             Timber.d("try to create case with firebase")
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
                 val casesRef = firestore.collection("cases")
                 val newCase = casesRef.add(case).await()
-                casesRef.document(newCase.id).set(
-                    Case(newCase.id,
-                        case.name,
-                        case.surnames,
-                        case.birthdate,
-                        user?.id,
-                        case.phone,
-                        case.email,
-                        case.photo,
-                        case.location)).await()
+                val caseToUpdate = Case(
+                    newCase.id,
+                    case.name,
+                    case.surnames,
+                    case.birthdate,
+                    user?.id,
+                    case.phone,
+                    case.email,
+                    case.photo,
+                    case.location)
+                casesRef.document(newCase.id).set(caseToUpdate).await()
                 Timber.d("Create case result: ok")
+                if (case.photo.isNotEmpty()) {
+                    uploadCaseFile(caseToUpdate)
+                }
             } catch (ex : Exception) {
                 Timber.d("Create case result: false ${ex.message}")
+            }
+        }
+    }
+
+    private fun uploadCaseFile(case: Case)  {
+        val storageRef = ChuqabpFirebaseService.mStorage.reference.child("cases/" + case.id)
+        val file = Uri.fromFile(File(case.photo))
+        val uploadTask = storageRef.putFile(file)
+        uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            storageRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                val caseToUpdate = Case(
+                    case.id,
+                    case.name,
+                    case.surnames,
+                    case.birthdate,
+                    case.mentorId,
+                    case.phone,
+                    case.email,
+                    downloadUri.toString(),
+                    case.location)
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val casesRef = firestore.collection("cases")
+                casesRef.document(case.id).set(caseToUpdate)
+                Timber.d("Upload photo result: ok")
+            } else {
+                Timber.d("Upload photo result: error")
             }
         }
     }
@@ -79,7 +119,7 @@ class FirebaseDataSource : RemoteDataSource {
         withContext(Dispatchers.IO) {
             Timber.d("try to request change password with firebase")
             try {
-                val forgotPassword = ChuqabpFirebaseService.fbAuth.sendPasswordResetEmail(email).await()
+                ChuqabpFirebaseService.fbAuth.sendPasswordResetEmail(email).await()
                 Timber.d("Request change password: ok")
                 result = true
             } catch (ex : Exception) {
@@ -107,5 +147,6 @@ class FirebaseDataSource : RemoteDataSource {
         }
         return result
     }
+
 }
 

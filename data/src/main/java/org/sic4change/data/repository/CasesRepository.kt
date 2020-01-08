@@ -16,10 +16,9 @@ class CasesRepository(private val localDataSource: LocalDataSource,
     }
 
     suspend fun createCase(case: Case) {
-        localDataSource.createCase(case)
         val user = localDataSource.getUser()
+        localDataSource.createCase(case)
         remoteDataSource.createCase(user, case)
-
     }
 
     suspend fun findCaseById(id: String): Case = localDataSource.findById(id)

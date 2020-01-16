@@ -100,6 +100,7 @@ class NewCaseFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_add).setVisible(false)
+        menu.findItem(R.id.action_edit).setVisible(false)
         menu.findItem(R.id.action_delete).setVisible(false)
         super.onPrepareOptionsMenu(menu)
     }

@@ -6,9 +6,11 @@ import kotlinx.coroutines.launch
 import org.sic4change.domain.Case
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.usescases.FindCaseById
+import org.sic4change.usescases.DeleteCase
 
 
-class DetailViewModel(private val caseId: String, private val findCaseById: FindCaseById) : ScopedViewModel() {
+class DetailViewModel(private val caseId: String, private val findCaseById: FindCaseById,
+                      private val deleteCase: DeleteCase) : ScopedViewModel() {
 
     private val _case = MutableLiveData<Case>()
     val case: LiveData<Case> get() = _case
@@ -19,9 +21,13 @@ class DetailViewModel(private val caseId: String, private val findCaseById: Find
     private val _url = MutableLiveData<String>()
     val url: LiveData<String> get() = _url
 
+    private val _deleted = MutableLiveData<Boolean>()
+    val deleted: LiveData<Boolean> get() = _deleted
+
 
     init {
         launch {
+            _deleted.value = false
             _case.value = findCaseById.invoke(caseId)
             updateUI()
         }
@@ -31,6 +37,13 @@ class DetailViewModel(private val caseId: String, private val findCaseById: Find
         case.value?.run {
             _title.value = "$name $surnames"
             _url.value = photo
+        }
+    }
+
+    fun deleteCase() {
+        launch {
+            _deleted.value = true
+            deleteCase.invoke(caseId)
         }
     }
 

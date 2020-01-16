@@ -21,6 +21,11 @@ class CasesRepository(private val localDataSource: LocalDataSource,
         remoteDataSource.createCase(user, case)
     }
 
+    suspend fun deleteCase(id: String) {
+        localDataSource.deleteCase(id)
+        remoteDataSource.deleteCase(id)
+    }
+
     suspend fun findCaseById(id: String): Case = localDataSource.findById(id)
 
 }

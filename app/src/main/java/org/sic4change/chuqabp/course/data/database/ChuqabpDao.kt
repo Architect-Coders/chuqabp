@@ -1,6 +1,5 @@
 package org.sic4change.chuqabp.course.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -35,6 +34,9 @@ interface ChuqabpDao {
 
     @Query("delete from `case`")
     fun deleteCases()
+
+    @Query("delete from `case` WHERE id = :id")
+    fun deleteCase(id: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCase(case: Case)

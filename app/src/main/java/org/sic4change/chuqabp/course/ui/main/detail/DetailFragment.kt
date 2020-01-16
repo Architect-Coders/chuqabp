@@ -1,11 +1,12 @@
 package org.sic4change.chuqabp.course.ui.main.detail
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.data.database.RoomDataSource
@@ -14,6 +15,7 @@ import org.sic4change.chuqabp.course.ui.common.app
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.getViewModel
 import org.sic4change.chuqabp.databinding.FragmentDetailBinding
+import org.sic4change.usescases.DeleteCase
 import org.sic4change.usescases.FindCaseById
 
 class DetailFragment: Fragment() {
@@ -21,6 +23,8 @@ class DetailFragment: Fragment() {
     private lateinit var viewModel : DetailViewModel
 
     private var binding: FragmentDetailBinding? = null
+
+    private lateinit var navController: NavController
 
     private val args: DetailFragmentArgs by navArgs()
 
@@ -35,16 +39,22 @@ class DetailFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        navController = view.findNavController()
         val casesRepository = org.sic4change.data.repository.CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
         viewModel= getViewModel {
-            DetailViewModel(args.id, FindCaseById(casesRepository))
+            DetailViewModel(args.id, FindCaseById(casesRepository), DeleteCase(casesRepository))
         }
 
         binding?.apply {
             viewmodel = viewModel
             lifecycleOwner = this@DetailFragment
         }
+
+        viewModel.deleted.observe(this, Observer<Boolean> {
+            if (it) {
+                finish()
+            }
+        })
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -52,5 +62,33 @@ class DetailFragment: Fragment() {
         menu.findItem(R.id.action_delete).setVisible(true)
         super.onPrepareOptionsMenu(menu)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete -> {
+                showDeleteConfirmationDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(R.string.delete_question_title)
+        builder.setMessage(R.string.delete_question_description)
+        builder.setCancelable(true)
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            viewModel.deleteCase()
+        }
+
+        builder.show()
+    }
+
+    private fun finish() {
+        navController.navigate(R.id.action_detailFragment_to_loginActivity)
+        activity?.finish()
+    }
+
 
 }

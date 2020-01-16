@@ -33,6 +33,12 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         }
     }
 
+    override suspend fun deleteCase(id: String) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.deleteCase(id)
+        }
+    }
+
     override suspend fun insertUser(user: DomainUser) {
         withContext(Dispatchers.IO) {
             chuqabpDao.insertUser(user.toDatabaseUser())

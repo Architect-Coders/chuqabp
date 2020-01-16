@@ -6,6 +6,7 @@ import org.sic4change.domain.User
 interface LocalDataSource {
     suspend fun getUser() : User?
     suspend fun createCase(case: Case)
+    suspend fun deleteCase(id: String)
     suspend fun getUser(id: String) : User?
     suspend fun insertUser(user: User)
     suspend fun deleteUser()

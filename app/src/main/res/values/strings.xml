@@ -56,4 +56,9 @@
     <string name="case_mandatory_field">Nombre, apellidos, fecha de nacimiento y localización son campos obligatorios</string>
     <string name="add_menu">Add</string>
 
+    <!--Detail Case-->
+    <string name="delete_question_title">Confirmación</string>
+    <string name="delete_question_description">¿Estás seguro que desea eliminar ese caso?</string>
+    <string name="delete">Eliminar</string>
+
 </resources>

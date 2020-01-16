@@ -52,6 +52,20 @@ class FirebaseDataSource : RemoteDataSource {
         }
     }
 
+    override suspend fun deleteCase(id: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to delete case from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val caseRef = firestore.collection("cases")
+                caseRef.document(id).delete().await()
+                Timber.d("Delete case result: ok")
+            } catch (ex: Exception) {
+                Timber.d("Delete case result: false ${ex.message}")
+            }
+        }
+    }
+
     private fun uploadCaseFile(case: Case)  {
         val storageRef = ChuqabpFirebaseService.mStorage.reference.child("cases/" + case.id)
         val file = Uri.fromFile(File(case.photo))

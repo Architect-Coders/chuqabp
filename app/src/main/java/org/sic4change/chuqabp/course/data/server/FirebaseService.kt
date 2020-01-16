@@ -9,5 +9,5 @@ object ChuqabpFirebaseService {
     val fbAuth = FirebaseAuth.getInstance()
     val mFirestore = FirebaseFirestore.getInstance()
     val mStorage = FirebaseStorage.getInstance()
-    val caseDefault = "https://firebasestorage.googleapis.com/v0/b/chuqabp.appspot.com/o/cases%2Fdefault.jpg?alt=media&token=f629e336-3b34-46d9-a593-cd38f0d31b3e"
+    val caseDefault = "https://firebasestorage.googleapis.com/v0/b/chuqabp.appspot.com/o/cases%2Fcase_default.jpg?alt=media&token=02d9fbb0-dca5-433d-9a8b-563c902017c8"
 }

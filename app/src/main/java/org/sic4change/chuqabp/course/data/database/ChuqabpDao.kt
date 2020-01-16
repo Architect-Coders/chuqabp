@@ -1,24 +1,24 @@
 package org.sic4change.chuqabp.course.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface ChuqabpDao {
 
-    @Query("select * from user order by id asc limit 1")
+    @Query("SELECT * FROM user ORDER BY id ASC LIMIT 1")
     fun getUser(): User
 
-    @Query("select * from user where id=:id")
+    @Query("SELECT * FROM user WHERE id=:id")
     fun getUser(id: String): User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User)
 
-    @Query("delete from user")
+    @Query("DELETE FROM user")
     fun deleteUser()
+
+    @Query("UPDATE `case` SET name=:name, surnames=:surnames, birthdate=:birthdate, phone=:phone, email=:email, photo=:photo, location=:location WHERE id = :id")
+    fun updateCase(id: String, name: String, surnames: String, birthdate: String, phone: String, email: String, photo: String, location: String)
 
     @Query("SELECT * FROM `case`")
     fun getAllCases() : List<Case>
@@ -32,10 +32,10 @@ interface ChuqabpDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCases(cases: List<Case>)
 
-    @Query("delete from `case`")
+    @Query("DELETE FROM `case`")
     fun deleteCases()
 
-    @Query("delete from `case` WHERE id = :id")
+    @Query("DELETE FROM `case` WHERE id = :id")
     fun deleteCase(id: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

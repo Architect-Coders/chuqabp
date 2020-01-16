@@ -33,6 +33,12 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         }
     }
 
+    override suspend fun updateCase(case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.updateCase(case.id, case.name, case.surnames, case.birthdate, case.phone, case.email, case.photo, case.location)
+        }
+    }
+
     override suspend fun deleteCase(id: String) {
         withContext(Dispatchers.IO) {
             chuqabpDao.deleteCase(id)

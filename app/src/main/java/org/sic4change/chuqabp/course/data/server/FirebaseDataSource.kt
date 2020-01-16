@@ -52,6 +52,30 @@ class FirebaseDataSource : RemoteDataSource {
         }
     }
 
+    override suspend fun updateCase(user: User?, case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to delete case from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val caseRef = firestore.collection("cases")
+                val caseToUpdate = Case(
+                    case.id,
+                    case.name,
+                    case.surnames,
+                    case.birthdate,
+                    user?.id,
+                    case.phone,
+                    case.email,
+                    case.photo,
+                    case.location)
+                caseRef.document(case.id).set(caseToUpdate).await()
+                Timber.d("Delete case result: ok")
+            } catch (ex: Exception) {
+                Timber.d("Delete case result: false ${ex.message}")
+            }
+        }
+    }
+
     override suspend fun deleteCase(id: String) {
         withContext(Dispatchers.IO) {
             Timber.d("try to delete case from firebase")

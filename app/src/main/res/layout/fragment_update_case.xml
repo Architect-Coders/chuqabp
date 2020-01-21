@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewmodel"
+                type="org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseViewModel" />
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <ImageView
+                    android:id="@+id/ivUpdatePhotoCase"
+                    android:layout_width="@dimen/create_case_photo"
+                    android:layout_height="@dimen/create_case_photo"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:url= "@{viewmodel.case.photo}"
+                    android:padding="@dimen/image_border"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/name"
+                    android:text="@{viewmodel.case.name}"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivUpdatePhotoCase" />
+
+            <EditText
+                    android:id="@+id/etSurnames"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/surname"
+                    android:text="@{viewmodel.case.surnames}"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+            <EditText
+                    android:id="@+id/etBirthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/date"
+                    android:text="@{viewmodel.case.birthdate}"
+                    android:inputType="date"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etSurnames" />
+
+            <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/phone"
+                    android:text="@{viewmodel.case.phone}"
+                    android:inputType="phone"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etBirthday" />
+
+            <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/email"
+                    android:text="@{viewmodel.case.email}"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPhone" />
+
+            <EditText
+                    android:id="@+id/etLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/location"
+                    android:text="@{viewmodel.case.location}"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+            <Button
+                    android:id="@+id/btnUpdateCase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:text="@string/update_case"
+                    android:layout_margin="@dimen/margin_default"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etLocation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

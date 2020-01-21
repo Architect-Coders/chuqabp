@@ -63,4 +63,7 @@
     <string name="edit_menu">Editar</string>
     <string name="delete_menu">Eliminar</string>
 
+    <!--Update Case-->
+    <string name="update_case">Actualizar</string>
+
 </resources>

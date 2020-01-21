@@ -32,7 +32,7 @@ fun <T : ViewDataBinding> ViewGroup.bindingInflate(
 ): T = DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, attachToRoot)
 
 fun ImageView.loadCaseUrl(url: String) {
-    Glide.with(context).load(url).placeholder(R.drawable.case_default).into(this)
+    Glide.with(context).load(url).centerCrop().placeholder(R.drawable.case_default).into(this)
 }
 
 fun ImageView.loadPhotoUrl(url: String?) {

@@ -17,6 +17,8 @@ class NewCaseViewModel (private val getLocation: GetLocation, private val create
     private val _currentLocation = MutableLiveData<String>()
     val currentLocation: LiveData<String> get() = _currentLocation
 
+    private val _photoUrl = MutableLiveData<String>()
+    val photoUrl: LiveData<String> get() = _photoUrl
 
     init {
         initScope()
@@ -39,6 +41,10 @@ class NewCaseViewModel (private val getLocation: GetLocation, private val create
                 createCase.invoke(Case("", name, surnames, date, phone, email, photo, location))
             }
         }
+    }
+
+    fun setPhotoUrl(photoUrl: String) {
+        _photoUrl.value = photoUrl
     }
 
     override fun onCleared() {

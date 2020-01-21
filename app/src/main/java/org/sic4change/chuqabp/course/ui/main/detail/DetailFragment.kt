@@ -70,6 +70,11 @@ class DetailFragment: Fragment() {
                 showDeleteConfirmationDialog()
                 true
             }
+            R.id.action_edit -> {
+                val action = DetailFragmentDirections.actionDetailFragmentToUpdateCaseFragment(args.id)
+                navController.navigate(action)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

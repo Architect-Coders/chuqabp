@@ -38,8 +38,6 @@ class NewCaseFragment : Fragment() {
 
     private lateinit var navController: NavController
 
-    private var photoUrl: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -80,7 +78,7 @@ class NewCaseFragment : Fragment() {
 
         btnCreateCase.setOnClickListener {
             viewModel.onCreateCaseClicked(etName.text.toString(), etSurnames.text.toString(), etBirthday.text.toString(),
-                etPhone.text.toString(), etEmail.text.toString(), photoUrl, etLocation.text.toString())
+                etPhone.text.toString(), etEmail.text.toString(), viewModel.photoUrl.value.toString(), etLocation.text.toString())
         }
 
         viewModel.currentLocation.observe(this, Observer<String> {
@@ -110,7 +108,7 @@ class NewCaseFragment : Fragment() {
             val result = CropImage.getActivityResult(data)
             if (resultCode == RESULT_OK) {
                 ivPhotoCase.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                photoUrl = result.uri.path
+                viewModel.setPhotoUrl(result.uri.path)
                 Glide.with(this).load(result.uri).into(ivPhotoCase)
             }
         }

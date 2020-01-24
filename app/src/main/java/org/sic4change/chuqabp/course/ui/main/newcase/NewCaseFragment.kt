@@ -32,11 +32,12 @@ import org.sic4change.usescases.GetLocation
 
 class NewCaseFragment : Fragment() {
 
-    private lateinit var viewModel: NewCaseViewModel
-
     private var binding: FragmentNewCaseBinding? = null
 
     private lateinit var navController: NavController
+
+    private lateinit var component: NewCaseFragmentComponent
+    private val viewModel : NewCaseViewModel by lazy { getViewModel { component.newCaseViewModel } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,12 +53,7 @@ class NewCaseFragment : Fragment() {
 
         navController = view.findNavController()
 
-        val casesRepository = org.sic4change.data.repository.CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
-        viewModel= getViewModel {
-            NewCaseViewModel(
-                GetLocation(RegionRepository(PlayServicesLocationDataSource(app), AndroidPermissionChecker(app))),
-                CreateCase(casesRepository))
-        }
+        component = app.component.plus(NewCaseFragmentModule())
 
         binding?.apply {
             viewmodel = viewModel

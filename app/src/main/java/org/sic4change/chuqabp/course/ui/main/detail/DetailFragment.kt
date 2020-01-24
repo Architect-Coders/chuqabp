@@ -9,24 +9,23 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.data.database.RoomDataSource
-import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.common.app
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.getViewModel
 import org.sic4change.chuqabp.databinding.FragmentDetailBinding
-import org.sic4change.usescases.DeleteCase
-import org.sic4change.usescases.FindCaseById
 
 class DetailFragment: Fragment() {
-
-    private lateinit var viewModel : DetailViewModel
 
     private var binding: FragmentDetailBinding? = null
 
     private lateinit var navController: NavController
 
     private val args: DetailFragmentArgs by navArgs()
+
+    private lateinit var component: DetailFragmentComponent
+    private val viewModel by lazy {
+        getViewModel { component.detailViewModel }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +38,10 @@ class DetailFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        component = app.component.plus(DetailFragmentModule((args.id)))
+
         navController = view.findNavController()
-        val casesRepository = org.sic4change.data.repository.CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
-        viewModel= getViewModel {
-            DetailViewModel(args.id, FindCaseById(casesRepository), DeleteCase(casesRepository))
-        }
 
         binding?.apply {
             viewmodel = viewModel

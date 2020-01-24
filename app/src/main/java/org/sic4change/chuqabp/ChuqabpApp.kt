@@ -1,20 +1,18 @@
 package org.sic4change.chuqabp
 
 import android.app.Application
-import androidx.room.Room
-import org.sic4change.chuqabp.course.data.database.ChuqabpDatabase
+import org.sic4change.chuqabp.course.di.CasesComponent
+import org.sic4change.chuqabp.course.di.DaggerCasesComponent
 
 class ChuqabpApp : Application() {
 
-    lateinit var  db: ChuqabpDatabase
+    lateinit var component: CasesComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
-        db = Room.databaseBuilder(
-            this,
-            ChuqabpDatabase::class.java,
-            "chuqabp-db"
-        ).build()
+        component = DaggerCasesComponent
+            .factory()
+            .create(this)
     }
 }

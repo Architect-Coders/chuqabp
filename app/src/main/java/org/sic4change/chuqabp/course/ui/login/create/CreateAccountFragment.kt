@@ -11,6 +11,8 @@ import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.data.database.RoomDataSource
 import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.common.*
+import org.sic4change.chuqabp.course.ui.login.LoginComponent
+import org.sic4change.chuqabp.course.ui.login.LoginModule
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.chuqabp.databinding.FragmentCreateAccountBinding
 import org.sic4change.data.repository.UserRepository
@@ -22,11 +24,12 @@ import org.sic4change.usescases.Login
 
 class CreateAccountFragment: Fragment() {
 
-    private lateinit var viewModel : LoginViewModel
-
     private lateinit var binding : FragmentCreateAccountBinding
 
     private lateinit var navController: NavController
+
+    private lateinit var component: LoginComponent
+    private val viewModel : LoginViewModel by lazy { getViewModel { component.loginViewModel } }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container!!.bindingInflate(R.layout.fragment_create_account, false)
@@ -37,14 +40,7 @@ class CreateAccountFragment: Fragment() {
 
         navController = view.findNavController()
 
-        viewModel = getViewModel{
-            LoginViewModel(
-                Login(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                ForgotPassword(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                CreateUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                GetSavedUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource()))
-            )
-        }
+        component = app.component.plus(LoginModule())
 
         binding?.apply {
             viewmodel = viewModel

@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_login.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.data.database.RoomDataSource
 import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
@@ -24,11 +26,11 @@ import org.sic4change.usescases.Login
 
 class LoginFragment: Fragment() {
 
-    private lateinit var viewModel : LoginViewModel
-
     private lateinit var binding : FragmentLoginBinding
 
     private lateinit var navController: NavController
+
+    private val viewModel : LoginViewModel by currentScope.viewModel(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container!!.bindingInflate(R.layout.fragment_login, false)
@@ -38,14 +40,6 @@ class LoginFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
-
-        viewModel = getViewModel{
-            LoginViewModel(Login(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                            ForgotPassword(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                            CreateUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                            GetSavedUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource()))
-            )
-        }
 
         viewModel.showingLoginErrors.observe(viewLifecycleOwner, EventObserver { message ->
             showMessage(message)

@@ -7,28 +7,24 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.data.database.RoomDataSource
-import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.PermissionRequester
 import org.sic4change.chuqabp.course.ui.common.EventObserver
-import org.sic4change.chuqabp.course.ui.common.app
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
-import org.sic4change.chuqabp.course.ui.common.getViewModel
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
-import org.sic4change.data.repository.CasesRepository
-import org.sic4change.usescases.GetCases
 
 
 class MainFragment : Fragment() {
-
-    private lateinit var viewModel : MainViewModel
 
     private lateinit var adapter : CasesAdapter
 
     private val coarsePermissionRequester by lazy {
         PermissionRequester(activity!!, Manifest.permission.ACCESS_COARSE_LOCATION)
     }
+
+    private val viewModel : MainViewModel by currentScope.viewModel(this)
 
     private var binding: FragmentMainBinding? = null
 
@@ -65,14 +61,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = view.findNavController()
-
-        viewModel = getViewModel {
-            MainViewModel(
-                GetCases(
-                    CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
-                )
-            )
-        }
 
         viewModel.navigateToCase.observe(this, EventObserver{ id ->
             val action = MainFragmentDirections.actionMainFragmentToDetailFragment(id)

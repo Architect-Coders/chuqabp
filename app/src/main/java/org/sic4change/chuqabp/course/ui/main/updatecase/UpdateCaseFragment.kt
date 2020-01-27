@@ -19,23 +19,24 @@ import kotlinx.android.synthetic.main.fragment_update_case.etLocation
 import kotlinx.android.synthetic.main.fragment_update_case.etName
 import kotlinx.android.synthetic.main.fragment_update_case.etPhone
 import kotlinx.android.synthetic.main.fragment_update_case.etSurnames
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.data.database.RoomDataSource
-import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.common.*
 import org.sic4change.chuqabp.databinding.FragmentUpdateCaseBinding
-import org.sic4change.usescases.FindCaseById
-import org.sic4change.usescases.UpdateCase
 
 class UpdateCaseFragment: Fragment() {
-
-    private lateinit var viewModel : UpdateCaseViewModel
 
     private var binding: FragmentUpdateCaseBinding? = null
 
     private lateinit var navController: NavController
 
     private val args: UpdateCaseFragmentArgs by navArgs()
+
+    private val viewModel : UpdateCaseViewModel by currentScope.viewModel(this) {
+        parametersOf(args.id)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +50,6 @@ class UpdateCaseFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = view.findNavController()
-        val casesRepository = org.sic4change.data.repository.CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
-        viewModel= getViewModel {
-            UpdateCaseViewModel(args.id, FindCaseById(casesRepository), UpdateCase(casesRepository))
-        }
 
         binding?.apply {
             viewmodel = viewModel

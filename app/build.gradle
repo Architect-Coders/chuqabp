@@ -103,6 +103,9 @@ dependencies {
     //Image Cropper
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
+    //Koin
+    implementation "org.koin:koin-android-viewmodel:2.0.1"
+
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_new_case.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.data.AndroidPermissionChecker
 import org.sic4change.chuqabp.course.data.PlayServicesLocationDataSource
@@ -32,11 +34,11 @@ import org.sic4change.usescases.GetLocation
 
 class NewCaseFragment : Fragment() {
 
-    private lateinit var viewModel: NewCaseViewModel
-
     private var binding: FragmentNewCaseBinding? = null
 
     private lateinit var navController: NavController
+
+    private val viewModel : NewCaseViewModel by currentScope.viewModel(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +53,6 @@ class NewCaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         navController = view.findNavController()
-
-        val casesRepository = org.sic4change.data.repository.CasesRepository(RoomDataSource(app.db), FirebaseDataSource())
-        viewModel= getViewModel {
-            NewCaseViewModel(
-                GetLocation(RegionRepository(PlayServicesLocationDataSource(app), AndroidPermissionChecker(app))),
-                CreateCase(casesRepository))
-        }
 
         binding?.apply {
             viewmodel = viewModel

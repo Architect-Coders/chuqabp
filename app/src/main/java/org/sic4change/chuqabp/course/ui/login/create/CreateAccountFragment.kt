@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_create_account.*
+import org.koin.android.scope.currentScope
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.data.database.RoomDataSource
 import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
@@ -22,11 +24,11 @@ import org.sic4change.usescases.Login
 
 class CreateAccountFragment: Fragment() {
 
-    private lateinit var viewModel : LoginViewModel
-
     private lateinit var binding : FragmentCreateAccountBinding
 
     private lateinit var navController: NavController
+
+    private val viewModel : LoginViewModel by currentScope.viewModel(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container!!.bindingInflate(R.layout.fragment_create_account, false)
@@ -36,15 +38,6 @@ class CreateAccountFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
 
         navController = view.findNavController()
-
-        viewModel = getViewModel{
-            LoginViewModel(
-                Login(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                ForgotPassword(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                CreateUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource())),
-                GetSavedUser(UserRepository(RoomDataSource(app.db), FirebaseDataSource()))
-            )
-        }
 
         binding?.apply {
             viewmodel = viewModel

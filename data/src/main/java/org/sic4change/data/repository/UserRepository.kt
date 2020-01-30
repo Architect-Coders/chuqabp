@@ -19,9 +19,9 @@ class UserRepository (private val localDataSource: LocalDataSource,
 
     suspend fun login(email: String, password: String) : String {
         val result = remoteDataSource.login(email, password)
-       if (result == "logged") {
-           getUser(email)
-       }
+        if (result == "logged") {
+            getUser(email)
+        }
         return result
     }
 

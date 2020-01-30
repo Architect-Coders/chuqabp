@@ -44,7 +44,7 @@ fun Fragment.hideKeyboard() {
 }
 
 fun Activity.hideKeyboard() {
-    hideKeyboard(if (currentFocus == null) View(this) else currentFocus)
+    if (currentFocus == null) View(this) else currentFocus?.let { hideKeyboard(it) }
 }
 
 fun Context.hideKeyboard(view: View) {

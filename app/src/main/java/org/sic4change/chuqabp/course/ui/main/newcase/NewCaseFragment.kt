@@ -103,7 +103,7 @@ class NewCaseFragment : Fragment() {
             val result = CropImage.getActivityResult(data)
             if (resultCode == RESULT_OK) {
                 ivPhotoCase.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                viewModel.setPhotoUrl(result.uri.path)
+                result.uri.path?.let { viewModel.setPhotoUrl(it) }
                 Glide.with(this).load(result.uri).into(ivPhotoCase)
             }
         }

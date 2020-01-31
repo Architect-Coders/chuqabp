@@ -3,13 +3,15 @@ package org.sic4change.chuqabp.course.ui.main.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.sic4change.domain.Case
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.usescases.GetCases
 
-class MainViewModel(private val getCases: GetCases) : ScopedViewModel() {
+class MainViewModel(private val getCases: GetCases,
+                    uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _cases = MutableLiveData<List<Case>>()
     val cases: LiveData<List<Case>> get() = _cases

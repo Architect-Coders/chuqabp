@@ -2,16 +2,15 @@ package org.sic4change.chuqabp.course.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.usescases.*
 
-class LoginViewModel(
-    private val login: Login,
-    private val forgotPassword: ForgotPassword,
-    private val createUser: CreateUser,
-    private val getSavedUser: GetSavedUser) : ScopedViewModel() {
+class LoginViewModel(private val login: Login, private val forgotPassword: ForgotPassword,
+    private val createUser: CreateUser, private val getSavedUser: GetSavedUser,
+                     uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading

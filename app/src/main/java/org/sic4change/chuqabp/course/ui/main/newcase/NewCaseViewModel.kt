@@ -2,6 +2,7 @@ package org.sic4change.chuqabp.course.ui.main.newcase
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
@@ -9,7 +10,8 @@ import org.sic4change.domain.Case
 import org.sic4change.usescases.CreateCase
 import org.sic4change.usescases.GetLocation
 
-class NewCaseViewModel (private val getLocation: GetLocation, private val createCase: CreateCase) : ScopedViewModel() {
+class NewCaseViewModel (private val getLocation: GetLocation, private val createCase: CreateCase,
+                        uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _showingCreateCaseError = MutableLiveData<Event<Boolean>>()
     val showingCreateCaseError: LiveData<Event<Boolean>> get() = _showingCreateCaseError

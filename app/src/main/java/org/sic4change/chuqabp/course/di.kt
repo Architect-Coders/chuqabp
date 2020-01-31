@@ -1,6 +1,8 @@
 package org.sic4change.chuqabp.course
 
 import android.app.Application
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -46,6 +48,7 @@ private val appModule = module {
     factory<RemoteDataSource>{ FirebaseDataSource() }
     factory<LocationDataSource>{ PlayServicesLocationDataSource(get()) }
     factory<PermissionChecker> { AndroidPermissionChecker(get())}
+    single<CoroutineDispatcher> { Dispatchers.Main}
 }
 
 private val dataModule = module {
@@ -57,30 +60,30 @@ private val dataModule = module {
 private val scopesModule = module {
 
     scope(named<MainFragment>()) {
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel(get(), get()) }
         scoped { GetCases(get()) }
     }
 
     scope(named<DetailFragment>()) {
-        viewModel { (id: String) -> DetailViewModel(id, get(), get()) }
+        viewModel { (id: String) -> DetailViewModel(id, get(), get(), get()) }
         scoped { FindCaseById(get()) }
         scoped { DeleteCase(get()) }
     }
 
     scope(named<NewCaseFragment>()) {
-        viewModel { NewCaseViewModel(get(), get()) }
+        viewModel { NewCaseViewModel(get(), get(), get()) }
         scoped { GetLocation(get()) }
         scoped { CreateCase(get()) }
     }
 
     scope(named<UpdateCaseFragment>()) {
-        viewModel { (id: String) -> UpdateCaseViewModel(id, get(), get()) }
+        viewModel { (id: String) -> UpdateCaseViewModel(id, get(), get(), get()) }
         scoped { FindCaseById(get()) }
         scoped { UpdateCase(get()) }
     }
 
     scope(named<LoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get()) }
         scoped { Login(get()) }
         scoped { ForgotPassword(get()) }
         scoped { CreateUser(get()) }
@@ -88,7 +91,7 @@ private val scopesModule = module {
     }
 
     scope(named<CreateAccountFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get()) }
         scoped { Login(get()) }
         scoped { ForgotPassword(get()) }
         scoped { CreateUser(get()) }

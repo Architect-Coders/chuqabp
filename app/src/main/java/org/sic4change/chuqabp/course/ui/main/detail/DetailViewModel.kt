@@ -2,6 +2,7 @@ package org.sic4change.chuqabp.course.ui.main.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.sic4change.domain.Case
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
@@ -10,7 +11,7 @@ import org.sic4change.usescases.DeleteCase
 
 
 class DetailViewModel(private val caseId: String, private val findCaseById: FindCaseById,
-                      private val deleteCase: DeleteCase) : ScopedViewModel() {
+                      private val deleteCase: DeleteCase, uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _case = MutableLiveData<Case>()
     val case: LiveData<Case> get() = _case

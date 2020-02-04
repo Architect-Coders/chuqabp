@@ -41,6 +41,12 @@ class DetailViewModel(private val caseId: String, private val findCaseById: Find
         }
     }
 
+    fun findCaseById() {
+        launch {
+            _case.value = findCaseById.invoke(caseId)
+        }
+    }
+
     fun deleteCase() {
         launch {
             _deleted.value = true

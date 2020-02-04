@@ -35,6 +35,13 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
         _photoUrl.value = photoUrl
     }
 
+    fun findCaseById() {
+        launch {
+            _case.value = findCaseById.invoke(caseId)
+        }
+    }
+
+
     fun onUpdateCaseClicked(id: String, name: String, surnames: String, date: String, phone: String, email: String, photo: String,
                             location: String) {
         launch {

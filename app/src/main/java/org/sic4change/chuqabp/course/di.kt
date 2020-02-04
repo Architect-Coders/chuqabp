@@ -51,7 +51,7 @@ private val appModule = module {
     single<CoroutineDispatcher> { Dispatchers.Main}
 }
 
-private val dataModule = module {
+val dataModule = module {
     factory { RegionRepository(get(), get()) }
     factory { CasesRepository(get(), get())}
     factory { UserRepository(get(), get())}

@@ -30,9 +30,9 @@ class FirebaseDataSource : RemoteDataSource {
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
                 val casesRef = firestore.collection("cases")
-                val newCase = casesRef.add(case).await()
-                val caseToUpdate = Case(
-                    newCase.id,
+                val key: String = casesRef.document().id
+                val caseToCreate = Case(
+                    key,
                     case.name,
                     case.surnames,
                     case.birthdate,
@@ -41,15 +41,53 @@ class FirebaseDataSource : RemoteDataSource {
                     case.email,
                     case.photo,
                     case.location)
-                casesRef.document(newCase.id).set(caseToUpdate).await()
+                casesRef.document(key).set(caseToCreate).await()
                 Timber.d("Create case result: ok")
                 if (case.photo.isNotEmpty()) {
-                    uploadCaseFile(caseToUpdate)
+                    uploadCaseFile(caseToCreate)
                 }
             } catch (ex : Exception) {
                 Timber.d("Create case result: false ${ex.message}")
             }
         }
+    }
+
+    private suspend fun uploadCaseFile(case: Case)  {
+        withContext(Dispatchers.IO) {
+            val storageRef = ChuqabpFirebaseService.mStorage.reference.child("cases/" + case.id)
+            val file = Uri.fromFile(File(case.photo))
+            storageRef.putFile(file).await()
+            /*val urlTask = uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                storageRef.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    val caseToUpdate = Case(
+                        case.id,
+                        case.name,
+                        case.surnames,
+                        case.birthdate,
+                        case.mentorId,
+                        case.phone,
+                        case.email,
+                        downloadUri.toString(),
+                        case.location)
+                    val firestore = ChuqabpFirebaseService.mFirestore
+                    val casesRef = firestore.collection("cases")
+                    casesRef.document(case.id).set(caseToUpdate)
+                } else {
+                    Timber.d("Upload file result:  error")
+                }
+            }
+*/
+
+        }
+
     }
 
     override suspend fun updateCase(user: User?, case: org.sic4change.domain.Case) {
@@ -70,6 +108,7 @@ class FirebaseDataSource : RemoteDataSource {
                     case.location)
                 caseRef.document(case.id).set(caseToUpdate).await()
                 Timber.d("Delete case result: ok")
+                uploadCaseFile(caseToUpdate)
             } catch (ex: Exception) {
                 Timber.d("Delete case result: false ${ex.message}")
             }
@@ -86,40 +125,6 @@ class FirebaseDataSource : RemoteDataSource {
                 Timber.d("Delete case result: ok")
             } catch (ex: Exception) {
                 Timber.d("Delete case result: false ${ex.message}")
-            }
-        }
-    }
-
-    private fun uploadCaseFile(case: Case)  {
-        val storageRef = ChuqabpFirebaseService.mStorage.reference.child("cases/" + case.id)
-        val file = Uri.fromFile(File(case.photo))
-        val uploadTask = storageRef.putFile(file)
-        uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
-                }
-            }
-            storageRef.downloadUrl
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val downloadUri = task.result
-                val caseToUpdate = Case(
-                    case.id,
-                    case.name,
-                    case.surnames,
-                    case.birthdate,
-                    case.mentorId,
-                    case.phone,
-                    case.email,
-                    downloadUri.toString(),
-                    case.location)
-                val firestore = ChuqabpFirebaseService.mFirestore
-                val casesRef = firestore.collection("cases")
-                casesRef.document(case.id).set(caseToUpdate)
-                Timber.d("Upload photo result: ok")
-            } else {
-                Timber.d("Upload photo result: error")
             }
         }
     }

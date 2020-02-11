@@ -9,8 +9,9 @@ import org.sic4change.domain.Case
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.usescases.GetCases
+import org.sic4change.usescases.RefreshCases
 
-class MainViewModel(private val getCases: GetCases,
+class MainViewModel(private val getCases: GetCases, private val refreshCases: RefreshCases,
                     uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _cases = MutableLiveData<List<Case>>()
@@ -38,6 +39,14 @@ class MainViewModel(private val getCases: GetCases,
         launch {
             _loading.value = true
             _cases.value = getCases.invoke()
+            _loading.value = false
+        }
+    }
+
+    fun refreshCases() {
+        launch {
+            _loading.value = true
+            _cases.value = refreshCases.invoke()
             _loading.value = false
         }
     }

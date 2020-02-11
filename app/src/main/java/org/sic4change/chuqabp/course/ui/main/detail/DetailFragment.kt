@@ -54,6 +54,7 @@ class DetailFragment: Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_refresh).setVisible(false)
         menu.findItem(R.id.action_add).setVisible(false)
         menu.findItem(R.id.action_edit).setVisible(true)
         menu.findItem(R.id.action_delete).setVisible(true)

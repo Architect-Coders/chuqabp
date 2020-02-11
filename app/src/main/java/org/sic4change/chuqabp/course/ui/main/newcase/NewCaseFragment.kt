@@ -19,17 +19,10 @@ import kotlinx.android.synthetic.main.fragment_new_case.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.data.AndroidPermissionChecker
-import org.sic4change.chuqabp.course.data.PlayServicesLocationDataSource
-import org.sic4change.chuqabp.course.data.database.RoomDataSource
-import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.common.*
 import org.sic4change.chuqabp.course.ui.common.CropQuality.Companion.IMAGE_ASPECT_RATIO_X_Y
 import org.sic4change.chuqabp.course.ui.common.CropQuality.Companion.IMAGE_COMPRESS_QUALITY
 import org.sic4change.chuqabp.databinding.FragmentNewCaseBinding
-import org.sic4change.data.repository.RegionRepository
-import org.sic4change.usescases.CreateCase
-import org.sic4change.usescases.GetLocation
 
 
 class NewCaseFragment : Fragment() {
@@ -92,6 +85,7 @@ class NewCaseFragment : Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_refresh).setVisible(false)
         menu.findItem(R.id.action_add).setVisible(false)
         menu.findItem(R.id.action_edit).setVisible(false)
         menu.findItem(R.id.action_delete).setVisible(false)

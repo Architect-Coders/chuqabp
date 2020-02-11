@@ -7,11 +7,21 @@ import org.sic4change.domain.Case
 class CasesRepository(private val localDataSource: LocalDataSource,
                       private val remoteDataSource: RemoteDataSource) {
 
-    suspend fun getCases() : List<Case> {
+    suspend fun refreshCases() : List<Case> {
         val user = localDataSource.getUser()
         val cases = remoteDataSource.getCases(user?.id)
         localDataSource.deleteCases()
         localDataSource.insertCases(cases)
+        return localDataSource.getCases()
+    }
+
+    suspend fun getCases() : List<Case> {
+        if (localDataSource.getCases().isEmpty()) {
+            val user = localDataSource.getUser()
+            val cases = remoteDataSource.getCases(user?.id)
+            localDataSource.deleteCases()
+            localDataSource.insertCases(cases)
+        }
         return localDataSource.getCases()
     }
 

@@ -36,6 +36,7 @@ class MainFragment : Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_refresh).setVisible(true)
         menu.findItem(R.id.action_add).setVisible(true)
         menu.findItem(R.id.action_delete).setVisible(false)
         menu.findItem(R.id.action_edit).setVisible(false)
@@ -46,6 +47,10 @@ class MainFragment : Fragment() {
         return when (item.itemId) {
             R.id.action_add -> {
                 navController.navigate(R.id.action_mainFragment_to_newCaseFragment)
+                true
+            }
+            R.id.action_refresh -> {
+                viewModel.refreshCases()
                 true
             }
             else -> super.onOptionsItemSelected(item)

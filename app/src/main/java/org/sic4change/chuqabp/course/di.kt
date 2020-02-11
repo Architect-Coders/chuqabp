@@ -60,8 +60,9 @@ val dataModule = module {
 private val scopesModule = module {
 
     scope(named<MainFragment>()) {
-        viewModel { MainViewModel(get(), get()) }
+        viewModel { MainViewModel(get(), get(), get()) }
         scoped { GetCases(get()) }
+        scoped { RefreshCases(get()) }
     }
 
     scope(named<DetailFragment>()) {

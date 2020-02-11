@@ -20,7 +20,7 @@ interface ChuqabpDao {
     @Query("UPDATE `case` SET name=:name, surnames=:surnames, birthdate=:birthdate, phone=:phone, email=:email, photo=:photo, location=:location WHERE id = :id")
     fun updateCase(id: String, name: String, surnames: String, birthdate: String, phone: String, email: String, photo: String, location: String)
 
-    @Query("SELECT * FROM `case`")
+    @Query("SELECT * FROM `case` ORDER BY name ASC")
     fun getAllCases() : List<Case>
 
     @Query("SELECT * FROM `case` WHERE id = :id")

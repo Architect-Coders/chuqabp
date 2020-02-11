@@ -62,6 +62,7 @@
     <string name="delete">Eliminar</string>
     <string name="edit_menu">Editar</string>
     <string name="delete_menu">Eliminar</string>
+    <string name="refresh_menu">Refrescar</string>
 
     <!--Update Case-->
     <string name="update_case">Actualizar</string>

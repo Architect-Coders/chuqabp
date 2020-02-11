@@ -9,6 +9,7 @@ import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Case
 import org.sic4change.usescases.CreateCase
 import org.sic4change.usescases.GetLocation
+import java.util.*
 
 class NewCaseViewModel (private val getLocation: GetLocation, private val createCase: CreateCase,
                         uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
@@ -40,7 +41,7 @@ class NewCaseViewModel (private val getLocation: GetLocation, private val create
                 _showingCreateCaseError.value = Event(true)
             } else {
                 _showingCreateCaseError.value = Event(false)
-                createCase.invoke(Case("", name, surnames, date, phone, email, photo, location))
+                createCase.invoke(Case(Date().time.toString() + phone, name, surnames, date, phone, email, photo, location))
             }
         }
     }

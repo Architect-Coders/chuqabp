@@ -57,35 +57,6 @@ class FirebaseDataSource : RemoteDataSource {
             val storageRef = ChuqabpFirebaseService.mStorage.reference.child("cases/" + case.id)
             val file = Uri.fromFile(File(case.photo))
             storageRef.putFile(file).await()
-            /*val urlTask = uploadTask.continueWithTask { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
-                    }
-                }
-                storageRef.downloadUrl
-            }.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                    val caseToUpdate = Case(
-                        case.id,
-                        case.name,
-                        case.surnames,
-                        case.birthdate,
-                        case.mentorId,
-                        case.phone,
-                        case.email,
-                        downloadUri.toString(),
-                        case.location)
-                    val firestore = ChuqabpFirebaseService.mFirestore
-                    val casesRef = firestore.collection("cases")
-                    casesRef.document(case.id).set(caseToUpdate)
-                } else {
-                    Timber.d("Upload file result:  error")
-                }
-            }
-*/
-
         }
 
     }

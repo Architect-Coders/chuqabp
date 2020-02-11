@@ -24,13 +24,13 @@ class FirebaseDataSource : RemoteDataSource {
             networkCasesContainer.results.map { it.toDomainCase() }
     }
 
-    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case){
+    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case) {
         withContext(Dispatchers.IO) {
             Timber.d("try to create case with firebase")
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
                 val casesRef = firestore.collection("cases")
-                val key: String = casesRef.document().id
+                val key: String = case.id
                 val caseToCreate = Case(
                     key,
                     case.name,

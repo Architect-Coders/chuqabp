@@ -19,6 +19,7 @@ import org.sic4change.domain.Case
 
 import org.sic4change.testshared.mockedCase
 import org.sic4change.usescases.GetCases
+import org.sic4change.usescases.RefreshCases
 
 @RunWith(MockitoJUnitRunner::class)
 class MainViewModelTest {
@@ -28,6 +29,9 @@ class MainViewModelTest {
 
     @Mock
     lateinit var getCases: GetCases
+
+    @Mock
+    lateinit var refreshCases: RefreshCases
 
     @Mock
     lateinit var observerPermission: Observer<Event<Unit>>
@@ -46,7 +50,7 @@ class MainViewModelTest {
 
     @Before
     fun setUp() {
-        vm = MainViewModel(getCases, Dispatchers.Unconfined)
+        vm = MainViewModel(getCases, refreshCases, Dispatchers.Unconfined)
     }
 
     @Test

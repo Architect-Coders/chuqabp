@@ -37,6 +37,7 @@ class CasesRepositoryTest {
         runBlocking {
             val remotesCases = listOf(mockedCase.copy(id = "XXXXX"))
             whenever(remoteDataSource.getCases(localDataSource.getUser()?.id)).thenReturn(remotesCases)
+            whenever((localDataSource.getCases())).thenReturn(emptyList())
 
             casesRepository.getCases()
             verify(localDataSource).insertCases(remotesCases)

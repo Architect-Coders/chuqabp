@@ -18,6 +18,7 @@ import org.koin.test.get
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.defaultFakeCases
 import org.sic4change.domain.Case
+import org.sic4change.usescases.RefreshCases
 
 @RunWith(MockitoJUnitRunner::class)
 class MainIntegrationTests : AutoCloseKoinTest() {
@@ -36,8 +37,9 @@ class MainIntegrationTests : AutoCloseKoinTest() {
     @Before
     fun setUp() {
         val vmModule = module {
-            factory { MainViewModel(get(), get()) }
+            factory { MainViewModel(get(), get(), get()) }
             factory { GetCases (get()) }
+            factory { RefreshCases (get())}
         }
         initMockedDi(vmModule)
         vm = get()

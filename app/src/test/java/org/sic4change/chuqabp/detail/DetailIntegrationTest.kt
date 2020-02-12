@@ -24,7 +24,6 @@ import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 import org.koin.test.get

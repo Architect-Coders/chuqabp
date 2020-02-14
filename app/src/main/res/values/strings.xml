@@ -63,6 +63,7 @@
     <string name="edit_menu">Editar</string>
     <string name="delete_menu">Eliminar</string>
     <string name="refresh_menu">Refrescar</string>
+    <string name="account">Mi cuenta</string>
 
     <!--Update Case-->
     <string name="update_case">Actualizar</string>

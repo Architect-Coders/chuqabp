@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.java.ui
+package org.sic4change.chuqabp.ui
 
 
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +20,10 @@ import org.junit.Test
 import org.koin.test.KoinTest
 import org.koin.test.get
 import org.sic4change.chuqabp.R
+import org.sic4change.chuqabp.course.data.server.FirebaseDB
 import org.sic4change.chuqabp.course.ui.main.MainActivity
-import org.sic4change.chuqabp.java.utils.fromJson
+
+import org.sic4change.chuqabp.utils.fromJson
 
 class UiTest : KoinTest {
 
@@ -46,7 +48,7 @@ class UiTest : KoinTest {
             )
         )
 
-        //val resource = OkHttp3IdlingResource.create("OkHttp", get<TheMovieDb>().okHttpClient)
+        //val resource = OkHttp3IdlingResource.create("OkHttp", get<FirebaseDB>().okHttpClient)
         //IdlingRegistry.getInstance().register(resource)
     }
 
@@ -61,8 +63,7 @@ class UiTest : KoinTest {
             )
         )
 
-        onView(withId(R.id.caseDetailToolbar))
-            .check(matches(hasDescendant(withText("Beatriz Ramirez Suarez"))))
+        onView(withId(R.id.caseDetailInfo)).check(matches(isDisplayed()))
 
     }
 }

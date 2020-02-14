@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewmodel"
+                type="org.sic4change.chuqabp.course.ui.main.user.UserViewModel" />
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_card"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <RelativeLayout
+                            android:id="@+id/lyChangePassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:id="@+id/tvChangePassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:text="@string/edit_password"
+                                android:textSize="16sp" />
+
+                        <ImageView
+                                android:id="@+id/ivChangePassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                                android:src="@drawable/ic_edit_user"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_marginRight="@dimen/margin_medium"
+                            android:background="@color/disabled_color" />
+
+                    <RelativeLayout
+                            android:id="@+id/lyLogout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:id="@+id/tvLogout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:text="@string/logout"
+                                android:textSize="16sp" />
+
+                        <ImageView
+                                android:id="@+id/ivLogout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                                android:src="@drawable/ic_exit"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_marginRight="@dimen/margin_medium"
+                            android:background="@color/disabled_color" />
+
+                    <RelativeLayout
+                            android:id="@+id/lyDeleteAccount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:id="@+id/tvDeleteAccount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:text="@string/delete_account"
+                                android:textSize="16sp" />
+
+                        <ImageView
+                                android:id="@+id/ivDeleteAccount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                                android:src="@drawable/ic_delete_user"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_marginRight="@dimen/margin_medium"
+                            android:background="@color/disabled_color" />
+
+                    <RelativeLayout
+                            android:id="@+id/lyTermsAndCoditions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:id="@+id/tvTermsAndConditions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:text="@string/terms_and_conditions"
+                                android:textSize="16sp" />
+
+                        <ImageView
+                                android:id="@+id/ivTermsAndConditions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:padding="@dimen/margin_medium"
+                                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                                android:src="@drawable/ic_file"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="2dip"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_marginRight="@dimen/margin_medium"
+                            android:background="@color/disabled_color" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

@@ -13,6 +13,7 @@ import org.sic4change.chuqabp.course.data.AndroidPermissionChecker
 import org.sic4change.chuqabp.course.data.PlayServicesLocationDataSource
 import org.sic4change.chuqabp.course.data.database.ChuqabpDatabase
 import org.sic4change.chuqabp.course.data.database.RoomDataSource
+import org.sic4change.chuqabp.course.data.server.FirebaseDB
 import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.chuqabp.course.ui.login.create.CreateAccountFragment
@@ -25,6 +26,8 @@ import org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment
 import org.sic4change.chuqabp.course.ui.main.newcase.NewCaseViewModel
 import org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseFragment
 import org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseViewModel
+import org.sic4change.chuqabp.course.ui.main.user.UserFragment
+import org.sic4change.chuqabp.course.ui.main.user.UserViewModel
 import org.sic4change.data.repository.CasesRepository
 import org.sic4change.data.repository.PermissionChecker
 import org.sic4change.data.repository.RegionRepository
@@ -49,6 +52,8 @@ private val appModule = module {
     factory<LocationDataSource>{ PlayServicesLocationDataSource(get()) }
     factory<PermissionChecker> { AndroidPermissionChecker(get())}
     single<CoroutineDispatcher> { Dispatchers.Main}
+    //single(named("baseUrl")) {"https://firebasestorage.googleapis.com/v0/b/chuqabp.appspot.com/o/"}
+    //single { FirebaseDB(get(named("baseUrl"))) }
 }
 
 val dataModule = module {
@@ -81,6 +86,10 @@ private val scopesModule = module {
         viewModel { (id: String) -> UpdateCaseViewModel(id, get(), get(), get()) }
         scoped { FindCaseById(get()) }
         scoped { UpdateCase(get()) }
+    }
+
+    scope(named<UserFragment>()) {
+        viewModel { UserViewModel(get()) }
     }
 
     scope(named<LoginFragment>()) {

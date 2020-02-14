@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.java.utils
+package org.sic4change.chuqabp.utils
 
 import android.content.Context
 import okhttp3.mockwebserver.MockResponse

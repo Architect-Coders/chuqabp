@@ -36,10 +36,11 @@ class MainFragment : Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).setVisible(true)
-        menu.findItem(R.id.action_add).setVisible(true)
-        menu.findItem(R.id.action_delete).setVisible(false)
-        menu.findItem(R.id.action_edit).setVisible(false)
+        menu.findItem(R.id.action_refresh).isVisible = true
+        menu.findItem(R.id.action_add).isVisible = true
+        menu.findItem(R.id.action_account).isVisible = true
+        menu.findItem(R.id.action_delete).isVisible = false
+        menu.findItem(R.id.action_edit).isVisible = false
         super.onPrepareOptionsMenu(menu)
     }
 
@@ -51,6 +52,10 @@ class MainFragment : Fragment() {
             }
             R.id.action_refresh -> {
                 viewModel.refreshCases()
+                true
+            }
+            R.id.action_account -> {
+                navController.navigate(R.id.action_mainFragment_to_userFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

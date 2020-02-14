@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.java.ui
+package org.sic4change.chuqabp.ui
 
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.TestRule

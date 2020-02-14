@@ -27,4 +27,10 @@
             app:showAsAction="always"
             android:title="@string/delete_menu" />
 
+    <item
+            android:id="@+id/action_account"
+            android:icon="@drawable/ic_account_circle"
+            app:showAsAction="always"
+            android:title="@string/account" />
+
 </menu>

@@ -11,6 +11,7 @@ interface RemoteDataSource {
     suspend fun getUser(email: String) : User
     suspend fun login(email: String, password: String) : String
     suspend fun forgotPassword(email: String) : Boolean
+    suspend fun changePassword(email: String)
     suspend fun createUser(email: String, password: String) : String
 
 

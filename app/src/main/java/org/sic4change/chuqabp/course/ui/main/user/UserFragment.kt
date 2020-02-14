@@ -14,6 +14,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.TermsAndConditions
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
+import org.sic4change.chuqabp.course.ui.common.snackbar
 import org.sic4change.chuqabp.databinding.FragmentUserBinding
 
 class UserFragment : Fragment() {
@@ -45,6 +46,11 @@ class UserFragment : Fragment() {
 
         lyTermsAndCoditions.setOnClickListener {
             TermsAndConditions.showTermsAndConditions(activity)
+        }
+
+        lyChangePassword.setOnClickListener{
+            viewModel.onChangePasswordClicked()
+            snackbar(binding?.root, getString(R.string.sent_instructions_to_change_password))
         }
 
     }

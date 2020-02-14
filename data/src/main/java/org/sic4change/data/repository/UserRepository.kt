@@ -35,4 +35,9 @@ class UserRepository (private val localDataSource: LocalDataSource,
         return result
     }
 
+    suspend fun changePassword()  {
+        val user = localDataSource.getUser()
+        user?.email?.let { remoteDataSource.changePassword(it) }
+    }
+
 }

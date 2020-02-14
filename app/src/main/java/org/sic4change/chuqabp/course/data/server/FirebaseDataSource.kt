@@ -162,5 +162,17 @@ class FirebaseDataSource : RemoteDataSource {
         return result
     }
 
+    override suspend fun changePassword(email: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to request change password with firebase")
+            try {
+                ChuqabpFirebaseService.fbAuth.sendPasswordResetEmail(email).await()
+                Timber.d("Request change password: ok")
+            } catch (ex : Exception) {
+                Timber.d("Request change password: error ${ex.message}")
+            }
+        }
+    }
+
 }
 

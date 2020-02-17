@@ -17,29 +17,29 @@ interface ChuqabpDao {
     @Query("DELETE FROM user")
     fun deleteUser()
 
-    @Query("UPDATE `case` SET name=:name, surnames=:surnames, birthdate=:birthdate, phone=:phone, email=:email, photo=:photo, location=:location WHERE id = :id")
-    fun updateCase(id: String, name: String, surnames: String, birthdate: String, phone: String, email: String, photo: String, location: String)
+    @Query("UPDATE `person` SET name=:name, surnames=:surnames, birthday=:birthdate, phone=:phone, email=:email, photo=:photo, location=:location WHERE id = :id")
+    fun updatePerson(id: String, name: String, surnames: String, birthdate: String, phone: String, email: String, photo: String, location: String)
 
-    @Query("SELECT * FROM `case` ORDER BY name ASC")
-    fun getAllCases() : List<Case>
+    @Query("SELECT * FROM `person` ORDER BY name ASC")
+    fun getAllPersons() : List<Person>
 
-    @Query("SELECT * FROM `case` WHERE id = :id")
-    fun findCaseById(id: String): Case
+    @Query("SELECT * FROM `person` WHERE id = :id")
+    fun findPersonById(id: String): Person
 
-    @Query("SELECT COUNT(id) FROM `case`")
-    fun caseCount(): Int
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCases(cases: List<Case>)
-
-    @Query("DELETE FROM `case`")
-    fun deleteCases()
-
-    @Query("DELETE FROM `case` WHERE id = :id")
-    fun deleteCase(id: String)
+    @Query("SELECT COUNT(id) FROM `person`")
+    fun personsCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertCase(case: Case)
+    fun insertPersons(persons: List<Person>)
+
+    @Query("DELETE FROM `person`")
+    fun deletePersons()
+
+    @Query("DELETE FROM `person` WHERE id = :id")
+    fun deletePerson(id: String)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPerson(person: Person)
 
 
 }

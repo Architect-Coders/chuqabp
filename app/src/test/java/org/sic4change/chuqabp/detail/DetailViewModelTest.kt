@@ -14,10 +14,10 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel
-import org.sic4change.domain.Case
-import org.sic4change.testshared.mockedCase
-import org.sic4change.usescases.DeleteCase
-import org.sic4change.usescases.FindCaseById
+import org.sic4change.domain.Person
+import org.sic4change.testshared.mockedPerson
+import org.sic4change.usescases.DeletePerson
+import org.sic4change.usescases.FindPersonById
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {
@@ -26,13 +26,13 @@ class DetailViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var findCaseById: FindCaseById
+    lateinit var findPersonById: FindPersonById
 
     @Mock
-    lateinit var deleteCase: DeleteCase
+    lateinit var deletePerson: DeletePerson
 
     @Mock
-    lateinit var observerCase: Observer<Case>
+    lateinit var observerPerson: Observer<Person>
 
     @Mock
     lateinit var observerTitle: Observer<String>
@@ -49,53 +49,53 @@ class DetailViewModelTest {
 
     @Before
     fun setUp() {
-        vm = DetailViewModel(id, findCaseById, deleteCase, Dispatchers.Unconfined)
+        vm = DetailViewModel(id, findPersonById, deletePerson, Dispatchers.Unconfined)
     }
 
     @Test
-    fun `observing LiveData finds the case`() {
+    fun `observing LiveData finds the person`() {
         runBlocking {
-            val case = mockedCase.copy(id = id)
-            whenever(findCaseById.invoke(id)).thenReturn(case)
+            val person = mockedPerson.copy(id = id)
+            whenever(findPersonById.invoke(id)).thenReturn(person)
 
-            vm = DetailViewModel(id, findCaseById, deleteCase, Dispatchers.Unconfined)
+            vm = DetailViewModel(id, findPersonById, deletePerson, Dispatchers.Unconfined)
 
-            vm.case.observeForever(observerCase)
-            verify(observerCase).onChanged(vm.case.value)
+            vm.person.observeForever(observerPerson)
+            verify(observerPerson).onChanged(vm.person.value)
         }
     }
 
     @Test
     fun `observing LiveData change title`() {
         runBlocking {
-            val case = mockedCase.copy(id = id)
-            whenever(findCaseById.invoke(id)).thenReturn(case)
+            val person = mockedPerson.copy(id = id)
+            whenever(findPersonById.invoke(id)).thenReturn(person)
 
-            vm = DetailViewModel(id, findCaseById, deleteCase, Dispatchers.Unconfined)
+            vm = DetailViewModel(id, findPersonById, deletePerson, Dispatchers.Unconfined)
 
             vm.title.observeForever(observerTitle)
-            Assert.assertEquals(case.name + " " + case.surnames, vm.title.value)
+            Assert.assertEquals(person.name + " " + person.surnames, vm.title.value)
         }
     }
 
     @Test
     fun `observing LiveData change url photo`() {
         runBlocking {
-            val case = mockedCase.copy(id = id)
-            whenever(findCaseById.invoke(id)).thenReturn(case)
+            val person = mockedPerson.copy(id = id)
+            whenever(findPersonById.invoke(id)).thenReturn(person)
 
-            vm = DetailViewModel(id, findCaseById, deleteCase, Dispatchers.Unconfined)
+            vm = DetailViewModel(id, findPersonById, deletePerson, Dispatchers.Unconfined)
 
             vm.url.observeForever(observerUrl)
-            Assert.assertEquals(case.photo, vm.url.value)
+            Assert.assertEquals(person.photo, vm.url.value)
         }
     }
 
     @Test
-    fun `observing LiveData delete case`() {
+    fun `observing LiveData delete person`() {
         runBlocking {
 
-            vm.deleteCase()
+            vm.deletePerson()
 
             vm.deleted.observeForever(observerDelete)
             Assert.assertEquals(true, vm.deleted.value)

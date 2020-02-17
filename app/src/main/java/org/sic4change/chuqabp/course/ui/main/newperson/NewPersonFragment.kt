@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui.main.newcase
+package org.sic4change.chuqabp.course.ui.main.newperson
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -15,23 +15,23 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.fragment_new_case.*
+import kotlinx.android.synthetic.main.fragment_new_person.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.*
 import org.sic4change.chuqabp.course.ui.common.CropQuality.Companion.IMAGE_ASPECT_RATIO_X_Y
 import org.sic4change.chuqabp.course.ui.common.CropQuality.Companion.IMAGE_COMPRESS_QUALITY
-import org.sic4change.chuqabp.databinding.FragmentNewCaseBinding
+import org.sic4change.chuqabp.databinding.FragmentNewPersonBinding
 
 
-class NewCaseFragment : Fragment() {
+class NewPersonFragment : Fragment() {
 
-    private var binding: FragmentNewCaseBinding? = null
+    private var binding: FragmentNewPersonBinding? = null
 
     private lateinit var navController: NavController
 
-    private val viewModel : NewCaseViewModel by currentScope.viewModel(this)
+    private val viewModel : NewPersonViewModel by currentScope.viewModel(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class NewCaseFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = container?.bindingInflate(R.layout.fragment_new_case, false)
+        binding = container?.bindingInflate(R.layout.fragment_new_person, false)
         return binding?.root
     }
 
@@ -49,10 +49,10 @@ class NewCaseFragment : Fragment() {
 
         binding?.apply {
             viewmodel = viewModel
-            lifecycleOwner = this@NewCaseFragment
+            lifecycleOwner = this@NewPersonFragment
         }
 
-        ivPhotoCase.setOnClickListener {
+        ivPhotoPerson.setOnClickListener {
             activity?.let { it1 ->
                 CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
@@ -64,8 +64,8 @@ class NewCaseFragment : Fragment() {
             }
         }
 
-        btnCreateCase.setOnClickListener {
-            viewModel.onCreateCaseClicked(etName.text.toString(), etSurnames.text.toString(), etBirthday.text.toString(),
+        btnCreatePerson.setOnClickListener {
+            viewModel.onCreatePersonClicked(etName.text.toString(), etSurnames.text.toString(), etBirthday.text.toString(),
                 etPhone.text.toString(), etEmail.text.toString(), viewModel.photoUrl.value.toString(), etLocation.text.toString())
         }
 
@@ -73,11 +73,11 @@ class NewCaseFragment : Fragment() {
             etLocation.setText(it)
         })
 
-        viewModel.showingCreateCaseError.observe(this, EventObserver {
+        viewModel.showingCreatePersonError.observe(this, EventObserver {
             if (it) {
-                showMessage(getString(R.string.case_mandatory_field))
+                showMessage(getString(R.string.person_mandatory_field))
             } else {
-                navController.navigate(R.id.action_newCaseFragment_to_loginActivity)
+                navController.navigate(R.id.action_newPersonFragment_to_loginActivity)
                 activity?.finish()
             }
         })
@@ -97,9 +97,9 @@ class NewCaseFragment : Fragment() {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
             if (resultCode == RESULT_OK) {
-                ivPhotoCase.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                ivPhotoPerson.setBackgroundColor(resources.getColor(R.color.colorPrimary))
                 result.uri.path?.let { viewModel.setPhotoUrl(it) }
-                Glide.with(this).load(result.uri).into(ivPhotoCase)
+                Glide.with(this).load(result.uri).into(ivPhotoPerson)
             }
         }
     }

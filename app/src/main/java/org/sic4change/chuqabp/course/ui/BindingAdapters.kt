@@ -7,13 +7,13 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.sic4change.chuqabp.course.ui.common.loadCaseUrl
-import org.sic4change.chuqabp.course.ui.main.main.CasesAdapter
-import org.sic4change.domain.Case
+import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
+import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
+import org.sic4change.domain.Person
 
 @BindingAdapter("url")
 fun ImageView.bindUrl(url: String?) {
-    if (url != null) loadCaseUrl(url)
+    if (url != null) loadPersonUrl(url)
 }
 
 @BindingAdapter("visible")
@@ -23,8 +23,8 @@ fun View.setVisible(visible: Boolean?) {
     } ?: View.GONE
 }
 
-@BindingAdapter("case")
-fun TextView.updateCaseDetails(case: Case?) = case?.run {
+@BindingAdapter("person")
+fun TextView.updateCaseDetails(person: Person?) = person?.run {
     text = buildSpannedString {
         bold { append("Nombre: ") }
         appendln(name)
@@ -47,7 +47,7 @@ fun TextView.updateCaseDetails(case: Case?) = case?.run {
 }
 
 @BindingAdapter("fullname")
-fun TextView.setFullNameText(case: Case?) = case?.run {
+fun TextView.setFullNameText(person: Person?) = person?.run {
     text = buildSpannedString {
         append(name)
         append(" ")
@@ -56,8 +56,8 @@ fun TextView.setFullNameText(case: Case?) = case?.run {
 }
 
 @BindingAdapter("items")
-fun RecyclerView.setItems(cases: List<Case>?) {
-    (adapter as? CasesAdapter)?.let {
-        it.cases = cases ?: emptyList()
+fun RecyclerView.setItems(persons: List<Person>?) {
+    (adapter as? PersonsAdapter)?.let {
+        it.persons = persons ?: emptyList()
     }
 }

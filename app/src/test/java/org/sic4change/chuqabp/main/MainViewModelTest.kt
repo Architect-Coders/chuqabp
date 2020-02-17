@@ -15,11 +15,11 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.main.main.MainViewModel
-import org.sic4change.domain.Case
+import org.sic4change.domain.Person
 
-import org.sic4change.testshared.mockedCase
-import org.sic4change.usescases.GetCases
-import org.sic4change.usescases.RefreshCases
+import org.sic4change.testshared.mockedPerson
+import org.sic4change.usescases.GetPersons
+import org.sic4change.usescases.RefreshPersons
 
 @RunWith(MockitoJUnitRunner::class)
 class MainViewModelTest {
@@ -28,10 +28,10 @@ class MainViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var getCases: GetCases
+    lateinit var getPersons: GetPersons
 
     @Mock
-    lateinit var refreshCases: RefreshCases
+    lateinit var refreshPersons: RefreshPersons
 
     @Mock
     lateinit var observerPermission: Observer<Event<Unit>>
@@ -40,17 +40,17 @@ class MainViewModelTest {
     lateinit var observerLoading: Observer<Boolean>
 
     @Mock
-    lateinit var observerCases: Observer<List<Case>>
+    lateinit var observerPersons: Observer<List<Person>>
 
     @Mock
-    lateinit var observerNavigateToCase: Observer<Event<String>>
+    lateinit var observerNavigateToPerson: Observer<Event<String>>
 
 
     private lateinit var vm: MainViewModel
 
     @Before
     fun setUp() {
-        vm = MainViewModel(getCases, refreshCases, Dispatchers.Unconfined)
+        vm = MainViewModel(getPersons, refreshPersons, Dispatchers.Unconfined)
     }
 
     @Test
@@ -63,8 +63,8 @@ class MainViewModelTest {
     fun `after requesting the permission, loading is shown`() {
         runBlocking {
 
-            val cases = listOf(mockedCase.copy(id = "XXXXX"))
-            whenever(getCases.invoke()).thenReturn(cases)
+            val persons = listOf(mockedPerson.copy(id = "XXXXX"))
+            whenever(getPersons.invoke()).thenReturn(persons)
             vm.requestLocationPermission.observeForever(observerPermission)
             vm.loading.observeForever(observerLoading)
 
@@ -75,34 +75,34 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `after requesting the permission, getCases is called`() {
+    fun `after requesting the permission, getPersons is called`() {
         runBlocking {
-            val cases = listOf(mockedCase.copy(id = "XXXXX"))
-            whenever(getCases.invoke()).thenReturn(cases)
+            val persons = listOf(mockedPerson.copy(id = "XXXXX"))
+            whenever(getPersons.invoke()).thenReturn(persons)
 
             vm.requestLocationPermission.observeForever(observerPermission)
-            vm.cases.observeForever(observerCases)
+            vm.persons.observeForever(observerPersons)
 
             vm.onCoarsePermissionRequest()
 
-            verify(observerCases).onChanged(vm.cases.value)
+            verify(observerPersons).onChanged(vm.persons.value)
         }
 
     }
 
     @Test
-    fun `when case clicked, navigate to case`() {
+    fun `when person clicked, navigate to case`() {
         runBlocking {
-            val cases = listOf(mockedCase.copy(id = "XXXXX"))
-            whenever(getCases.invoke()).thenReturn(cases)
+            val persons = listOf(mockedPerson.copy(id = "XXXXX"))
+            whenever(getPersons.invoke()).thenReturn(persons)
 
             vm.onCoarsePermissionRequest()
 
-            vm.navigateToCase.observeForever(observerNavigateToCase)
+            vm.navigateToPerson.observeForever(observerNavigateToPerson)
 
-            vm.onCaseClicked(cases[0])
+            vm.onPersonClicked(persons[0])
 
-            Assert.assertEquals("XXXXX", (vm.navigateToCase.value)?.peekContent())
+            Assert.assertEquals("XXXXX", (vm.navigateToPerson.value)?.peekContent())
 
         }
     }

@@ -4,7 +4,7 @@ import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import org.sic4change.chuqabp.course.data.toDomainCase
+import org.sic4change.chuqabp.course.data.toDomainPerson
 import org.sic4change.chuqabp.course.data.toDomainUser
 import org.sic4change.data.source.RemoteDataSource
 import org.sic4change.domain.User
@@ -15,87 +15,87 @@ import org.sic4change.chuqabp.course.data.server.User as NewtworkUser
 
 class FirebaseDataSource : RemoteDataSource {
 
-    override suspend fun getCases(mentorId: String?): List<org.sic4change.domain.Case> = withContext(Dispatchers.IO) {
+    override suspend fun getPersons(mentorId: String?): List<org.sic4change.domain.Person> = withContext(Dispatchers.IO) {
             val firestore = ChuqabpFirebaseService.mFirestore
-            val casesRef = firestore.collection("cases")
-            val query = casesRef.whereEqualTo("mentorId", mentorId)
+            val personsRef = firestore.collection("persons")
+            val query = personsRef.whereEqualTo("mentorId", mentorId)
             val result = query.get().await()
-            val networkCasesContainer = NetworkCasesContainer(result.toObjects(Case::class.java))
-            networkCasesContainer.results.map { it.toDomainCase() }
+            val networkPersonsContainer = NetworkPersonsContainer(result.toObjects(Person::class.java))
+        networkPersonsContainer.results.map { it.toDomainPerson() }
     }
 
-    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case) {
+    override suspend fun createPerson(user: User?, person: org.sic4change.domain.Person) {
         withContext(Dispatchers.IO) {
-            Timber.d("try to create case with firebase")
+            Timber.d("try to create person with firebase")
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
-                val casesRef = firestore.collection("cases")
-                val key: String = case.id
-                val caseToCreate = Case(
+                val personsRef = firestore.collection("persons")
+                val key: String = person.id
+                val personToCreate = Person(
                     key,
-                    case.name,
-                    case.surnames,
-                    case.birthdate,
+                    person.name,
+                    person.surnames,
+                    person.birthdate,
                     user?.id,
-                    case.phone,
-                    case.email,
-                    case.photo,
-                    case.location)
-                casesRef.document(key).set(caseToCreate).await()
-                Timber.d("Create case result: ok")
-                if (case.photo.isNotEmpty()) {
-                    uploadCaseFile(caseToCreate)
+                    person.phone,
+                    person.email,
+                    person.photo,
+                    person.location)
+                personsRef.document(key).set(personToCreate).await()
+                Timber.d("Create person result: ok")
+                if (person.photo.isNotEmpty()) {
+                    uploadPersonFile(personToCreate)
                 }
             } catch (ex : Exception) {
-                Timber.d("Create case result: false ${ex.message}")
+                Timber.d("Create person result: false ${ex.message}")
             }
         }
     }
 
-    private suspend fun uploadCaseFile(case: Case)  {
+    private suspend fun uploadPersonFile(person: Person)  {
         withContext(Dispatchers.IO) {
-            val storageRef = ChuqabpFirebaseService.mStorage.reference.child("cases/" + case.id)
-            val file = Uri.fromFile(File(case.photo))
+            val storageRef = ChuqabpFirebaseService.mStorage.reference.child("persons/" + person.id)
+            val file = Uri.fromFile(File(person.photo))
             storageRef.putFile(file).await()
         }
 
     }
 
-    override suspend fun updateCase(user: User?, case: org.sic4change.domain.Case) {
+    override suspend fun updatePerson(user: User?, person: org.sic4change.domain.Person) {
         withContext(Dispatchers.IO) {
-            Timber.d("try to delete case from firebase")
+            Timber.d("try to delete person from firebase")
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
-                val caseRef = firestore.collection("cases")
-                val caseToUpdate = Case(
-                    case.id,
-                    case.name,
-                    case.surnames,
-                    case.birthdate,
+                val personRef = firestore.collection("persons")
+                val personToUpdate = Person(
+                    person.id,
+                    person.name,
+                    person.surnames,
+                    person.birthdate,
                     user?.id,
-                    case.phone,
-                    case.email,
-                    case.photo,
-                    case.location)
-                caseRef.document(case.id).set(caseToUpdate).await()
-                Timber.d("Delete case result: ok")
-                uploadCaseFile(caseToUpdate)
+                    person.phone,
+                    person.email,
+                    person.photo,
+                    person.location)
+                personRef.document(person.id).set(personToUpdate).await()
+                Timber.d("Delete person result: ok")
+                uploadPersonFile(personToUpdate)
             } catch (ex: Exception) {
-                Timber.d("Delete case result: false ${ex.message}")
+                Timber.d("Delete person result: false ${ex.message}")
             }
         }
     }
 
-    override suspend fun deleteCase(id: String) {
+    override suspend fun deletePerson(id: String) {
         withContext(Dispatchers.IO) {
-            Timber.d("try to delete case from firebase")
+            Timber.d("try to delete person from firebase")
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
-                val caseRef = firestore.collection("cases")
-                caseRef.document(id).delete().await()
-                Timber.d("Delete case result: ok")
+                val personRef = firestore.collection("persons")
+                personRef.document(id).delete().await()
+                Timber.d("Delete person result: ok")
             } catch (ex: Exception) {
-                Timber.d("Delete case result: false ${ex.message}")
+                Timber.d("Delete person result: false ${ex.message}")
             }
         }
     }

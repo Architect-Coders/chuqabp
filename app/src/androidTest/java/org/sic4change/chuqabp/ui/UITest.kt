@@ -4,23 +4,19 @@ package org.sic4change.chuqabp.ui
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
-import com.jakewharton.espresso.OkHttp3IdlingResource
 
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.koin.test.KoinTest
-import org.koin.test.get
 import org.sic4change.chuqabp.R
-import org.sic4change.chuqabp.course.data.server.FirebaseDB
 import org.sic4change.chuqabp.course.ui.main.MainActivity
 
 import org.sic4change.chuqabp.utils.fromJson
@@ -63,7 +59,7 @@ class UiTest : KoinTest {
             )
         )
 
-        onView(withId(R.id.caseDetailInfo)).check(matches(isDisplayed()))
+        onView(withId(R.id.personDetailInfo)).check(matches(isDisplayed()))
 
     }
 }

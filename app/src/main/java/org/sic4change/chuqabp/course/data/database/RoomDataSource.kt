@@ -2,13 +2,10 @@ package org.sic4change.chuqabp.course.data.database
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.sic4change.chuqabp.course.data.toDatabaseCase
-import org.sic4change.chuqabp.course.data.toDatabaseUser
-import org.sic4change.chuqabp.course.data.toDomainCase
-import org.sic4change.chuqabp.course.data.toDomainUser
+import org.sic4change.chuqabp.course.data.*
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.domain.User as DomainUser
-import org.sic4change.domain.Case as DomainCase
+import org.sic4change.domain.Person as DomainPerson
 
 class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
@@ -27,21 +24,21 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         chuqabpDao.getUser(id).toDomainUser()
     }
 
-    override suspend fun createCase(case: org.sic4change.domain.Case) {
+    override suspend fun createPerson(person: org.sic4change.domain.Person) {
         withContext(Dispatchers.IO) {
-            chuqabpDao.insertCase(case.toDatabaseCase())
+            chuqabpDao.insertPerson(person.toDatabasePerson())
         }
     }
 
-    override suspend fun updateCase(case: org.sic4change.domain.Case) {
+    override suspend fun updatePerson(case: org.sic4change.domain.Person) {
         withContext(Dispatchers.IO) {
-            chuqabpDao.updateCase(case.id, case.name, case.surnames, case.birthdate, case.phone, case.email, case.photo, case.location)
+            chuqabpDao.updatePerson(case.id, case.name, case.surnames, case.birthdate, case.phone, case.email, case.photo, case.location)
         }
     }
 
-    override suspend fun deleteCase(id: String) {
+    override suspend fun deletePerson(id: String) {
         withContext(Dispatchers.IO) {
-            chuqabpDao.deleteCase(id)
+            chuqabpDao.deletePerson(id)
         }
     }
 
@@ -57,24 +54,24 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         }
     }
 
-    override suspend fun deleteCases() {
+    override suspend fun deletePersons() {
         withContext(Dispatchers.IO) {
-            chuqabpDao.deleteCases()
+            chuqabpDao.deletePersons()
         }
     }
 
-    override suspend fun insertCases(cases: List<DomainCase>) {
+    override suspend fun insertPersons(persons: List<DomainPerson>) {
         withContext(Dispatchers.IO) {
-            chuqabpDao.insertCases(cases.map { it.toDatabaseCase() })
+            chuqabpDao.insertPersons(persons.map { it.toDatabasePerson() })
         }
     }
 
-    override suspend fun getCases(): List<DomainCase> = withContext(Dispatchers.IO) {
-        chuqabpDao.getAllCases().map { it.toDomainCase() }
+    override suspend fun getPersons(): List<DomainPerson> = withContext(Dispatchers.IO) {
+        chuqabpDao.getAllPersons().map { it.toDomainPerson() }
     }
 
-    override suspend fun findById(id: String): DomainCase = withContext(Dispatchers.IO) {
-        chuqabpDao.findCaseById(id).toDomainCase()
+    override suspend fun findById(id: String): DomainPerson = withContext(Dispatchers.IO) {
+        chuqabpDao.findPersonById(id).toDomainPerson()
     }
 
 }

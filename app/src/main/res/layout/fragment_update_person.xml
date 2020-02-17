@@ -6,7 +6,7 @@
 
         <variable
                 name="viewmodel"
-                type="org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseViewModel" />
+                type="org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonViewModel" />
     </data>
 
     <ScrollView
@@ -19,13 +19,13 @@
                 android:orientation="vertical">
 
             <ImageView
-                    android:id="@+id/ivUpdatePhotoCase"
+                    android:id="@+id/ivUpdatePhotoPerson"
                     android:layout_width="@dimen/create_case_photo"
                     android:layout_height="@dimen/create_case_photo"
                     android:layout_marginTop="@dimen/margin_medium"
                     android:clickable="true"
                     android:focusable="true"
-                    app:url= "@{viewmodel.case.photo}"
+                    app:url= "@{viewmodel.person.photo}"
                     android:padding="@dimen/image_border"
                     android:background="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -38,13 +38,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/name"
-                    android:text="@{viewmodel.case.name}"
+                    android:text="@{viewmodel.person.name}"
                     android:inputType="textCapWords"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivUpdatePhotoCase" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivUpdatePhotoPerson" />
 
             <EditText
                     android:id="@+id/etSurnames"
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/surname"
-                    android:text="@{viewmodel.case.surnames}"
+                    android:text="@{viewmodel.person.surnames}"
                     android:inputType="textCapWords"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/date"
-                    android:text="@{viewmodel.case.birthdate}"
+                    android:text="@{viewmodel.person.birthdate}"
                     android:inputType="date"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/phone"
-                    android:text="@{viewmodel.case.phone}"
+                    android:text="@{viewmodel.person.phone}"
                     android:inputType="phone"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/email"
-                    android:text="@{viewmodel.case.email}"
+                    android:text="@{viewmodel.person.email}"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/location"
-                    android:text="@{viewmodel.case.location}"
+                    android:text="@{viewmodel.person.location}"
                     android:inputType="textCapWords"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -117,11 +117,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
             <Button
-                    android:id="@+id/btnUpdateCase"
+                    android:id="@+id/btnUpdatePerson"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimaryDark"
-                    android:text="@string/update_case"
+                    android:text="@string/update_person"
                     android:layout_margin="@dimen/margin_default"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"

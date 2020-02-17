@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.newcase
+package org.sic4change.chuqabp.newperson
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -15,30 +15,30 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.chuqabp.*
 import org.sic4change.chuqabp.course.ui.common.Event
-import org.sic4change.chuqabp.course.ui.main.newcase.NewCaseViewModel
+import org.sic4change.chuqabp.course.ui.main.newperson.NewPersonViewModel
 import org.sic4change.data.source.LocalDataSource
-import org.sic4change.testshared.mockedCase
-import org.sic4change.usescases.CreateCase
+import org.sic4change.testshared.mockedPerson
+import org.sic4change.usescases.CreatePerson
 import org.sic4change.usescases.GetLocation
 
 @RunWith(MockitoJUnitRunner::class)
-class NewCaseIntegrationTest : AutoCloseKoinTest() {
+class NewPersonIntegrationTest : AutoCloseKoinTest() {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var showingCreateCaseErrorObserver: Observer<Event<Boolean>>
+    lateinit var showingCreatePersonErrorObserver: Observer<Event<Boolean>>
 
-    private lateinit var vm: NewCaseViewModel
+    private lateinit var vm: NewPersonViewModel
     private lateinit var localDataSource: FakeLocalDataSource
 
     @Before
     fun setUp() {
         val vmModule = module {
-            factory { NewCaseViewModel(get(), get(), get()) }
+            factory { NewPersonViewModel(get(), get(), get()) }
             factory { GetLocation(get()) }
-            factory { CreateCase(get()) }
+            factory { CreatePerson(get()) }
         }
 
         initMockedDi(vmModule)
@@ -46,16 +46,16 @@ class NewCaseIntegrationTest : AutoCloseKoinTest() {
 
         localDataSource = get<LocalDataSource>() as FakeLocalDataSource
         localDataSource.user = defaultFakeUser
-        localDataSource.cases = defaultFakeCases
+        localDataSource.persons = defaultFakePersons
     }
 
 
     @Test
-    fun `create case is added in local data source`() {
-        vm.showingCreateCaseError.observeForever(showingCreateCaseErrorObserver)
-        vm.onCreateCaseClicked(mockedCase.name, mockedCase.surnames, mockedCase.birthdate, mockedCase.phone, mockedCase.email, mockedCase.photo, mockedCase.location)
+    fun `create person is added in local data source`() {
+        vm.showingCreatePersonError.observeForever(showingCreatePersonErrorObserver)
+        vm.onCreatePersonClicked(mockedPerson.name, mockedPerson.surnames, mockedPerson.birthdate, mockedPerson.phone, mockedPerson.email, mockedPerson.photo, mockedPerson.location)
         runBlocking {
-            assertTrue(localDataSource.cases.size==5)
+            assertTrue(localDataSource.persons.size==5)
         }
     }
 

@@ -5,23 +5,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import org.sic4change.domain.Case
+import org.sic4change.domain.Person
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
-import org.sic4change.usescases.GetCases
-import org.sic4change.usescases.RefreshCases
+import org.sic4change.usescases.GetPersons
+import org.sic4change.usescases.RefreshPersons
 
-class MainViewModel(private val getCases: GetCases, private val refreshCases: RefreshCases,
+class MainViewModel(private val getPersons: GetPersons, private val refreshPersons: RefreshPersons,
                     uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
-    private val _cases = MutableLiveData<List<Case>>()
-    val cases: LiveData<List<Case>> get() = _cases
+    private val _persons = MutableLiveData<List<Person>>()
+    val persons: LiveData<List<Person>> get() = _persons
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
-    private val _navigateToCase = MutableLiveData<Event<String>>()
-    val navigateToCase: LiveData<Event<String>> get() = _navigateToCase
+    private val _navigateToPerson = MutableLiveData<Event<String>>()
+    val navigateToPerson: LiveData<Event<String>> get() = _navigateToPerson
 
     private val _requestLocationPermission = MutableLiveData<Event<Unit>>()
     val requestLocationPermission: LiveData<Event<Unit>> get() = _requestLocationPermission
@@ -38,21 +38,21 @@ class MainViewModel(private val getCases: GetCases, private val refreshCases: Re
     fun onCoarsePermissionRequest() {
         launch {
             _loading.value = true
-            _cases.value = getCases.invoke()
+            _persons.value = getPersons.invoke()
             _loading.value = false
         }
     }
 
-    fun refreshCases() {
+    fun refreshPersons() {
         launch {
             _loading.value = true
-            _cases.value = refreshCases.invoke()
+            _persons.value = refreshPersons.invoke()
             _loading.value = false
         }
     }
 
-    fun onCaseClicked(case: Case) {
-        _navigateToCase.value = Event(case.id)
+    fun onPersonClicked(person: Person) {
+        _navigateToPerson.value = Event(person.id)
     }
 
     override fun onCleared() {

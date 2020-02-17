@@ -1,18 +1,18 @@
 package org.sic4change.chuqabp.course.ui.main.main
 
-import org.sic4change.domain.Case
+import org.sic4change.domain.Person
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.basicDiffUtil
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
-import org.sic4change.chuqabp.databinding.ViewCaseBinding
+import org.sic4change.chuqabp.databinding.ViewPersonBinding
 
 
-class CasesAdapter(private val listener: (Case) -> Unit) :
-    RecyclerView.Adapter<CasesAdapter.ViewHolder>() {
+class PersonsAdapter(private val listener: (Person) -> Unit) :
+    RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
 
-    var cases: List<Case> by basicDiffUtil(
+    var persons: List<Person> by basicDiffUtil(
         emptyList(),
         areItemsTheSame = { old, new -> old.id == new.id }
     )
@@ -20,18 +20,18 @@ class CasesAdapter(private val listener: (Case) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             parent.bindingInflate(
-                R.layout.view_case,
+                R.layout.view_person,
                 false
             )
         )
 
-    override fun getItemCount(): Int = cases.size
+    override fun getItemCount(): Int = persons.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val case = cases[position]
-        holder.dataBinding.item = case
-        holder.itemView.setOnClickListener { listener(case) }
+        val person = persons[position]
+        holder.dataBinding.item = person
+        holder.itemView.setOnClickListener { listener(person) }
     }
 
-    class ViewHolder(val dataBinding: ViewCaseBinding) : RecyclerView.ViewHolder(dataBinding.root)
+    class ViewHolder(val dataBinding: ViewPersonBinding) : RecyclerView.ViewHolder(dataBinding.root)
 }

@@ -18,8 +18,8 @@
                 app:popEnterAnim="@anim/fade_in"
                 app:popExitAnim="@anim/translate_out" />
         <action
-                android:id="@+id/action_mainFragment_to_newCaseFragment"
-                app:destination="@id/newCaseFragment"
+                android:id="@+id/action_mainFragment_to_newPersonFragment"
+                app:destination="@id/newPersonFragment"
                 app:enterAnim="@anim/translate_in"
                 app:exitAnim="@anim/fade_out"
                 app:popEnterAnim="@anim/fade_in"
@@ -51,15 +51,15 @@
                 android:id="@+id/action_detailFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
         <action
-                android:id="@+id/action_detailFragment_to_updateCaseFragment"
-                app:destination="@id/updateCaseFragment" />
+                android:id="@+id/action_detailFragment_to_updatePersonFragment"
+                app:destination="@id/updatePersonFragment" />
     </fragment>
     <fragment
-            android:id="@+id/newCaseFragment"
-            android:name="org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment"
+            android:id="@+id/newPersonFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.newperson.NewPersonFragment"
             android:label="@string/app_name" >
         <action
-                android:id="@+id/action_newCaseFragment_to_loginActivity"
+                android:id="@+id/action_newPersonFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
     </fragment>
     <activity
@@ -68,8 +68,8 @@
             android:label="fragment_create_account"
             tools:layout="@layout/fragment_create_account" />
     <fragment
-            android:id="@+id/updateCaseFragment"
-            android:name="org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseFragment"
+            android:id="@+id/updatePersonFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonFragment"
             android:label="@string/app_name" >
         <argument
                 android:name="id"

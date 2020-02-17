@@ -20,7 +20,7 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3"
-                app:items="@{viewmodel.cases}"/>
+                app:items="@{viewmodel.persons}"/>
 
         <ProgressBar
                 android:id="@+id/progress"

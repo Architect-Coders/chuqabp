@@ -6,18 +6,18 @@ import org.junit.runner.RunWith
 import org.koin.test.AutoCloseKoinTest
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import org.sic4change.domain.Case
+import org.sic4change.domain.Person
 
 import org.junit.Before
 import org.junit.Test
 import org.sic4change.chuqabp.FakeLocalDataSource
 import org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel
 import org.sic4change.chuqabp.initMockedDi
-import org.sic4change.chuqabp.defaultFakeCases
+import org.sic4change.chuqabp.defaultFakePersons
 import org.sic4change.data.source.LocalDataSource
-import org.sic4change.testshared.mockedCase
-import org.sic4change.usescases.DeleteCase
-import org.sic4change.usescases.FindCaseById
+import org.sic4change.testshared.mockedPerson
+import org.sic4change.usescases.DeletePerson
+import org.sic4change.usescases.FindPersonById
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -35,7 +35,7 @@ class DetailIntegrationTest: AutoCloseKoinTest() {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var caseObserver: Observer<Case>
+    lateinit var personObserver: Observer<Person>
 
     @Mock
     lateinit var deleteObserver: Observer<Boolean>
@@ -48,33 +48,33 @@ class DetailIntegrationTest: AutoCloseKoinTest() {
     fun setUp() {
         val vmModule = module {
             factory { (id: String) -> DetailViewModel(id, get(), get(), get()) }
-            factory{ FindCaseById(get()) }
-            factory{ DeleteCase(get()) }
+            factory{ FindPersonById(get()) }
+            factory{ DeletePerson(get()) }
         }
 
         initMockedDi(vmModule)
         vm = get { parametersOf("AAAAA")}
 
         localDataSource = get<LocalDataSource>() as FakeLocalDataSource
-        localDataSource.cases = defaultFakeCases
+        localDataSource.persons = defaultFakePersons
     }
 
     @Test
-    fun `observing LiveData finds the case`() {
-        vm.case.observeForever(caseObserver)
+    fun `observing LiveData finds the person`() {
+        vm.person.observeForever(personObserver)
         runBlocking {
-            vm.findCaseById()
-            verify(caseObserver).onChanged(mockedCase.copy("AAAAA"))
+            vm.findPersonById()
+            verify(personObserver).onChanged(mockedPerson.copy("AAAAA"))
         }
     }
 
     @Test
-    fun `delete Case`() {
-        vm.case.observeForever(caseObserver)
+    fun `delete person`() {
+        vm.person.observeForever(personObserver)
         vm.deleted.observeForever(deleteObserver)
         runBlocking {
-            vm.deleteCase()
-            assertEquals(3, localDataSource.cases.size)
+            vm.deletePerson()
+            assertEquals(3, localDataSource.persons.size)
         }
     }
 

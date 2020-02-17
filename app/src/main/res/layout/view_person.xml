@@ -7,7 +7,7 @@
 
         <variable
                 name="item"
-                type="org.sic4change.domain.Case" />
+                type="org.sic4change.domain.Person" />
     </data>
 
     <LinearLayout
@@ -18,7 +18,7 @@
             android:foreground="?attr/selectableItemBackground">
 
         <org.sic4change.chuqabp.course.ui.common.AspectRatioImageView
-                android:id="@+id/caseCover"
+                android:id="@+id/personCover"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:ratio="1.5"
@@ -27,7 +27,7 @@
                 tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
-                android:id="@+id/caseTitle"
+                android:id="@+id/personTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

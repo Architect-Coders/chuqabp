@@ -47,25 +47,25 @@
     <string name="delete_account_first_question">¿Estás seguro que quieres eliminar la cuenta?</string>
     <string name="delete_account_second_question">Esto elimina todos sus datos de forma permanente, ¿desea continuar?</string>
 
-    <!--Create Case-->
+    <!--Create Person-->
     <string name="location">Ubicación</string>
     <string name="phone">Teléfono</string>
     <string name="date">Fecha de nacimiento, Ej. 26/08/1982</string>
-    <string name="crate_case">Dar de Alta</string>
+    <string name="crate_person">Dar de Alta</string>
     <string name="change_photo">Cambiar foto</string>
-    <string name="case_mandatory_field">Nombre, apellidos, fecha de nacimiento y localización son campos obligatorios</string>
+    <string name="person_mandatory_field">Nombre, apellidos, fecha de nacimiento y localización son campos obligatorios</string>
     <string name="add_menu">Add</string>
 
-    <!--Detail Case-->
+    <!--Detail Person-->
     <string name="delete_question_title">Confirmación</string>
-    <string name="delete_question_description">¿Estás seguro que desea eliminar ese caso?</string>
+    <string name="delete_question_description">¿Estás seguro que desea eliminar esa persona?</string>
     <string name="delete">Eliminar</string>
     <string name="edit_menu">Editar</string>
     <string name="delete_menu">Eliminar</string>
     <string name="refresh_menu">Refrescar</string>
     <string name="account">Mi cuenta</string>
 
-    <!--Update Case-->
-    <string name="update_case">Actualizar</string>
+    <!--Update Person-->
+    <string name="update_person">Actualizar</string>
 
 </resources>

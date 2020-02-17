@@ -1,4 +1,4 @@
-package org.sic4change.chuqabp.course.ui.main.updatecase
+package org.sic4change.chuqabp.course.ui.main.updateperson
 
 import android.app.Activity
 import android.content.Intent
@@ -12,29 +12,29 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.fragment_update_case.*
-import kotlinx.android.synthetic.main.fragment_update_case.etBirthday
-import kotlinx.android.synthetic.main.fragment_update_case.etEmail
-import kotlinx.android.synthetic.main.fragment_update_case.etLocation
-import kotlinx.android.synthetic.main.fragment_update_case.etName
-import kotlinx.android.synthetic.main.fragment_update_case.etPhone
-import kotlinx.android.synthetic.main.fragment_update_case.etSurnames
+import kotlinx.android.synthetic.main.fragment_update_person.*
+import kotlinx.android.synthetic.main.fragment_update_person.etBirthday
+import kotlinx.android.synthetic.main.fragment_update_person.etEmail
+import kotlinx.android.synthetic.main.fragment_update_person.etLocation
+import kotlinx.android.synthetic.main.fragment_update_person.etName
+import kotlinx.android.synthetic.main.fragment_update_person.etPhone
+import kotlinx.android.synthetic.main.fragment_update_person.etSurnames
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.*
-import org.sic4change.chuqabp.databinding.FragmentUpdateCaseBinding
+import org.sic4change.chuqabp.databinding.FragmentUpdatePersonBinding
 
-class UpdateCaseFragment: Fragment() {
+class UpdatePersonFragment: Fragment() {
 
-    private var binding: FragmentUpdateCaseBinding? = null
+    private var binding: FragmentUpdatePersonBinding? = null
 
     private lateinit var navController: NavController
 
-    private val args: UpdateCaseFragmentArgs by navArgs()
+    private val args: UpdatePersonFragmentArgs by navArgs()
 
-    private val viewModel : UpdateCaseViewModel by currentScope.viewModel(this) {
+    private val viewModel : UpdatePersonViewModel by currentScope.viewModel(this) {
         parametersOf(args.id)
     }
 
@@ -44,7 +44,7 @@ class UpdateCaseFragment: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = container?.bindingInflate(R.layout.fragment_update_case, false)
+        binding = container?.bindingInflate(R.layout.fragment_update_person, false)
         return binding?.root
     }
 
@@ -53,10 +53,10 @@ class UpdateCaseFragment: Fragment() {
 
         binding?.apply {
             viewmodel = viewModel
-            lifecycleOwner = this@UpdateCaseFragment
+            lifecycleOwner = this@UpdatePersonFragment
         }
 
-        ivUpdatePhotoCase.setOnClickListener {
+        ivUpdatePhotoPerson.setOnClickListener {
             activity?.let { it1 ->
                 CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
@@ -71,14 +71,14 @@ class UpdateCaseFragment: Fragment() {
             }
         }
 
-        btnUpdateCase.setOnClickListener {
-            viewModel.onUpdateCaseClicked(args.id, etName.text.toString(), etSurnames.text.toString(), etBirthday.text.toString(),
+        btnUpdatePerson.setOnClickListener {
+            viewModel.onUpdatePersonClicked(args.id, etName.text.toString(), etSurnames.text.toString(), etBirthday.text.toString(),
                 etPhone.text.toString(), etEmail.text.toString(), viewModel.photoUrl.value.toString(), etLocation.text.toString())
         }
 
-        viewModel.showingUpdateCaseError.observe(this, EventObserver {
+        viewModel.showingUpdatePersonError.observe(this, EventObserver {
             if (it) {
-                showMessage(getString(R.string.case_mandatory_field))
+                showMessage(getString(R.string.person_mandatory_field))
             } else {
                 navController.navigate(R.id.action_updateFragment_to_loginActivity)
                 activity?.finish()
@@ -91,9 +91,9 @@ class UpdateCaseFragment: Fragment() {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
             if (resultCode == Activity.RESULT_OK) {
-                ivUpdatePhotoCase.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                ivUpdatePhotoPerson.setBackgroundColor(resources.getColor(R.color.colorPrimary))
                 result.uri.path?.let { viewModel.setPhotoUrl(it) }
-                Glide.with(this).load(result.uri).into(ivUpdatePhotoCase)
+                Glide.with(this).load(result.uri).into(ivUpdatePhotoPerson)
             }
         }
     }

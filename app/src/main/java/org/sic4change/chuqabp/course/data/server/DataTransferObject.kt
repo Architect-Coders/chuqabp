@@ -15,11 +15,11 @@ data class User(
     @Exclude val photo: String = "")
 
 @JsonClass(generateAdapter = true)
-data class Case (
+data class Person (
     @Exclude val id: String = "",
     @Exclude val name: String = "",
     @Exclude val surnames: String = "",
-    @Exclude val birthdate: String = "",
+    @Exclude val birthday: String = "",
     @Exclude val mentorId: String? = "",
     @Exclude val phone: String = "",
     @Exclude val email: String = "",
@@ -27,4 +27,4 @@ data class Case (
     @Exclude val location: String = "")
 
 @JsonClass(generateAdapter = true)
-data class NetworkCasesContainer(val results: List<Case>)
+data class NetworkPersonsContainer(val results: List<Person>)

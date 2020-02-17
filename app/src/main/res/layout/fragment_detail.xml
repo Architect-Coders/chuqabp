@@ -27,7 +27,7 @@
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <org.sic4change.chuqabp.course.ui.common.AspectRatioImageView
-                        android:id="@+id/caseDetailImage"
+                        android:id="@+id/personDetailImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fitsSystemWindows="true"
@@ -37,7 +37,7 @@
                         tools:src="@mipmap/ic_launcher" />
 
                 <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/caseDetailToolbar"
+                        android:id="@+id/personDetailToolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:title="@{viewmodel.title}" />
@@ -58,14 +58,14 @@
                     android:transitionGroup="true">
 
                 <TextView
-                        android:id="@+id/caseDetailInfo"
+                        android:id="@+id/personDetailInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
                         android:background="@color/lightBackground"
                         android:lineSpacingMultiplier="1.5"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:case="@{viewmodel.case}" />
+                        app:person="@{viewmodel.person}" />
 
             </LinearLayout>
 

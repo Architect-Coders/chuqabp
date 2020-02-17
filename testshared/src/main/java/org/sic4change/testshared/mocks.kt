@@ -1,9 +1,9 @@
 package org.sic4change.testshared
 
-import org.sic4change.domain.Case
+import org.sic4change.domain.Person
 import org.sic4change.domain.User
 
-val mockedCase = Case(
+val mockedPerson = Person(
     "",
     "Aaron",
     "Asencio Tavio",

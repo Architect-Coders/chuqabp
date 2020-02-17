@@ -18,7 +18,7 @@ import org.sic4change.chuqabp.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    private lateinit var adapter : CasesAdapter
+    private lateinit var adapter : PersonsAdapter
 
     private val coarsePermissionRequester by lazy {
         PermissionRequester(activity!!, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -47,11 +47,11 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_add -> {
-                navController.navigate(R.id.action_mainFragment_to_newCaseFragment)
+                navController.navigate(R.id.action_mainFragment_to_newPersonFragment)
                 true
             }
             R.id.action_refresh -> {
-                viewModel.refreshCases()
+                viewModel.refreshPersons()
                 true
             }
             R.id.action_account -> {
@@ -72,7 +72,7 @@ class MainFragment : Fragment() {
 
         navController = view.findNavController()
 
-        viewModel.navigateToCase.observe(this, EventObserver{ id ->
+        viewModel.navigateToPerson.observe(this, EventObserver{ id ->
             val action = MainFragmentDirections.actionMainFragmentToDetailFragment(id)
             navController.navigate(action)
         })
@@ -83,7 +83,7 @@ class MainFragment : Fragment() {
             }
         })
 
-        adapter = CasesAdapter(viewModel::onCaseClicked)
+        adapter = PersonsAdapter(viewModel::onPersonClicked)
         recycler.adapter = adapter
 
         binding?.apply {

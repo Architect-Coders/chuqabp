@@ -15,11 +15,11 @@ data class User constructor(
 
 
 @Entity
-data class Case (
+data class Person (
     @PrimaryKey val id: String = "",
     val name: String = "",
     val surnames: String = "",
-    val birthdate: String = "",
+    val birthday: String = "",
     val phone: String = "",
     val email: String = "",
     val photo: String = "",

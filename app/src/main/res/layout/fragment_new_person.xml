@@ -6,7 +6,7 @@
 
         <variable
                 name="viewmodel"
-                type="org.sic4change.chuqabp.course.ui.main.newcase.NewCaseViewModel" />
+                type="org.sic4change.chuqabp.course.ui.main.newperson.NewPersonViewModel" />
     </data>
 
     <ScrollView
@@ -20,7 +20,7 @@
 
             <ImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/ivPhotoCase"
+                    android:id="@+id/ivPhotoPerson"
                     android:layout_width="@dimen/create_case_photo"
                     android:layout_height="@dimen/create_case_photo"
                     android:layout_marginTop="@dimen/margin_medium"
@@ -43,7 +43,7 @@
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivPhotoCase" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivPhotoPerson" />
 
             <EditText
                     android:id="@+id/etSurnames"
@@ -111,11 +111,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
             <Button
-                    android:id="@+id/btnCreateCase"
+                    android:id="@+id/btnCreatePerson"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimaryDark"
-                    android:text="@string/crate_case"
+                    android:text="@string/crate_person"
                     android:layout_margin="@dimen/margin_default"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -69,7 +69,7 @@ class DetailFragment: Fragment() {
                 true
             }
             R.id.action_edit -> {
-                val action = DetailFragmentDirections.actionDetailFragmentToUpdateCaseFragment(args.id)
+                val action = DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(args.id)
                 navController.navigate(action)
                 true
             }
@@ -83,7 +83,7 @@ class DetailFragment: Fragment() {
         builder.setMessage(R.string.delete_question_description)
         builder.setCancelable(true)
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            viewModel.deleteCase()
+            viewModel.deletePerson()
         }
         builder.setNegativeButton(android.R.string.no) { dialog, which ->
             dialog.cancel()

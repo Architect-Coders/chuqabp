@@ -13,12 +13,12 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.chuqabp.course.ui.main.main.MainViewModel
 import org.sic4change.chuqabp.initMockedDi
-import org.sic4change.usescases.GetCases
+import org.sic4change.usescases.GetPersons
 import org.koin.test.get
 import org.sic4change.chuqabp.course.ui.common.Event
-import org.sic4change.chuqabp.defaultFakeCases
-import org.sic4change.domain.Case
-import org.sic4change.usescases.RefreshCases
+import org.sic4change.chuqabp.defaultFakePersons
+import org.sic4change.domain.Person
+import org.sic4change.usescases.RefreshPersons
 
 @RunWith(MockitoJUnitRunner::class)
 class MainIntegrationTests : AutoCloseKoinTest() {
@@ -30,7 +30,7 @@ class MainIntegrationTests : AutoCloseKoinTest() {
     lateinit var requestLocationPermissionObserver: Observer<Event<Unit>>
 
     @Mock
-    lateinit var casesObserver: Observer<List<Case>>
+    lateinit var casesObserver: Observer<List<Person>>
 
     private lateinit var vm: MainViewModel
 
@@ -38,8 +38,8 @@ class MainIntegrationTests : AutoCloseKoinTest() {
     fun setUp() {
         val vmModule = module {
             factory { MainViewModel(get(), get(), get()) }
-            factory { GetCases (get()) }
-            factory { RefreshCases (get())}
+            factory { GetPersons (get()) }
+            factory { RefreshPersons (get())}
         }
         initMockedDi(vmModule)
         vm = get()
@@ -48,9 +48,9 @@ class MainIntegrationTests : AutoCloseKoinTest() {
     @Test
     fun `data is loaded from server`() {
         vm.requestLocationPermission.observeForever(requestLocationPermissionObserver)
-        vm.cases.observeForever(casesObserver)
+        vm.persons.observeForever(casesObserver)
         vm.onCoarsePermissionRequest()
-        verify(casesObserver).onChanged(defaultFakeCases)
+        verify(casesObserver).onChanged(defaultFakePersons)
     }
 
 

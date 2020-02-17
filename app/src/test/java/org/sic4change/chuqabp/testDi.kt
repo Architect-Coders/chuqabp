@@ -9,9 +9,9 @@ import org.sic4change.data.repository.PermissionChecker
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.data.source.LocationDataSource
 import org.sic4change.data.source.RemoteDataSource
-import org.sic4change.domain.Case
+import org.sic4change.domain.Person
 import org.sic4change.domain.User
-import org.sic4change.testshared.mockedCase
+import org.sic4change.testshared.mockedPerson
 import org.sic4change.testshared.mockedUser
 
 fun initMockedDi(vararg modules: Module) {
@@ -28,11 +28,11 @@ private val mockedAppModule: Module = module {
     single { Dispatchers.Unconfined }
 }
 
-val defaultFakeCases = mutableListOf(
-    mockedCase.copy("AAAAA"),
-    mockedCase.copy("BBBBB"),
-    mockedCase.copy("CCCCC"),
-    mockedCase.copy("DDDDD")
+val defaultFakePersons = mutableListOf(
+    mockedPerson.copy("AAAAA"),
+    mockedPerson.copy("BBBBB"),
+    mockedPerson.copy("CCCCC"),
+    mockedPerson.copy("DDDDD")
 )
 
 val defaultFakeUser = mockedUser.copy("XXXXX")
@@ -40,34 +40,34 @@ val defaultFakeUser = mockedUser.copy("XXXXX")
 
 class FakeLocalDataSource : LocalDataSource {
 
-    var cases: MutableList<Case> = arrayListOf()
+    var persons: MutableList<Person> = arrayListOf()
 
     var user: User? = defaultFakeUser
 
 
-    override suspend fun insertCases(cases: List<Case>) {
-        this.cases.clear()
-        this.cases.addAll(cases)
+    override suspend fun insertPersons(persons: List<Person>) {
+        this.persons.clear()
+        this.persons.addAll(persons)
     }
 
-    override suspend fun getCases(): List<Case> = cases
+    override suspend fun getPersons(): List<Person> = persons
 
-    override suspend fun findById(id: String): Case = cases.first { it.id == id }
+    override suspend fun findById(id: String): Person = persons.first { it.id == id }
 
     override suspend fun getUser(): User? = user
 
     override suspend fun getUser(id: String): User? = user
 
-    override suspend fun createCase(case: Case) {
-        //cases.add(case)
+    override suspend fun createPerson(person: Person) {
+        //persons.add(person)
     }
 
-    override suspend fun updateCase(case: Case) {
-        cases[0] = case
+    override suspend fun updatePerson(person: Person) {
+        persons[0] = person
     }
 
-    override suspend fun deleteCase(id: String) {
-        //cases.removeAt(3)
+    override suspend fun deletePerson(id: String) {
+        //persons.removeAt(3)
     }
 
     override suspend fun insertUser(user: User) {
@@ -78,28 +78,28 @@ class FakeLocalDataSource : LocalDataSource {
         //this.user = null
     }
 
-    override suspend fun deleteCases() {
-        cases.clear()
+    override suspend fun deletePersons() {
+        persons.clear()
     }
 }
 
 class FakeRemoteDataSource : RemoteDataSource {
 
-    var cases: MutableList<Case> = defaultFakeCases
+    var persons: MutableList<Person> = defaultFakePersons
     var user = defaultFakeUser
 
-    override suspend fun getCases(mentorId: String?): List<Case> = cases
+    override suspend fun getPersons(mentorId: String?): List<Person> = persons
 
-    override suspend fun createCase(user: User?, case: Case) {
-        cases.add(case)
+    override suspend fun createPerson(user: User?, person: Person) {
+        persons.add(person)
     }
 
-    override suspend fun updateCase(user: User?, case: Case) {
-        cases[0] = case
+    override suspend fun updatePerson(user: User?, person: Person) {
+        persons[0] = person
     }
 
-    override suspend fun deleteCase(id: String) {
-        cases.removeAt(3)
+    override suspend fun deletePerson(id: String) {
+        persons.removeAt(3)
     }
 
     override suspend fun getUser(email: String): User {
@@ -110,8 +110,20 @@ class FakeRemoteDataSource : RemoteDataSource {
         return "login"
     }
 
+    override suspend fun logout() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun deleteUser(id: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override suspend fun forgotPassword(email: String): Boolean {
         return true
+    }
+
+    override suspend fun changePassword(email: String) {
+        return
     }
 
     override suspend fun createUser(email: String, password: String): String {

@@ -26,6 +26,7 @@ class UserRepository (private val localDataSource: LocalDataSource,
     }
 
     suspend fun logout() {
+        localDataSource.deleteCases()
         localDataSource.deleteUser()
         remoteDataSource.logout()
     }

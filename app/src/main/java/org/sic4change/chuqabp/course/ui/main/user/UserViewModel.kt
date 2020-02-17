@@ -5,9 +5,10 @@ import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.usescases.ChangePassword
+import org.sic4change.usescases.Logout
 
-class UserViewModel (private val changePassword: ChangePassword, uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
-
+class UserViewModel (private val changePassword: ChangePassword, private val logout: Logout,
+                     uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     init {
         initScope()
@@ -16,6 +17,12 @@ class UserViewModel (private val changePassword: ChangePassword, uiDispatcher: C
     fun onChangePasswordClicked() {
         launch {
             changePassword.invoke()
+        }
+    }
+
+    fun onLogoutClicked() {
+        launch {
+            logout.invoke()
         }
     }
 

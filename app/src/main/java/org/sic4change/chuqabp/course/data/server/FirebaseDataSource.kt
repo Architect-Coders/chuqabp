@@ -128,6 +128,12 @@ class FirebaseDataSource : RemoteDataSource {
         return result
     }
 
+    override suspend fun logout() {
+        withContext(Dispatchers.IO) {
+            ChuqabpFirebaseService.fbAuth.signOut()
+        }
+    }
+
     override suspend fun forgotPassword(email: String): Boolean {
         var result = false
         withContext(Dispatchers.IO) {

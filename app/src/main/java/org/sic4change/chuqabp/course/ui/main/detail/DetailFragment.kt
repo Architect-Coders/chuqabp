@@ -85,7 +85,9 @@ class DetailFragment: Fragment() {
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
             viewModel.deleteCase()
         }
-
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            dialog.cancel()
+        }
         builder.show()
     }
 

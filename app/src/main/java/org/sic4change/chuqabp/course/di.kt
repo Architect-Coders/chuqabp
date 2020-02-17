@@ -89,8 +89,9 @@ private val scopesModule = module {
     }
 
     scope(named<UserFragment>()) {
-        viewModel { UserViewModel(get(), get()) }
+        viewModel { UserViewModel(get(), get(), get()) }
         scoped { ChangePassword(get()) }
+        scoped { Logout(get()) }
     }
 
     scope(named<LoginFragment>()) {

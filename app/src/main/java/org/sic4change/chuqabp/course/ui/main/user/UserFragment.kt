@@ -1,5 +1,6 @@
 package org.sic4change.chuqabp.course.ui.main.user
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -53,6 +54,10 @@ class UserFragment : Fragment() {
             snackbar(binding?.root, getString(R.string.sent_instructions_to_change_password))
         }
 
+        lyLogout.setOnClickListener {
+            showLogoutConfirmationDialog()
+        }
+
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -62,6 +67,22 @@ class UserFragment : Fragment() {
         menu.findItem(R.id.action_delete).isVisible = false
         menu.findItem(R.id.action_edit).isVisible = false
         super.onPrepareOptionsMenu(menu)
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(R.string.logout)
+        builder.setMessage(R.string.logout_question)
+        builder.setCancelable(true)
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            viewModel.onLogoutClicked()
+            navController.navigate(R.id.action_userFragment_to_loginActivity)
+            activity?.finish()
+        }
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            dialog.cancel()
+        }
+        builder.show()
     }
 
 }

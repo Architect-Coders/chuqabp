@@ -36,6 +36,9 @@
             android:id="@+id/userFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.user.UserFragment"
             android:label="@string/app_name">
+        <action
+                android:id="@+id/action_userFragment_to_loginActivity"
+                app:destination="@id/loginActivity" />
     </fragment>
     <fragment
             android:id="@+id/detailFragment"

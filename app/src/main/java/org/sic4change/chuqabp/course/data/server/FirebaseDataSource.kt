@@ -134,6 +134,20 @@ class FirebaseDataSource : RemoteDataSource {
         }
     }
 
+    override suspend fun deleteUser(id: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to delete user from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val userRef = firestore.collection("users")
+                userRef.document(id).delete().await()
+                Timber.d("Delete user result: ok")
+            } catch (ex: Exception) {
+                Timber.d("Delete user result: false ${ex.message}")
+            }
+        }
+    }
+
     override suspend fun forgotPassword(email: String): Boolean {
         var result = false
         withContext(Dispatchers.IO) {

@@ -1,6 +1,7 @@
 package org.sic4change.chuqabp.course
 
 import android.app.Application
+import androidx.room.Delete
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -89,9 +90,10 @@ private val scopesModule = module {
     }
 
     scope(named<UserFragment>()) {
-        viewModel { UserViewModel(get(), get(), get()) }
+        viewModel { UserViewModel(get(), get(), get(), get()) }
         scoped { ChangePassword(get()) }
         scoped { Logout(get()) }
+        scoped { DeleteUser(get()) }
     }
 
     scope(named<LoginFragment>()) {

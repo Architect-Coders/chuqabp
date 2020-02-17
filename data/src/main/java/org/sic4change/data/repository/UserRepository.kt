@@ -31,6 +31,13 @@ class UserRepository (private val localDataSource: LocalDataSource,
         remoteDataSource.logout()
     }
 
+    suspend fun deleteUser() {
+        val user = localDataSource.getUser()
+        localDataSource.deleteCases()
+        localDataSource.deleteUser()
+        user?.id?.let { remoteDataSource.deleteUser(it) }
+    }
+
     suspend fun forgotPassword(email: String) : Boolean = remoteDataSource.forgotPassword(email)
 
     suspend fun createUser(email: String, password: String) : String {

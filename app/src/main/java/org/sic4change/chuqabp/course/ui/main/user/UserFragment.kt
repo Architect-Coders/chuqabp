@@ -7,12 +7,14 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
+import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.TermsAndConditions
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.snackbar
@@ -58,6 +60,20 @@ class UserFragment : Fragment() {
             showLogoutConfirmationDialog()
         }
 
+        lyDeleteAccount.setOnClickListener {
+            showDeleteUserConfirmationDialog()
+        }
+
+        viewModel.logoutConfirmed.observe(this, Observer<Event<Boolean>> {
+            navController.navigate(R.id.action_userFragment_to_loginActivity)
+            activity?.finish()
+        })
+
+        viewModel.removeAccountConfirmed.observe(this, Observer<Event<Boolean>> {
+            navController.navigate(R.id.action_userFragment_to_loginActivity)
+            activity?.finish()
+        })
+
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -76,8 +92,20 @@ class UserFragment : Fragment() {
         builder.setCancelable(true)
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
             viewModel.onLogoutClicked()
-            navController.navigate(R.id.action_userFragment_to_loginActivity)
-            activity?.finish()
+        }
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            dialog.cancel()
+        }
+        builder.show()
+    }
+
+    private fun showDeleteUserConfirmationDialog() {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(R.string.delete_account)
+        builder.setMessage(R.string.delete_account_first_question)
+        builder.setCancelable(true)
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            viewModel.onDeleteUserClicked()
         }
         builder.setNegativeButton(android.R.string.no) { dialog, which ->
             dialog.cancel()

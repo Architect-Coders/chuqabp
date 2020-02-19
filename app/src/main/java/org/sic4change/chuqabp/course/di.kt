@@ -17,12 +17,17 @@ import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.chuqabp.course.ui.login.create.CreateAccountFragment
 import org.sic4change.chuqabp.course.ui.login.login.LoginFragment
+import org.sic4change.chuqabp.course.ui.main.cases.CasesFragment
+import org.sic4change.chuqabp.course.ui.main.cases.CasesViewModel
 import org.sic4change.chuqabp.course.ui.main.detail.DetailFragment
 import org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel
 import org.sic4change.chuqabp.course.ui.main.main.MainFragment
 import org.sic4change.chuqabp.course.ui.main.main.MainViewModel
+import org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment
+import org.sic4change.chuqabp.course.ui.main.newcase.NewCaseViewModel
 import org.sic4change.chuqabp.course.ui.main.newperson.NewPersonFragment
 import org.sic4change.chuqabp.course.ui.main.newperson.NewPersonViewModel
+import org.sic4change.chuqabp.course.ui.main.training.*
 import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonFragment
 import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonViewModel
 import org.sic4change.chuqabp.course.ui.main.user.UserFragment
@@ -90,6 +95,18 @@ private val scopesModule = module {
         scoped { ChangePassword(get()) }
         scoped { Logout(get()) }
         scoped { DeleteUser(get()) }
+    }
+
+    scope(named<TrainingFragment>()) {
+        viewModel { TrainingViewModel(get()) }
+    }
+
+    scope(named<NewCaseFragment>()) {
+        viewModel { NewCaseViewModel(get()) }
+    }
+
+    scope(named<CasesFragment>()) {
+        viewModel { CasesViewModel(get()) }
     }
 
     scope(named<LoginFragment>()) {

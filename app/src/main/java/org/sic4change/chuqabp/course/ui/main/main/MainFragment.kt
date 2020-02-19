@@ -38,7 +38,7 @@ class MainFragment : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_refresh).isVisible = true
         menu.findItem(R.id.action_add).isVisible = true
-        menu.findItem(R.id.action_account).isVisible = true
+        menu.findItem(R.id.action_account).isVisible = false
         menu.findItem(R.id.action_delete).isVisible = false
         menu.findItem(R.id.action_edit).isVisible = false
         super.onPrepareOptionsMenu(menu)
@@ -61,6 +61,7 @@ class MainFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container?.bindingInflate(R.layout.fragment_main, false)
@@ -91,6 +92,36 @@ class MainFragment : Fragment() {
             lifecycleOwner = this@MainFragment
         }
 
+        bttNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.new_case -> {
+                    navController.navigate(R.id.action_mainFragment_to_newCase)
+                    true
+                }
+                R.id.cases -> {
+                    navController.navigate(R.id.action_mainFragment_to_casesFragement)
+                    true
+                }
+                R.id.persons -> {
+                    true
+                }
+                R.id.training -> {
+                    navController.navigate(R.id.action_mainFragment_to_trainingFragment)
+                    true
+                }
+                R.id.configuration -> {
+                    navController.navigate(R.id.action_mainFragment_to_userFragment)
+                    true
+                }
+                else -> false
+            }
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bttNavigation.menu.findItem(R.id.persons).isChecked = true
     }
 
 

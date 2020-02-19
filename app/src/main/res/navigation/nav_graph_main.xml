@@ -9,7 +9,7 @@
     <fragment
             android:id="@+id/mainFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.main.MainFragment"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
         <action
                 android:id="@+id/action_mainFragment_to_detailFragment"
                 app:destination="@id/detailFragment"
@@ -26,11 +26,16 @@
                 app:popExitAnim="@anim/translate_out"/>
         <action
                 android:id="@+id/action_mainFragment_to_userFragment"
-                app:destination="@id/userFragment"
-                app:enterAnim="@anim/translate_in"
-                app:exitAnim="@anim/fade_out"
-                app:popEnterAnim="@anim/fade_in"
-                app:popExitAnim="@anim/translate_out"/>
+                app:destination="@id/userFragment"/>
+        <action
+                android:id="@+id/action_mainFragment_to_trainingFragment"
+                app:destination="@id/trainingFragment"/>
+        <action
+                android:id="@+id/action_mainFragment_to_newCase"
+                app:destination="@id/newCaseFragment"/>
+        <action
+                android:id="@+id/action_mainFragment_to_casesFragement"
+                app:destination="@id/casesFragment"/>
     </fragment>
     <fragment
             android:id="@+id/userFragment"
@@ -39,6 +44,69 @@
         <action
                 android:id="@+id/action_userFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
+        <action
+                android:id="@+id/action_userFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
+        <action
+                android:id="@+id/action_userFragment_to_trainingFragment"
+                app:destination="@id/trainingFragment" />
+        <action
+                android:id="@+id/action_userFragment_to_newCase"
+                app:destination="@id/newCaseFragment"/>
+        <action
+                android:id="@+id/action_userFragment_to_casesFragement"
+                app:destination="@id/casesFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/trainingFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.training.TrainingFragment"
+            android:label="@string/app_name">
+        <action
+                android:id="@+id/action_trainingFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
+        <action
+                android:id="@+id/action_trainingFragment_to_userFragment"
+                app:destination="@id/userFragment"/>
+        <action
+                android:id="@+id/action_trainingFragment_to_newCase"
+                app:destination="@id/newCaseFragment"/>
+        <action
+                android:id="@+id/action_trainingFragment_to_casesFragement"
+                app:destination="@id/casesFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/newCaseFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment"
+            android:label="@string/app_name">
+        <action
+                android:id="@+id/action_newCaseFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
+        <action
+                android:id="@+id/action_newCaseFragment_to_userFragment"
+                app:destination="@id/userFragment"/>
+        <action
+                android:id="@+id/action_newCaseFragment_to_trainingFragment"
+                app:destination="@id/trainingFragment"/>
+        <action
+                android:id="@+id/action_newCaseFragment_to_casesFragement"
+                app:destination="@id/casesFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/casesFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.cases.CasesFragment"
+            android:label="@string/app_name">
+        <action
+                android:id="@+id/action_casesFragment_to_mainFragment"
+                app:destination="@id/mainFragment" />
+        <action
+                android:id="@+id/action_casesFragment_to_userFragment"
+                app:destination="@id/userFragment"/>
+        <action
+                android:id="@+id/action_casesFragment_to_trainingFragment"
+                app:destination="@id/trainingFragment"/>
+        <action
+                android:id="@+id/action_casesFragment_to_newCaseFragement"
+                app:destination="@id/newCaseFragment"/>
     </fragment>
     <fragment
             android:id="@+id/detailFragment"

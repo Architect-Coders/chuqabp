@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
@@ -20,7 +21,9 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3"
-                app:items="@{viewmodel.persons}"/>
+                android:background="@color/white"
+                app:items="@{viewmodel.persons}"
+                android:layout_marginBottom="@dimen/hight_bottom_navigation"/>
 
         <ProgressBar
                 android:id="@+id/progress"
@@ -35,6 +38,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:visible="@{viewmodel.loading}"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bttNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/hight_bottom_navigation"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                app:itemIconTint="@color/colorPrimary"
+                app:itemTextColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/navigation_basic">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

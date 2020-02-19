@@ -68,4 +68,11 @@
     <!--Update Person-->
     <string name="update_person">Actualizar</string>
 
+    <!--Main Menu-->
+    <string name="new_case">Nuevo Caso</string>
+    <string name="cases">Casos</string>
+    <string name="persons">Personas</string>
+    <string name="training">Formación</string>
+    <string name="configuration">Ajustes</string>
+
 </resources>

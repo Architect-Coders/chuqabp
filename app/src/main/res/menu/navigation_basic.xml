@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+            android:id="@+id/new_case"
+            android:icon="@drawable/ic_new_case"
+            app:showAsAction="always"
+            android:title="@string/new_case" />
+
+    <item
+            android:id="@+id/cases"
+            android:icon="@drawable/ic_cases"
+            app:showAsAction="always"
+            android:title="@string/cases" />
+
+    <item
+            android:id="@+id/persons"
+            android:icon="@drawable/ic_persons"
+            app:showAsAction="always"
+            android:title="@string/persons" />
+
+    <item
+            android:id="@+id/training"
+            android:icon="@drawable/ic_school"
+            app:showAsAction="always"
+            android:title="@string/training" />
+
+    <item
+            android:id="@+id/configuration"
+            android:icon="@drawable/ic_settings_black"
+            app:showAsAction="always"
+            android:title="@string/configuration" />
+
+</menu>

@@ -2,15 +2,14 @@ package org.sic4change.chuqabp.course.ui.main.user
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.fragment_user.bttNavigation
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
@@ -39,7 +38,7 @@ class UserFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(false)
         navController = view.findNavController()
 
         binding?.apply {
@@ -74,6 +73,35 @@ class UserFragment : Fragment() {
             activity?.finish()
         })
 
+        bttNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.new_case -> {
+                    navController.navigate(R.id.action_userFragment_to_newCase)
+                    true
+                }
+                R.id.cases -> {
+                    navController.navigate(R.id.action_userFragment_to_casesFragement)
+                    true
+                }
+                R.id.persons -> {
+                    navController.navigate(R.id.action_userFragment_to_mainFragment)
+                    true
+                }
+                R.id.training -> {
+                    navController.navigate(R.id.action_userFragment_to_trainingFragment)
+                    true
+                }
+                R.id.configuration -> {
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bttNavigation.menu.findItem(R.id.configuration).isChecked = true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -113,4 +141,7 @@ class UserFragment : Fragment() {
         builder.show()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return true
+    }
 }

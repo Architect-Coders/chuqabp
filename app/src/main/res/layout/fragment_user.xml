@@ -9,28 +9,27 @@
                 type="org.sic4change.chuqabp.course.ui.main.user.UserViewModel" />
     </data>
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
 
             <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/margin_card"
+                    android:layout_marginBottom="@dimen/hight_bottom_navigation"
                     android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                     <RelativeLayout
@@ -181,8 +180,24 @@
 
             </ScrollView>
 
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bttNavigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hight_bottom_navigation"
+                    android:layout_gravity="bottom"
+                    android:background="@color/white"
+                    app:itemIconTint="@color/colorPrimary"
+                    app:itemTextColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:menu="@menu/navigation_basic">
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+
+
 
 </layout>

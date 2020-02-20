@@ -81,5 +81,13 @@
     <string name="hint_select_date">¿Qué día ocurrió?</string>
     <string name="hint_select_time">¿Sobre qué hora?</string>
     <string name="hint_select_where">¿En que lugar?</string>
+    <string name="hint_select_type">¿Qué tipo de agresión?</string>
+    <string name="checkbox_title_physical">Física</string>
+    <string name="checkbox_title_sexual">Sexual</string>
+    <string name="checkbox_title_psychological">Psicológica</string>
+    <string name="checkbox_title_social">Social</string>
+    <string name="checkbox_title_economic">Económica</string>
+    <string name="hint_select_how">¿Cómo sucedieron los hechos?</string>
+    <string name="hint_select_how_explanation">Describa la situación...</string>
 
 </resources>

@@ -75,4 +75,11 @@
     <string name="training">Formación</string>
     <string name="configuration">Ajustes</string>
 
+    <!--Main Menu-->
+
+    <string name="hint_select_person">¿Quién sufrió la agresión?</string>
+    <string name="hint_select_date">¿Qué día ocurrió?</string>
+    <string name="hint_select_time">¿Sobre qué hora?</string>
+    <string name="hint_select_where">¿En que lugar?</string>
+
 </resources>

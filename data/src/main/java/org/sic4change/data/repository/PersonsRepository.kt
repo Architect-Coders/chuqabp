@@ -25,6 +25,10 @@ class PersonsRepository(private val localDataSource: LocalDataSource,
         return localDataSource.getPersons()
     }
 
+    suspend fun getPersonsToSelect() : List<Person> {
+        return localDataSource.getPersons()
+    }
+
     suspend fun createPerson(person: Person) {
         val user = localDataSource.getUser()
         localDataSource.createPerson(person)

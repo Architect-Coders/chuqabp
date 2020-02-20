@@ -95,7 +95,7 @@ allprojects {
         ui = [
                 circleimageview  : 'de.hdodenhof:circleimageview:3.0.0',
                 showhideedittext :'com.github.scottyab:showhidepasswordedittext:0.8',
-                imagecropper     : 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+                imagecropper     : 'com.theartofdev.edmodo:android-image-cropper:2.8.0',
         ]
 
         log = [

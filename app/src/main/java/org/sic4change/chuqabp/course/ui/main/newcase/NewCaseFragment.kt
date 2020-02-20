@@ -1,19 +1,36 @@
 package org.sic4change.chuqabp.course.ui.main.newcase
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.DatePicker
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.bttNavigation
+import kotlinx.android.synthetic.main.fragment_new_case.*
+import kotlinx.android.synthetic.main.fragment_new_person.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
+import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.chuqabp.databinding.FragmentNewCaseBinding
+import org.sic4change.domain.Person
+import java.util.*
 
-class NewCaseFragment: Fragment() {
+class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
+    private lateinit var adapter : PersonsAdapter
+
+    private lateinit var datePickerDialog: DatePickerDialog
+
+    private lateinit var timePickerDialog: TimePickerDialog
 
     private var binding: FragmentNewCaseBinding? = null
 
@@ -35,6 +52,9 @@ class NewCaseFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         activity?.actionBar?.setDisplayHomeAsUpEnabled(false)
         navController = view.findNavController()
+
+        adapter = PersonsAdapter(viewModel::onPersonClicked)
+        recycler_persons_selector.adapter = adapter
 
         binding?.apply {
             viewmodel = viewModel
@@ -66,6 +86,58 @@ class NewCaseFragment: Fragment() {
             }
         }
 
+        cvPerson.setOnClickListener {
+            hideShowPersonSelection()
+        }
+
+        cvDate.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+            datePickerDialog = DatePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                val month = monthOfYear + 1
+                tvDate.text = "$dayOfMonth/$month/$year"
+            }, year, month, day)
+
+            datePickerDialog.show()
+
+        }
+
+        cvTime.setOnClickListener {
+            val c = Calendar.getInstance()
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+            timePickerDialog = TimePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
+                TimePickerDialog.OnTimeSetListener { view, hour, minute  ->
+                tvTime.text = "$hour:$minute"
+            }, hour, minute, true)
+
+            timePickerDialog.show()
+
+        }
+
+        cvPlace.setOnClickListener {
+
+        }
+
+        viewModel.person.observe(this, Observer<Person> {
+            hideShowPersonSelection()
+            tvPersonName.text = "${it.name} ${it.surnames}"
+        })
+
+        viewModel.currentLocation.observe(this, Observer<String> {
+            tvPlace.setText(it)
+        })
+    }
+
+    private fun hideShowPersonSelection() = if (recycler_persons_selector.isVisible) {
+        recycler_persons_selector.visibility = GONE
+        tvPersonName.text = "${viewModel.person.value?.name} ${viewModel.person.value?.surnames}"
+    } else {
+        recycler_persons_selector.visibility = VISIBLE
+        tvPersonName.text = ""
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -84,6 +156,10 @@ class NewCaseFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         bttNavigation.menu.findItem(R.id.new_case).isChecked = true
+    }
+
+    override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

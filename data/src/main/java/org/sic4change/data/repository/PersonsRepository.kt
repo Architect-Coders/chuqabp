@@ -46,7 +46,7 @@ class PersonsRepository(private val localDataSource: LocalDataSource,
         remoteDataSource.updatePerson(user, person)
     }
 
-    suspend fun findPersonById(id: String): Person = localDataSource.findById(id)
+    suspend fun findPersonById(id: String): Person = localDataSource.findPersonById(id)
 
 }
 

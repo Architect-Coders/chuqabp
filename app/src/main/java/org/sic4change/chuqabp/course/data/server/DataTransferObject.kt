@@ -27,4 +27,18 @@ data class Person (
     @Exclude val location: String = "")
 
 @JsonClass(generateAdapter = true)
+data class Case (
+    @Exclude val id: String = "",
+    @Exclude val person: String = "",
+    @Exclude val date: String = "",
+    @Exclude val hour: String = "",
+    @Exclude val place: String = "",
+    @Exclude val physic: Boolean = false,
+    @Exclude val sexual: Boolean = false,
+    @Exclude val psychologic: Boolean = false,
+    @Exclude val social: Boolean = false,
+    @Exclude val economic: Boolean = false,
+    @Exclude val description: String = "")
+
+@JsonClass(generateAdapter = true)
 data class NetworkPersonsContainer(val results: List<Person>)

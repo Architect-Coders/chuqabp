@@ -47,7 +47,7 @@ class PersonsRepositoryTest {
     fun `findById local data source`() {
         runBlocking {
             val localPersons = listOf(mockedPerson.copy(id = "XXXXX"))
-            whenever(localDataSource.findById("XXXXX")).thenReturn(localPersons[0])
+            whenever(localDataSource.findPersonById("XXXXX")).thenReturn(localPersons[0])
 
             val result = personsRepository.findPersonById("XXXXX")
             assertEquals(localPersons[0], result)
@@ -84,7 +84,7 @@ class PersonsRepositoryTest {
             var person = mockedPerson.copy(id = "XXXXX", name = "Beatriz")
             val user = mockedUser.copy(id = "YYYYY")
 
-            whenever(localDataSource.findById("XXXXX")).thenReturn(person)
+            whenever(localDataSource.findPersonById("XXXXX")).thenReturn(person)
             whenever(localDataSource.getUser()).thenReturn(user)
 
             personsRepository.updatePerson(person)
@@ -97,7 +97,7 @@ class PersonsRepositoryTest {
         runBlocking {
             var person = mockedPerson.copy(id = "XXXXX")
 
-            whenever(localDataSource.findById("XXXXX")).thenReturn(null)
+            whenever(localDataSource.findPersonById("XXXXX")).thenReturn(null)
 
             personsRepository.deletePerson(person.id)
             assertEquals(personsRepository.findPersonById("XXXXX"), null)

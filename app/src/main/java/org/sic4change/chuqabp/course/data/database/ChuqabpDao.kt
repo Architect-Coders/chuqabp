@@ -41,5 +41,29 @@ interface ChuqabpDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPerson(person: Person)
 
+    @Query("SELECT * FROM `case` ORDER BY id DESC")
+    fun getAllCases() : List<Case>
+
+    @Query("SELECT * FROM `case` WHERE id = :id")
+    fun findCaseById(id: String): Case
+
+    @Query("SELECT COUNT(id) FROM `case`")
+    fun casesCount(): Int
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCases(persons: List<Case>)
+
+    @Query("DELETE FROM `case`")
+    fun deleteCases()
+
+    @Query("DELETE FROM `case` WHERE id = :id")
+    fun deleteCase(id: String)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCase(case: Case)
+
+    @Query("UPDATE `case` SET person=:person, date=:date, hour=:hour, place=:place, physic=:physic, sexual=:sexual, psychologic=:psychologic, social=:social, economic=:economic WHERE id = :id")
+    fun updateCase(id: String, person: String, date: String, hour: String, place: String, physic: Boolean, sexual: Boolean, psychologic: Boolean, social: Boolean, economic: Boolean)
+
 
 }

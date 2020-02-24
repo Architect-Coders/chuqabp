@@ -71,7 +71,7 @@ class UpdateIntegrationTest: AutoCloseKoinTest() {
         runBlocking {
             val id = vm.person.value?.id
             id?.let { vm.onUpdatePersonClicked(it, "Pepe", mockedPerson.surnames, mockedPerson.birthdate, mockedPerson.phone, mockedPerson.email, mockedPerson.photo, mockedPerson.location)}
-            assertEquals("Pepe", id?.let { localDataSource.findById(it).name })
+            assertEquals("Pepe", id?.let { localDataSource.findPersonById(it).name })
         }
     }
 

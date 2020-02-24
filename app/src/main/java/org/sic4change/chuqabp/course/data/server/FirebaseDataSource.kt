@@ -15,91 +15,6 @@ import org.sic4change.chuqabp.course.data.server.User as NewtworkUser
 
 class FirebaseDataSource : RemoteDataSource {
 
-    override suspend fun getPersons(mentorId: String?): List<org.sic4change.domain.Person> = withContext(Dispatchers.IO) {
-            val firestore = ChuqabpFirebaseService.mFirestore
-            val personsRef = firestore.collection("persons")
-            val query = personsRef.whereEqualTo("mentorId", mentorId)
-            val result = query.get().await()
-            val networkPersonsContainer = NetworkPersonsContainer(result.toObjects(Person::class.java))
-        networkPersonsContainer.results.map { it.toDomainPerson() }
-    }
-
-    override suspend fun createPerson(user: User?, person: org.sic4change.domain.Person) {
-        withContext(Dispatchers.IO) {
-            Timber.d("try to create person with firebase")
-            try {
-                val firestore = ChuqabpFirebaseService.mFirestore
-                val personsRef = firestore.collection("persons")
-                val key: String = person.id
-                val personToCreate = Person(
-                    key,
-                    person.name,
-                    person.surnames,
-                    person.birthdate,
-                    user?.id,
-                    person.phone,
-                    person.email,
-                    person.photo,
-                    person.location)
-                personsRef.document(key).set(personToCreate).await()
-                Timber.d("Create person result: ok")
-                if (person.photo.isNotEmpty()) {
-                    uploadPersonFile(personToCreate)
-                }
-            } catch (ex : Exception) {
-                Timber.d("Create person result: false ${ex.message}")
-            }
-        }
-    }
-
-    private suspend fun uploadPersonFile(person: Person)  {
-        withContext(Dispatchers.IO) {
-            val storageRef = ChuqabpFirebaseService.mStorage.reference.child("persons/" + person.id)
-            val file = Uri.fromFile(File(person.photo))
-            storageRef.putFile(file).await()
-        }
-
-    }
-
-    override suspend fun updatePerson(user: User?, person: org.sic4change.domain.Person) {
-        withContext(Dispatchers.IO) {
-            Timber.d("try to delete person from firebase")
-            try {
-                val firestore = ChuqabpFirebaseService.mFirestore
-                val personRef = firestore.collection("persons")
-                val personToUpdate = Person(
-                    person.id,
-                    person.name,
-                    person.surnames,
-                    person.birthdate,
-                    user?.id,
-                    person.phone,
-                    person.email,
-                    person.photo,
-                    person.location)
-                personRef.document(person.id).set(personToUpdate).await()
-                Timber.d("Delete person result: ok")
-                uploadPersonFile(personToUpdate)
-            } catch (ex: Exception) {
-                Timber.d("Delete person result: false ${ex.message}")
-            }
-        }
-    }
-
-    override suspend fun deletePerson(id: String) {
-        withContext(Dispatchers.IO) {
-            Timber.d("try to delete person from firebase")
-            try {
-                val firestore = ChuqabpFirebaseService.mFirestore
-                val personRef = firestore.collection("persons")
-                personRef.document(id).delete().await()
-                Timber.d("Delete person result: ok")
-            } catch (ex: Exception) {
-                Timber.d("Delete person result: false ${ex.message}")
-            }
-        }
-    }
-
     override suspend fun getUser(email: String): User = withContext(Dispatchers.IO) {
         val firestore = ChuqabpFirebaseService.mFirestore
         val userRef = firestore.collection("users")
@@ -190,6 +105,118 @@ class FirebaseDataSource : RemoteDataSource {
                 Timber.d("Request change password: ok")
             } catch (ex : Exception) {
                 Timber.d("Request change password: error ${ex.message}")
+            }
+        }
+    }
+
+    override suspend fun getPersons(mentorId: String?): List<org.sic4change.domain.Person> = withContext(Dispatchers.IO) {
+            val firestore = ChuqabpFirebaseService.mFirestore
+            val personsRef = firestore.collection("persons")
+            val query = personsRef.whereEqualTo("mentorId", mentorId)
+            val result = query.get().await()
+            val networkPersonsContainer = NetworkPersonsContainer(result.toObjects(Person::class.java))
+        networkPersonsContainer.results.map { it.toDomainPerson() }
+    }
+
+    override suspend fun createPerson(user: User?, person: org.sic4change.domain.Person) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to create person with firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val personsRef = firestore.collection("persons")
+                val key: String = person.id
+                val personToCreate = Person(
+                    key,
+                    person.name,
+                    person.surnames,
+                    person.birthdate,
+                    user?.id,
+                    person.phone,
+                    person.email,
+                    person.photo,
+                    person.location)
+                personsRef.document(key).set(personToCreate).await()
+                Timber.d("Create person result: ok")
+                if (person.photo.isNotEmpty()) {
+                    uploadPersonFile(personToCreate)
+                }
+            } catch (ex : Exception) {
+                Timber.d("Create person result: false ${ex.message}")
+            }
+        }
+    }
+
+    private suspend fun uploadPersonFile(person: Person)  {
+        withContext(Dispatchers.IO) {
+            val storageRef = ChuqabpFirebaseService.mStorage.reference.child("persons/" + person.id)
+            val file = Uri.fromFile(File(person.photo))
+            storageRef.putFile(file).await()
+        }
+
+    }
+
+    override suspend fun updatePerson(user: User?, person: org.sic4change.domain.Person) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to delete person from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val personRef = firestore.collection("persons")
+                val personToUpdate = Person(
+                    person.id,
+                    person.name,
+                    person.surnames,
+                    person.birthdate,
+                    user?.id,
+                    person.phone,
+                    person.email,
+                    person.photo,
+                    person.location)
+                personRef.document(person.id).set(personToUpdate).await()
+                Timber.d("Delete person result: ok")
+                uploadPersonFile(personToUpdate)
+            } catch (ex: Exception) {
+                Timber.d("Delete person result: false ${ex.message}")
+            }
+        }
+    }
+
+    override suspend fun deletePerson(id: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to delete person from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val personRef = firestore.collection("persons")
+                personRef.document(id).delete().await()
+                Timber.d("Delete person result: ok")
+            } catch (ex: Exception) {
+                Timber.d("Delete person result: false ${ex.message}")
+            }
+        }
+    }
+
+    override suspend fun createCase(case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to create case with firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val personsRef = firestore.collection("cases")
+                val key: String = case.id
+                val caseToCreate = Case(
+                    key,
+                    case.person,
+                    case.date,
+                    case.hour,
+                    case.place,
+                    case.physic,
+                    case.sexual,
+                    case.psychologic,
+                    case.social,
+                    case.economic,
+                    case.description)
+                personsRef.document(key).set(caseToCreate).await()
+                Timber.d("Create case result: ok")
+            } catch (ex : Exception) {
+                Timber.d("Create person result: false ${ex.message}")
             }
         }
     }

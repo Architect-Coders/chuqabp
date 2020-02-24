@@ -52,7 +52,7 @@ class FakeLocalDataSource : LocalDataSource {
 
     override suspend fun getPersons(): List<Person> = persons
 
-    override suspend fun findById(id: String): Person = persons.first { it.id == id }
+    override suspend fun findPersonById(id: String): Person = persons.first { it.id == id }
 
     override suspend fun getUser(): User? = user
 

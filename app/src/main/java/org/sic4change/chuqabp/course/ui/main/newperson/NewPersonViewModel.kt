@@ -41,7 +41,7 @@ class NewPersonViewModel (private val getLocation: GetLocation, private val crea
                 _showingCreatePersonError.value = Event(true)
             } else {
                 _showingCreatePersonError.value = Event(false)
-                createPerson.invoke(Person(Date().time.toString() + phone, name, surnames, date, phone, email, photo, location))
+                createPerson.invoke(Person(Date().time.toString(), name, surnames, date, phone, email, photo, location))
             }
         }
     }

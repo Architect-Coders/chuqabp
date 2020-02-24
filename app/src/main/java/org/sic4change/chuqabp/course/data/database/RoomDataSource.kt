@@ -6,6 +6,7 @@ import org.sic4change.chuqabp.course.data.*
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.domain.User as DomainUser
 import org.sic4change.domain.Person as DomainPerson
+import org.sic4change.domain.Case as DomainCase
 
 class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
@@ -22,6 +23,18 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     override suspend fun getUser(id: String): DomainUser? = withContext(Dispatchers.IO) {
         chuqabpDao.getUser(id).toDomainUser()
+    }
+
+    override suspend fun insertUser(user: DomainUser) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.insertUser(user.toDatabaseUser())
+        }
+    }
+
+    override suspend fun deleteUser() {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.deleteUser()
+        }
     }
 
     override suspend fun createPerson(person: org.sic4change.domain.Person) {
@@ -42,18 +55,6 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         }
     }
 
-    override suspend fun insertUser(user: DomainUser) {
-        withContext(Dispatchers.IO) {
-            chuqabpDao.insertUser(user.toDatabaseUser())
-        }
-    }
-
-    override suspend fun deleteUser() {
-        withContext(Dispatchers.IO) {
-            chuqabpDao.deleteUser()
-        }
-    }
-
     override suspend fun deletePersons() {
         withContext(Dispatchers.IO) {
             chuqabpDao.deletePersons()
@@ -70,8 +71,46 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         chuqabpDao.getAllPersons().map { it.toDomainPerson() }
     }
 
-    override suspend fun findById(id: String): DomainPerson = withContext(Dispatchers.IO) {
+    override suspend fun findPersonById(id: String): DomainPerson = withContext(Dispatchers.IO) {
         chuqabpDao.findPersonById(id).toDomainPerson()
+    }
+
+    override suspend fun createCase(case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.insertCase(case.toDatabaseCase())
+        }
+    }
+
+    override suspend fun updateCase(case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.updateCase(case.id, case.person, case.date, case.hour, case.place, case.physic, case.sexual, case.psychologic, case.social, case.economic)
+        }
+    }
+
+    override suspend fun deleteCase(id: String) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.deleteCase(id)
+        }
+    }
+
+    override suspend fun deleteCases() {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.deleteCases()
+        }
+    }
+
+    override suspend fun insertCases(cases: List<org.sic4change.domain.Case>) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.insertCases(cases.map { it.toDatabaseCase() })
+        }
+    }
+
+    override suspend fun getCases(): List<DomainCase> = withContext(Dispatchers.IO) {
+        chuqabpDao.getAllCases().map { it.toDomainCase() }
+    }
+
+    override suspend fun findCaseById(id: String): DomainCase = withContext(Dispatchers.IO) {
+        chuqabpDao.findCaseById(id).toDomainCase()
     }
 
 }

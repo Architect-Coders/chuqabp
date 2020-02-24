@@ -7,11 +7,14 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Person
+import org.sic4change.domain.Case
+import org.sic4change.usescases.CreateCase
 import org.sic4change.usescases.GetLocation
 import org.sic4change.usescases.GetPersonsToSelect
+import java.util.*
 
 class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val getLocation: GetLocation,
-                        uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
+                        private val createCase: CreateCase, uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _currentLocation = MutableLiveData<String>()
     val currentLocation: LiveData<String> get() = _currentLocation
@@ -54,6 +57,17 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
 
     fun onPersonClicked(person: Person) {
         _person.value = person
+    }
+
+    fun onRegisterCaseClicked(person: String?, date: String, hour: String, place: String,
+                              physical: Boolean, sexual: Boolean, psycological: Boolean,
+                              social: Boolean, economic: Boolean, description: String) {
+        launch {
+            person?.let {
+                Case(Date().time.toString() + person, it, date, hour, place,
+                    physical, sexual, psycological, social, economic, description)
+            }?.let { createCase.invoke(it) }
+        }
     }
 
     override fun onCleared() {

@@ -17,14 +17,7 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name=".course.ui.main.MainActivity"
-                android:screenOrientation="portrait"
-                android:label="@string/app_name">
-
-        </activity>
-
-        <activity
-                android:name=".course.ui.login.LoginActivity"
+                android:name="org.sic4change.chuqabp.course.ui.login.LoginActivity"
                 android:screenOrientation="portrait"
                 android:label="@string/app_name">
             <intent-filter>
@@ -33,6 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name="org.sic4change.chuqabp.course.ui.main.MainActivity"
+                android:screenOrientation="portrait"
+                android:label="@string/app_name">
+
+        </activity>
+
 
         <activity
                 android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

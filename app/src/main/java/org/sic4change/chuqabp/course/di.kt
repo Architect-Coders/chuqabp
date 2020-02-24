@@ -32,10 +32,7 @@ import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonFragment
 import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonViewModel
 import org.sic4change.chuqabp.course.ui.main.user.UserFragment
 import org.sic4change.chuqabp.course.ui.main.user.UserViewModel
-import org.sic4change.data.repository.PersonsRepository
-import org.sic4change.data.repository.PermissionChecker
-import org.sic4change.data.repository.RegionRepository
-import org.sic4change.data.repository.UserRepository
+import org.sic4change.data.repository.*
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.data.source.LocationDataSource
 import org.sic4change.data.source.RemoteDataSource
@@ -60,8 +57,9 @@ private val appModule = module {
 
 val dataModule = module {
     factory { RegionRepository(get(), get()) }
-    factory { PersonsRepository(get(), get())}
     factory { UserRepository(get(), get())}
+    factory { PersonsRepository(get(), get())}
+    factory { CasesRepository(get(), get()) }
 }
 
 private val scopesModule = module {
@@ -102,9 +100,10 @@ private val scopesModule = module {
     }
 
     scope(named<NewCaseFragment>()) {
-        viewModel { NewCaseViewModel(get(), get(), get()) }
+        viewModel { NewCaseViewModel(get(), get(), get(), get()) }
         scoped { GetPersonsToSelect(get()) }
         scoped { GetLocation(get()) }
+        scoped { CreateCase(get()) }
     }
 
     scope(named<CasesFragment>()) {

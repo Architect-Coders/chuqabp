@@ -151,6 +151,12 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             }
         }
 
+        btnRegisterCase.setOnClickListener {
+            viewModel.onRegisterCaseClicked(viewModel.person.value?.id, tvDate.text.toString(),
+                tvTime.text.toString(), tvPlace.text.toString(), cvPysical.isChecked, cvSexual.isChecked,
+                cvPsychological.isChecked, cvSocial.isChecked, cvEconomic.isChecked, etHow.text.toString())
+        }
+
         viewModel.person.observe(this, Observer<Person> {
             hideShowPersonSelection()
             tvPersonName.text = "${it.name} ${it.surnames}"

@@ -39,7 +39,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:fullname="@{viewmodel.person}"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorPrimaryDark"
                     android:textSize="24sp"
                     android:textColor="@color/white"/>
 
@@ -66,7 +66,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.location}" />
 
             <ImageView
@@ -90,7 +90,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivBirthdate"
                     android:layout_marginStart="4dp"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.birthdate}" />
 
             <ImageView
@@ -114,7 +114,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivPhone"
                     android:layout_marginStart="4dp"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.phone}" />
 
             <ImageView
@@ -140,7 +140,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivEmail"
                     android:layout_marginStart="4dp"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.email}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

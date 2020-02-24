@@ -76,7 +76,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                    app:spanCount="3"
+                                    app:spanCount="1"
                                     android:background="@color/white"
                                     app:items="@{viewmodel.persons}"
                                     android:visibility="gone"

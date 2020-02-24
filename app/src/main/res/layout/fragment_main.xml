@@ -18,17 +18,22 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toTopOf="@id/bttNavigation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/hight_bottom_navigation">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3"
+                app:spanCount="1"
                 android:background="@color/white"
                 app:items="@{viewmodel.persons}"
-                android:layout_marginBottom="@dimen/hight_bottom_navigation"/>
+                />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

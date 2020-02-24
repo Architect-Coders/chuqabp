@@ -54,6 +54,18 @@
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnNewPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toTopOf="@+id/bttNavigation"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_add" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

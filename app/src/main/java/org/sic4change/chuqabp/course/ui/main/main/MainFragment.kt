@@ -37,7 +37,7 @@ class MainFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_refresh).isVisible = true
-        menu.findItem(R.id.action_add).isVisible = true
+        menu.findItem(R.id.action_add).isVisible = false
         menu.findItem(R.id.action_account).isVisible = false
         menu.findItem(R.id.action_delete).isVisible = false
         menu.findItem(R.id.action_edit).isVisible = false
@@ -46,10 +46,6 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_add -> {
-                navController.navigate(R.id.action_mainFragment_to_newPersonFragment)
-                true
-            }
             R.id.action_refresh -> {
                 viewModel.refreshPersons()
                 true
@@ -117,13 +113,15 @@ class MainFragment : Fragment() {
             }
         }
 
+        btnNewPerson.setOnClickListener {
+            navController.navigate(R.id.action_mainFragment_to_newPersonFragment)
+        }
+
     }
 
     override fun onResume() {
         super.onResume()
         bttNavigation.menu.findItem(R.id.persons).isChecked = true
     }
-
-
-
+    
 }

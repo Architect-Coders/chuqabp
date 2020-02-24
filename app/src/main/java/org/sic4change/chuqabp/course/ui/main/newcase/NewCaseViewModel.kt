@@ -9,7 +9,6 @@ import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Person
 import org.sic4change.usescases.GetLocation
 import org.sic4change.usescases.GetPersonsToSelect
-import java.util.*
 
 class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val getLocation: GetLocation,
                         uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
@@ -23,8 +22,15 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
     private val _person = MutableLiveData<Person>()
     val person: LiveData<Person> get() = _person
 
-    private val _date = MutableLiveData<Date>()
-    val date: LiveData<Date> get() = _date
+    private val _date = MutableLiveData<String>()
+    val date: LiveData<String> get() = _date
+
+    private val _hour = MutableLiveData<String>()
+    val hour: LiveData<String> get() = _hour
+
+
+    private val _type =  MutableLiveData<Boolean>()
+    val type: LiveData<Boolean> get() =  _type
 
     init {
         initScope()
@@ -32,6 +38,18 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
             _currentLocation.value = getLocation.invoke()
             _persons.value = getPersons.invoke()
         }
+    }
+
+    fun setDate(date: String) {
+        _date.value = date
+    }
+
+    fun setHour(hour: String) {
+        _hour.value = hour
+    }
+
+    fun setType(type: Boolean) {
+        _type.value = type
     }
 
     fun onPersonClicked(person: Person) {

@@ -12,4 +12,5 @@
     <dimen name="create_case_photo">120dp</dimen>
     <dimen name="image_border">2dp</dimen>
     <dimen name="hight_bottom_navigation">56dp</dimen>
+    <dimen name="form_text_size">16sp</dimen>
 </resources>

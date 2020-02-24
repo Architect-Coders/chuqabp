@@ -15,7 +15,7 @@
 
             <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
 
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
@@ -42,6 +42,17 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
+                            <ImageView
+                                android:id="@+id/ivOneStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_looks_one"
+                                    app:layout_constraintBottom_toTopOf="@+id/recycler_persons_selector"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                            </ImageView>
+
                             <TextView
                                     android:id="@+id/tvPersonName"
                                     android:layout_width="0dp"
@@ -49,12 +60,12 @@
                                     android:layout_marginStart="@dimen/margin_default"
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:hint="@string/hint_select_person"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintBottom_toTopOf="@+id/recycler_persons_selector"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/ivOneStep"
                                     app:layout_constraintTop_toTopOf="parent"
                                     android:paddingBottom="@dimen/margin_default">
 
@@ -87,11 +98,23 @@
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="4dp"
                             android:elevation="2dp"
-                            android:layout_margin="@dimen/margin_default">
+                            android:layout_margin="@dimen/margin_default"
+                            android:visibility="gone">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                            <ImageView
+                                    android:id="@+id/ivTwoStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_looks_two"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                            </ImageView>
 
                             <TextView
                                     android:id="@+id/tvDate"
@@ -101,16 +124,14 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:hint="@string/hint_select_date"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/ivTwoStep"
                                     app:layout_constraintTop_toTopOf="parent">
 
                             </TextView>
-
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -122,11 +143,23 @@
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="4dp"
                             android:elevation="2dp"
-                            android:layout_margin="@dimen/margin_default">
+                            android:layout_margin="@dimen/margin_default"
+                            android:visibility="gone">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                            <ImageView
+                                    android:id="@+id/ivThreeStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_looks_3"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                            </ImageView>
 
                             <TextView
                                     android:id="@+id/tvTime"
@@ -136,12 +169,11 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:hint="@string/hint_select_time"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/ivThreeStep"
                                     app:layout_constraintTop_toTopOf="parent">
 
                             </TextView>
@@ -157,13 +189,25 @@
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="4dp"
                             android:elevation="2dp"
-                            android:layout_margin="@dimen/margin_default">
+                            android:layout_margin="@dimen/margin_default"
+                            android:visibility="gone">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
-                            <EditText
+                            <ImageView
+                                    android:id="@+id/ivFourStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_looks_4"
+                                    app:layout_constraintTop_toTopOf="@id/tvPlace"
+                                    app:layout_constraintBottom_toBottomOf="@id/tvPlace"
+                                    app:layout_constraintStart_toStartOf="parent">
+
+                            </ImageView>
+
+                            <TextView
                                     android:id="@+id/tvPlace"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -171,13 +215,27 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:hint="@string/hint_select_where"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    app:layout_constraintStart_toEndOf="@id/ivFourStep"
+                                    app:layout_constraintTop_toTopOf="parent">
+                            </TextView>
+
+                            <EditText
+                                    android:id="@+id/etPlace"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_default"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:layout_marginEnd="@dimen/margin_default"
+                                    android:layout_marginBottom="@dimen/margin_default"
+                                    android:textSize="@dimen/form_text_size"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent">
+                                    app:layout_constraintTop_toBottomOf="@id/tvPlace">
 
                             </EditText>
 
@@ -192,11 +250,23 @@
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="4dp"
                             android:elevation="2dp"
-                            android:layout_margin="@dimen/margin_default">
+                            android:layout_margin="@dimen/margin_default"
+                            android:visibility="gone">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                            <ImageView
+                                    android:id="@+id/ivFiveStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_looks_5"
+                                    app:layout_constraintTop_toTopOf="@id/tvType"
+                                    app:layout_constraintBottom_toBottomOf="@id/tvType"
+                                    app:layout_constraintStart_toStartOf="parent">
+
+                            </ImageView>
 
                             <TextView
                                     android:id="@+id/tvType"
@@ -206,11 +276,11 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:hint="@string/hint_select_type"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/ivFiveStep"
                                     app:layout_constraintTop_toTopOf="parent">
 
                             </TextView>
@@ -223,7 +293,7 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     android:hint="@string/checkbox_title_physical"
                                     android:textColor="@color/colorPrimaryDark"
@@ -241,7 +311,7 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     android:hint="@string/checkbox_title_sexual"
                                     android:textColor="@color/colorPrimaryDark"
@@ -259,7 +329,7 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     android:hint="@string/checkbox_title_psychological"
                                     android:textColor="@color/colorPrimaryDark"
@@ -277,7 +347,7 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     android:hint="@string/checkbox_title_social"
                                     android:textColor="@color/colorPrimaryDark"
@@ -295,7 +365,7 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:buttonTint="@color/colorPrimaryDark"
                                     android:hint="@string/checkbox_title_economic"
                                     android:textColor="@color/colorPrimaryDark"
@@ -316,11 +386,23 @@
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="4dp"
                             android:elevation="2dp"
-                            android:layout_margin="@dimen/margin_default">
+                            android:layout_margin="@dimen/margin_default"
+                            android:visibility="gone">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                            <ImageView
+                                    android:id="@+id/ivSixStep"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_looks_6"
+                                    app:layout_constraintTop_toTopOf="@id/tvHow"
+                                    app:layout_constraintBottom_toBottomOf="@id/tvHow"
+                                    app:layout_constraintStart_toStartOf="parent">
+
+                            </ImageView>
 
                             <TextView
                                     android:id="@+id/tvHow"
@@ -330,11 +412,11 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:hint="@string/hint_select_how"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/ivSixStep"
                                     app:layout_constraintTop_toTopOf="parent">
 
                             </TextView>
@@ -347,11 +429,12 @@
                                     android:layout_marginTop="@dimen/margin_default"
                                     android:layout_marginEnd="@dimen/margin_default"
                                     android:layout_marginBottom="@dimen/margin_default"
-                                    android:textSize="16sp"
+                                    android:textSize="@dimen/form_text_size"
                                     android:minLines="4"
                                     android:maxLines="4"
                                     android:lines="4"
                                     android:hint="@string/hint_select_how_explanation"
+                                    android:inputType="textCapSentences"
                                     android:textColor="@color/colorPrimaryDark"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -364,6 +447,20 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.cardview.widget.CardView>
+
+                    <Button android:id="@+id/btnRegisterCase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:padding="4dp"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/register_case"
+                            android:textColor="@color/white"
+                            android:layout_margin="@dimen/margin_default"
+                            android:visibility="gone">
+
+                    </Button>
 
                 </LinearLayout>
 

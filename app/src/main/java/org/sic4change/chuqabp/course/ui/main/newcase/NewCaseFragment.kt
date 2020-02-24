@@ -8,13 +8,14 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.DatePicker
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_main.bttNavigation
 import kotlinx.android.synthetic.main.fragment_new_case.*
-import kotlinx.android.synthetic.main.fragment_new_person.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
@@ -98,6 +99,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             datePickerDialog = DatePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 val month = monthOfYear + 1
+                    viewModel.setDate("$dayOfMonth/$month/$year")
                 tvDate.text = "$dayOfMonth/$month/$year"
             }, year, month, day)
 
@@ -111,6 +113,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             val minute = c.get(Calendar.MINUTE)
             timePickerDialog = TimePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
                 TimePickerDialog.OnTimeSetListener { view, hour, minute  ->
+                    viewModel.setHour("$hour:$minute")
                 tvTime.text = "$hour:$minute"
             }, hour, minute, true)
 
@@ -118,18 +121,78 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         }
 
-        cvPlace.setOnClickListener {
+        cvPysical.setOnCheckedChangeListener { compoundButton, b ->
+            setType()
+        }
 
+        cvSexual.setOnCheckedChangeListener { compoundButton, b ->
+            setType()
+        }
+
+        cvPsychological.setOnCheckedChangeListener { compoundButton, b ->
+            setType()
+        }
+
+        cvSocial.setOnCheckedChangeListener { compoundButton, b ->
+            setType()
+        }
+
+        cvEconomic.setOnCheckedChangeListener { compoundButton, b ->
+            setType()
+        }
+
+        etHow.addTextChangedListener {
+            if (it != null && it.isNotEmpty()) {
+                enabledRegister()
+                ivSixStep.setImageResource(R.drawable.ic_check)
+            } else {
+                disabledRegister()
+                ivSixStep.setImageResource(R.drawable.ic_looks_6)
+            }
         }
 
         viewModel.person.observe(this, Observer<Person> {
             hideShowPersonSelection()
             tvPersonName.text = "${it.name} ${it.surnames}"
+            ivOneStep.setImageResource(R.drawable.ic_check)
+            enabledDayQuestion()
+        })
+
+        viewModel.date.observe(this, Observer<String> {
+            ivTwoStep.setImageResource(R.drawable.ic_check)
+            enabledHourQuestion()
+        })
+
+        viewModel.hour.observe(this, Observer<String> {
+            ivThreeStep.setImageResource(R.drawable.ic_check)
+            enabledPlaceQuestion()
+            if (!it.contains("null") && cvPlace.visibility == VISIBLE) {
+                ivFourStep.setImageResource(R.drawable.ic_check)
+                enabledTypeQuestion()
+            }
         })
 
         viewModel.currentLocation.observe(this, Observer<String> {
-            tvPlace.setText(it)
+            etPlace.setText(it)
         })
+
+        viewModel.type.observe(this, Observer<Boolean> {
+            if (it) {
+                enabledHowQuestion()
+                ivFiveStep.setImageResource(R.drawable.ic_check)
+            } else {
+                disabledHowQuestion()
+                disabledRegister()
+                ivFiveStep.setImageResource(R.drawable.ic_looks_5)
+            }
+        })
+
+    }
+
+    private fun setType() {
+        viewModel.setType(cvPysical.isChecked || cvSexual.isChecked || cvPsychological.isChecked ||
+                cvSocial.isChecked || cvEconomic.isChecked)
+
     }
 
     private fun hideShowPersonSelection() = if (recycler_persons_selector.isVisible) {
@@ -159,7 +222,40 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
+
+    private fun enabledDayQuestion() {
+        cvDate.visibility = VISIBLE
+    }
+
+    private fun enabledHourQuestion() {
+        cvTime.visibility = VISIBLE
+    }
+
+    private fun enabledPlaceQuestion() {
+        cvPlace.visibility = VISIBLE
+    }
+
+    private fun enabledTypeQuestion() {
+        cvType.visibility = VISIBLE
+    }
+
+    private fun enabledHowQuestion() {
+        cvHow.visibility = VISIBLE
+    }
+
+    private fun disabledHowQuestion() {
+        cvHow.visibility = GONE
+    }
+
+    private fun enabledRegister() {
+        btnRegisterCase.visibility = VISIBLE
+    }
+
+    private fun disabledRegister() {
+        btnRegisterCase.visibility = GONE
+    }
+
 
 }

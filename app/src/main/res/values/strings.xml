@@ -89,5 +89,6 @@
     <string name="checkbox_title_economic">Económica</string>
     <string name="hint_select_how">¿Cómo sucedieron los hechos?</string>
     <string name="hint_select_how_explanation">Describa la situación...</string>
+    <string name="register_case">Registrar caso</string>
 
 </resources>

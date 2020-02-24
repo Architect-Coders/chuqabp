@@ -155,6 +155,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             viewModel.onRegisterCaseClicked(viewModel.person.value?.id, tvDate.text.toString(),
                 tvTime.text.toString(), etPlace.text.toString(), cvPysical.isChecked, cvSexual.isChecked,
                 cvPsychological.isChecked, cvSocial.isChecked, cvEconomic.isChecked, etHow.text.toString())
+            navController.navigate(R.id.action_newCaseFragment_to_casesFragement)
         }
 
         viewModel.person.observe(this, Observer<Person> {

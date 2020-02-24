@@ -153,7 +153,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         btnRegisterCase.setOnClickListener {
             viewModel.onRegisterCaseClicked(viewModel.person.value?.id, tvDate.text.toString(),
-                tvTime.text.toString(), tvPlace.text.toString(), cvPysical.isChecked, cvSexual.isChecked,
+                tvTime.text.toString(), etPlace.text.toString(), cvPysical.isChecked, cvSexual.isChecked,
                 cvPsychological.isChecked, cvSocial.isChecked, cvEconomic.isChecked, etHow.text.toString())
         }
 

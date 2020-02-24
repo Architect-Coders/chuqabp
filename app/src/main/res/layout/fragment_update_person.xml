@@ -30,7 +30,8 @@
                     android:background="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"/>
 
             <EditText
                     android:id="@+id/etName"
@@ -40,10 +41,13 @@
                     android:hint="@string/name"
                     android:text="@{viewmodel.person.name}"
                     android:inputType="textCapWords"
+                    android:textSize="14sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="@dimen/margin_medium"
                     app:layout_constraintTop_toBottomOf="@+id/ivUpdatePhotoPerson" />
 
             <EditText
@@ -53,6 +57,7 @@
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/surname"
                     android:text="@{viewmodel.person.surnames}"
+                    android:textSize="14sp"
                     android:inputType="textCapWords"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -67,6 +72,7 @@
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/date"
                     android:text="@{viewmodel.person.birthdate}"
+                    android:textSize="14sp"
                     android:inputType="date"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -82,6 +88,7 @@
                     android:hint="@string/phone"
                     android:text="@{viewmodel.person.phone}"
                     android:inputType="phone"
+                    android:textSize="14sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +102,7 @@
                     android:layout_margin="@dimen/margin_default"
                     android:hint="@string/email"
                     android:text="@{viewmodel.person.email}"
+                    android:textSize="14sp"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
@@ -110,6 +118,7 @@
                     android:hint="@string/location"
                     android:text="@{viewmodel.person.location}"
                     android:inputType="textCapWords"
+                    android:textSize="14sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/common_google_signin_btn_text_light_disabled"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -72,7 +72,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:fullname="@{item}"
                         android:background="@color/colorPrimaryDark"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textColor="@color/white"/>
 
                 <ImageView
@@ -91,9 +91,11 @@
 
                 <TextView
                         android:id="@+id/tvPersonLocation"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@+id/ivPlace"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="left"
                         app:layout_constraintTop_toTopOf="@+id/ivPlace"
                         app:layout_constraintBottom_toBottomOf="@+id/ivPlace"
                         android:layout_marginStart="4dp"

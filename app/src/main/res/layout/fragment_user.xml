@@ -44,7 +44,8 @@
                                 android:gravity="center"
                                 android:padding="@dimen/margin_medium"
                                 android:text="@string/edit_password"
-                                android:textSize="16sp" />
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="12sp" />
 
                         <ImageView
                                 android:id="@+id/ivChangePassword"
@@ -57,7 +58,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_edit_user"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -78,9 +79,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:padding="@dimen/margin_medium"
                                 android:text="@string/logout"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                         <ImageView
                                 android:id="@+id/ivLogout"
@@ -93,7 +95,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_exit"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -115,8 +117,9 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:padding="@dimen/margin_medium"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="@string/delete_account"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                         <ImageView
                                 android:id="@+id/ivDeleteAccount"
@@ -129,7 +132,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_delete_user"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -151,8 +154,9 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:padding="@dimen/margin_medium"
+                                android:textColor="@color/colorPrimaryDark"
                                 android:text="@string/terms_and_conditions"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                         <ImageView
                                 android:id="@+id/ivTermsAndConditions"
@@ -165,7 +169,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_file"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="16sp" />
+                                android:textSize="12sp" />
 
                     </RelativeLayout>
 

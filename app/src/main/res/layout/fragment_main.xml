@@ -15,7 +15,12 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -25,6 +30,8 @@
                 app:items="@{viewmodel.persons}"
                 android:layout_marginBottom="@dimen/hight_bottom_navigation"/>
 
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
         <ProgressBar
                 android:id="@+id/progress"
                 android:layout_width="wrap_content"
@@ -33,7 +40,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/recycler"
+                android:indeterminateTint="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

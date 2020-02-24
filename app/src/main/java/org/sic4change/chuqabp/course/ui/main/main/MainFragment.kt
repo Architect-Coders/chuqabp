@@ -2,6 +2,7 @@ package org.sic4change.chuqabp.course.ui.main.main
 
 import android.Manifest
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -16,6 +17,7 @@ import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
 
 
+@Suppress("DEPRECATION")
 class MainFragment : Fragment() {
 
     private lateinit var adapter : PersonsAdapter
@@ -36,28 +38,13 @@ class MainFragment : Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = true
+        menu.findItem(R.id.action_refresh).isVisible = false
         menu.findItem(R.id.action_add).isVisible = false
         menu.findItem(R.id.action_account).isVisible = false
         menu.findItem(R.id.action_delete).isVisible = false
         menu.findItem(R.id.action_edit).isVisible = false
         super.onPrepareOptionsMenu(menu)
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_refresh -> {
-                viewModel.refreshPersons()
-                true
-            }
-            R.id.action_account -> {
-                navController.navigate(R.id.action_mainFragment_to_userFragment)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container?.bindingInflate(R.layout.fragment_main, false)
@@ -68,6 +55,9 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = view.findNavController()
+
+        swipe_container.setColorSchemeColors(resources.getColor(R.color.colorPrimaryDark),
+            resources.getColor(R.color.colorPrimaryDark), resources.getColor(R.color.colorPrimaryDark))
 
         viewModel.navigateToPerson.observe(this, EventObserver{ id ->
             val action = MainFragmentDirections.actionMainFragmentToDetailFragment(id)
@@ -117,11 +107,25 @@ class MainFragment : Fragment() {
             navController.navigate(R.id.action_mainFragment_to_newPersonFragment)
         }
 
+        swipe_container.setOnRefreshListener {
+            viewModel.refreshPersons()
+            val timer = object: CountDownTimer(3000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {}
+
+                override fun onFinish() {
+                    if (swipe_container != null && swipe_container.isRefreshing) {
+                        swipe_container.isRefreshing = false
+                    }
+                }
+            }
+            timer.start()
+        }
+
     }
 
     override fun onResume() {
         super.onResume()
         bttNavigation.menu.findItem(R.id.persons).isChecked = true
     }
-    
+
 }

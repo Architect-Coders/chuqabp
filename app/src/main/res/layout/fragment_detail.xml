@@ -10,68 +10,169 @@
                 type="org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-        <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true">
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            android:elevation="2dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/margin_default">
 
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    app:contentScrim="?attr/colorPrimary"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <org.sic4change.chuqabp.course.ui.common.AspectRatioImageView
-                        android:id="@+id/personDetailImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fitsSystemWindows="true"
-                        android:scaleType="centerCrop"
-                        app:layout_collapseMode="parallax"
-                        app:url= "@{viewmodel.url}"
-                        tools:src="@mipmap/ic_launcher" />
-
-                <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/personDetailToolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        app:title="@{viewmodel.title}" />
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:background="@color/white">
 
-            <LinearLayout
+            <TextView
+                    android:id="@+id/tvPersonName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:transitionGroup="true">
+                    android:padding="@dimen/margin_default"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:fullname="@{viewmodel.person}"
+                    android:background="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
 
-                <TextView
-                        android:id="@+id/personDetailInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:background="@color/lightBackground"
-                        android:lineSpacingMultiplier="1.5"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:person="@{viewmodel.person}" />
+            <ImageView
+                    android:id="@+id/ivPlace"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPersonName"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:src="@drawable/ic_place"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default">
 
-            </LinearLayout>
+            </ImageView>
 
-        </androidx.core.widget.NestedScrollView>
+            <TextView
+                    android:id="@+id/tvPersonLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/ivPlace"
+                    app:layout_constraintTop_toTopOf="@+id/ivPlace"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivPlace"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.person.location}" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <ImageView
+                    android:id="@+id/ivBirthdate"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivPlace"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:src="@drawable/ic_cake"
+                    android:layout_marginStart="@dimen/margin_default">
+
+            </ImageView>
+
+            <TextView
+                    android:id="@+id/tvPersonBirthdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/ivBirthdate"
+                    app:layout_constraintTop_toTopOf="@+id/ivBirthdate"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBirthdate"
+                    android:layout_marginStart="4dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.person.birthdate}" />
+
+            <ImageView
+                    android:id="@+id/ivPhone"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivBirthdate"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:src="@drawable/ic_phone"
+                    android:layout_marginStart="@dimen/margin_default">
+
+            </ImageView>
+
+            <TextView
+                    android:id="@+id/tvPersonPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/ivPhone"
+                    app:layout_constraintTop_toTopOf="@+id/ivPhone"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivPhone"
+                    android:layout_marginStart="4dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.person.phone}" />
+
+            <ImageView
+                    android:id="@+id/ivEmail"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivPhone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:src="@drawable/ic_email"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default">
+
+            </ImageView>
+
+            <TextView
+                    android:id="@+id/tvPersonEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/ivEmail"
+                    app:layout_constraintTop_toTopOf="@+id/ivEmail"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivEmail"
+                    android:layout_marginStart="4dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.person.email}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnEditPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:clickable="true"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toTopOf="@id/btnDeletePerson"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_edit"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnDeletePerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:clickable="true"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_delete"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
 

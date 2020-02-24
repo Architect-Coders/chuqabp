@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_detail.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -51,30 +52,23 @@ class DetailFragment: Fragment() {
                 finish()
             }
         })
+
+        btnEditPerson.setOnClickListener {
+            val action = DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(args.id)
+            navController.navigate(action)
+        }
+        btnDeletePerson.setOnClickListener {
+            showDeleteConfirmationDialog()
+        }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_refresh).isVisible = false
         menu.findItem(R.id.action_add).isVisible = false
         menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = true
-        menu.findItem(R.id.action_delete).isVisible = true
+        menu.findItem(R.id.action_edit).isVisible = false
+        menu.findItem(R.id.action_delete).isVisible = false
         super.onPrepareOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_delete -> {
-                showDeleteConfirmationDialog()
-                true
-            }
-            R.id.action_edit -> {
-                val action = DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(args.id)
-                navController.navigate(action)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun showDeleteConfirmationDialog() {

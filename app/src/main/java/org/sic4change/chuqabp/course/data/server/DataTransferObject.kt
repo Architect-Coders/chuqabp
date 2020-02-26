@@ -30,6 +30,7 @@ data class Person (
 data class Case (
     @Exclude val id: String = "",
     @Exclude val person: String = "",
+    @Exclude val mentorId: String? = "",
     @Exclude val date: String = "",
     @Exclude val hour: String = "",
     @Exclude val place: String = "",

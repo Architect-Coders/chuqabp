@@ -8,8 +8,9 @@ class CasesRepository(private val localDataSource: LocalDataSource,
                       private val remoteDataSource: RemoteDataSource) {
 
     suspend fun createCase(case: Case) {
+        val user = localDataSource.getUser()
         localDataSource.createCase(case)
-        remoteDataSource.createCase(case)
+        remoteDataSource.createCase(user, case)
     }
 
 

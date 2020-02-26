@@ -10,37 +10,6 @@
                 type="org.sic4change.domain.Person" />
     </data>
 
-   <!-- <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="2dp"
-            android:foreground="?attr/selectableItemBackground">
-
-        <org.sic4change.chuqabp.course.ui.common.AspectRatioImageView
-                android:id="@+id/personCover"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:ratio="1.5"
-                android:scaleType="centerCrop"
-                app:url="@{item.photo}"
-                tools:src="@tools:sample/backgrounds/scenic" />
-
-        <TextView
-                android:id="@+id/personTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:background="@color/colorPrimary"
-                android:padding="8dp"
-                android:lines="2"
-                android:minLines="2"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-                app:fullname="@{item}" />
-
-    </LinearLayout>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,8 +72,6 @@
                         android:textSize="12sp"
                         android:textColor="@color/colorPrimary"
                         android:text="@{item.location}" />
-
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

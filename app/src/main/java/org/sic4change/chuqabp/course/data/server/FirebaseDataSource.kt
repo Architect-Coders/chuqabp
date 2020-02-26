@@ -194,7 +194,7 @@ class FirebaseDataSource : RemoteDataSource {
         }
     }
 
-    override suspend fun createCase(case: org.sic4change.domain.Case) {
+    override suspend fun createCase(user: User?, case: org.sic4change.domain.Case) {
         withContext(Dispatchers.IO) {
             Timber.d("try to create case with firebase")
             try {
@@ -204,6 +204,7 @@ class FirebaseDataSource : RemoteDataSource {
                 val caseToCreate = Case(
                     key,
                     case.person,
+                    user?.id,
                     case.date,
                     case.hour,
                     case.place,

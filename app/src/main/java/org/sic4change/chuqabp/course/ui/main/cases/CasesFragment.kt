@@ -46,8 +46,8 @@ class CasesFragment: Fragment() {
             resources.getColor(R.color.colorPrimaryDark), resources.getColor(R.color.colorPrimaryDark))
 
         viewModel.navigateToCase.observe(this, EventObserver{ id ->
-            //val action = CasesFragmentDirections.actionCasesFragmentDetailCaseFragment(id)
-            //navController.navigate(action)
+            val action = CasesFragmentDirections.actionCasesFragmentToCaseDetailFragment(id)
+            navController.navigate(action)
         })
 
         adapter = CasesAdapter(viewModel::onCaseClicked)

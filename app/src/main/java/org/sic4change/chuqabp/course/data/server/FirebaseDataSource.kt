@@ -234,5 +234,19 @@ class FirebaseDataSource : RemoteDataSource {
         networkCasesContainer.results.map { it.toDomainCase() }
     }
 
+    override suspend fun deleteCase(id: String) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to delete case from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val caseRef = firestore.collection("cases")
+                caseRef.document(id).delete().await()
+                Timber.d("Delete case result: ok")
+            } catch (ex: Exception) {
+                Timber.d("Delete case result: false ${ex.message}")
+            }
+        }
+    }
+
 }
 

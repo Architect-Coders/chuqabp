@@ -17,6 +17,8 @@ import org.sic4change.chuqabp.course.data.server.FirebaseDataSource
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.chuqabp.course.ui.login.create.CreateAccountFragment
 import org.sic4change.chuqabp.course.ui.login.login.LoginFragment
+import org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailFragment
+import org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailViewModel
 import org.sic4change.chuqabp.course.ui.main.cases.CasesFragment
 import org.sic4change.chuqabp.course.ui.main.cases.CasesViewModel
 import org.sic4change.chuqabp.course.ui.main.detail.DetailFragment
@@ -110,6 +112,12 @@ private val scopesModule = module {
         viewModel { CasesViewModel(get(), get(), get()) }
         scoped { GetCases(get()) }
         scoped { RefreshCases(get()) }
+    }
+
+    scope(named<CaseDetailFragment>()) {
+        viewModel { (id: String) -> CaseDetailViewModel(id, get(), get(), get()) }
+        scoped { FindCaseById(get()) }
+        scoped { DeleteCase(get()) }
     }
 
     scope(named<LoginFragment>()) {

@@ -5,7 +5,6 @@
         android:id="@+id/nav_graph_main"
         app:startDestination="@id/mainFragment">
 
-
     <fragment
             android:id="@+id/mainFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.main.MainFragment"
@@ -96,6 +95,13 @@
             android:name="org.sic4change.chuqabp.course.ui.main.cases.CasesFragment"
             android:label="@string/app_name">
         <action
+                android:id="@+id/action_casesFragment_to_CaseDetailFragment"
+                app:destination="@id/caseDetailFragment"
+                app:enterAnim="@anim/translate_in"
+                app:exitAnim="@anim/fade_out"
+                app:popEnterAnim="@anim/fade_in"
+                app:popExitAnim="@anim/translate_out" />
+        <action
                 android:id="@+id/action_casesFragment_to_mainFragment"
                 app:destination="@id/mainFragment" />
         <action
@@ -107,6 +113,17 @@
         <action
                 android:id="@+id/action_casesFragment_to_newCaseFragement"
                 app:destination="@id/newCaseFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/caseDetailFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailFragment"
+            android:label="@string/app_name">
+        <argument
+                android:name="id"
+                app:argType="string" />
+        <action
+                android:id="@+id/action_caseDetailFragment_to_loginActivity"
+                app:destination="@id/loginActivity" />
     </fragment>
     <fragment
             android:id="@+id/detailFragment"

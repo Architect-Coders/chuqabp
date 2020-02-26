@@ -76,8 +76,8 @@ class CaseDetailFragment : Fragment() {
 
     private fun showDeleteConfirmationDialog() {
         val builder = AlertDialog.Builder(activity)
-        builder.setTitle(R.string.delete_question_title)
-        builder.setMessage(R.string.delete_question_description)
+        builder.setTitle(R.string.delete_case_question_title)
+        builder.setMessage(R.string.delete_Case_question_description)
         builder.setCancelable(true)
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
             viewModel.deleteCase()
@@ -89,7 +89,7 @@ class CaseDetailFragment : Fragment() {
     }
 
     private fun finish() {
-        navController.navigate(R.id.action_detailFragment_to_loginActivity)
+        navController.navigate(R.id.action_caseDetailFragment_to_loginActivity)
         activity?.finish()
     }
 

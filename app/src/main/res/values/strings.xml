@@ -91,4 +91,8 @@
     <string name="hint_select_how_explanation">Describa la situación...</string>
     <string name="register_case">Registrar caso</string>
 
+    <!--Detail Case-->
+    <string name="delete_case_question_title">Confirmación</string>
+    <string name="delete_Case_question_description">¿Estás seguro que desea eliminar ese caso?</string>
+
 </resources>

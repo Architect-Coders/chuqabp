@@ -30,6 +30,8 @@ data class Person (
 data class Case (
     @Exclude val id: String = "",
     @Exclude val person: String = "",
+    @Exclude val name: String = "",
+    @Exclude val surnames: String = "",
     @Exclude val mentorId: String? = "",
     @Exclude val date: String = "",
     @Exclude val hour: String = "",
@@ -43,3 +45,6 @@ data class Case (
 
 @JsonClass(generateAdapter = true)
 data class NetworkPersonsContainer(val results: List<Person>)
+
+@JsonClass(generateAdapter = true)
+data class NetworkCasesContainer(val results: List<Case>)

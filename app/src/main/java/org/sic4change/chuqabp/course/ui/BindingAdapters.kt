@@ -8,8 +8,10 @@ import androidx.core.text.buildSpannedString
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
+import org.sic4change.chuqabp.course.ui.main.cases.CasesAdapter
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.domain.Person
+import org.sic4change.domain.Case
 
 @BindingAdapter("url")
 fun ImageView.bindUrl(url: String?) {
@@ -55,9 +57,25 @@ fun TextView.setFullNameText(person: Person?) = person?.run {
     }
 }
 
+@BindingAdapter("fullnameCase")
+fun TextView.setFullNameCaseText(case: Case?) = case?.run {
+    text = buildSpannedString {
+        append(name)
+        append(" ")
+        append(surnames)
+    }
+}
+
 @BindingAdapter("items")
 fun RecyclerView.setItems(persons: List<Person>?) {
     (adapter as? PersonsAdapter)?.let {
         it.persons = persons ?: emptyList()
+    }
+}
+
+@BindingAdapter("cases")
+fun RecyclerView.setCases(cases: List<Case>?) {
+    (adapter as? CasesAdapter)?.let {
+        it.cases = cases ?: emptyList()
     }
 }

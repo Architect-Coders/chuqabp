@@ -59,13 +59,17 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
         _person.value = person
     }
 
-    fun onRegisterCaseClicked(person: String?, date: String, hour: String, place: String,
+    fun onRegisterCaseClicked(person: String?, name: String?, surnames: String?, date: String, hour: String, place: String,
                               physical: Boolean, sexual: Boolean, psycological: Boolean,
                               social: Boolean, economic: Boolean, description: String) {
         launch {
             person?.let {
-                Case(Date().time.toString() + person, it, date, hour, place,
-                    physical, sexual, psycological, social, economic, description)
+                name?.let { it1 ->
+                    surnames?.let { it2 ->
+                        Case(Date().time.toString() + person, it, it1, it2, date, hour, place,
+                            physical, sexual, psycological, social, economic, description)
+                    }
+                }
             }?.let { createCase.invoke(it) }
         }
     }

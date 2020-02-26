@@ -3,6 +3,8 @@ package org.sic4change.domain
 data class Case (
     val id: String = "",
     val person: String = "",
+    val name: String = "",
+    val surnames: String = "",
     val date: String = "",
     val hour: String = "",
     val place: String = "",

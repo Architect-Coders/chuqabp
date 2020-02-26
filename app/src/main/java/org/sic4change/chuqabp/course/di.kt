@@ -107,7 +107,9 @@ private val scopesModule = module {
     }
 
     scope(named<CasesFragment>()) {
-        viewModel { CasesViewModel(get()) }
+        viewModel { CasesViewModel(get(), get(), get()) }
+        scoped { GetCases(get()) }
+        scoped { RefreshCases(get()) }
     }
 
     scope(named<LoginFragment>()) {

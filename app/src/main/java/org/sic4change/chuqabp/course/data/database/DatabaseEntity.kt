@@ -29,6 +29,8 @@ data class Person (
 data class Case (
     @PrimaryKey val id: String = "",
     val person: String = "",
+    val name: String = "",
+    val surnames: String = "",
     val date: String = "",
     val hour: String = "",
     val place: String = "",

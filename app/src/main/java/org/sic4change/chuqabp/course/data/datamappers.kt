@@ -36,13 +36,13 @@ fun ServerPerson.toDomainPerson() : Person = Person(
 )
 
 fun Case.toDatabaseCase() : DatabaseCase =  DatabaseCase(
-    id, person, date, hour, place, physic, sexual, psychologic, social, economic
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic
 )
 
 fun DatabaseCase.toDomainCase() : Case = Case(
-    id, person, date, hour, place, physic, sexual, psychologic, social, economic
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic
 )
 
 fun ServerCase.toDomainCase() : Case = Case(
-    id, person, date, hour, place, physic, sexual, psychologic, social, economic
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic
 )

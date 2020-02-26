@@ -4,6 +4,7 @@ import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import org.sic4change.chuqabp.course.data.toDomainCase
 import org.sic4change.chuqabp.course.data.toDomainPerson
 import org.sic4change.chuqabp.course.data.toDomainUser
 import org.sic4change.data.source.RemoteDataSource
@@ -204,6 +205,8 @@ class FirebaseDataSource : RemoteDataSource {
                 val caseToCreate = Case(
                     key,
                     case.person,
+                    case.name,
+                    case.surnames,
                     user?.id,
                     case.date,
                     case.hour,
@@ -220,6 +223,15 @@ class FirebaseDataSource : RemoteDataSource {
                 Timber.d("Create person result: false ${ex.message}")
             }
         }
+    }
+
+    override suspend fun getCases(mentorId: String?): List<org.sic4change.domain.Case> = withContext(Dispatchers.IO) {
+        val firestore = ChuqabpFirebaseService.mFirestore
+        val personsRef = firestore.collection("cases")
+        val query = personsRef.whereEqualTo("mentorId", mentorId)
+        val result = query.get().await()
+        val networkCasesContainer = NetworkCasesContainer(result.toObjects(Case::class.java))
+        networkCasesContainer.results.map { it.toDomainCase() }
     }
 
 }

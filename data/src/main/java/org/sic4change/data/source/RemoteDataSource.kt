@@ -17,6 +17,7 @@ interface RemoteDataSource {
     suspend fun updatePerson(user: User?, person: Person)
     suspend fun deletePerson(id: String)
     suspend fun createCase(user: User?, case: Case)
+    suspend fun getCases(mentorId: String?) : List<Case>
 
 
 }

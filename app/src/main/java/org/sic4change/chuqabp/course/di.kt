@@ -123,10 +123,9 @@ private val scopesModule = module {
     }
 
     scope(named<UpdateCaseFragment>()) {
-        viewModel { (id: String) -> UpdateCaseViewModel(id, get(), get(), get(), get(), get(), get()) }
+        viewModel { (id: String) -> UpdateCaseViewModel(id, get(), get(), get(), get(), get()) }
         scoped { FindCaseById(get()) }
         scoped { UpdateCase(get()) }
-        scoped { GetLocation(get()) }
         scoped { GetPersonsToSelect(get()) }
         scoped { FindPersonById(get()) }
     }

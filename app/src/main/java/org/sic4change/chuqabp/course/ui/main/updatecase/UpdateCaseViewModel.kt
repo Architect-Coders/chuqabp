@@ -10,8 +10,7 @@ import org.sic4change.domain.Person
 import org.sic4change.usescases.*
 
 class UpdateCaseViewModel(private val caseId: String, private val findCaseById: FindCaseById,
-                            private val updateCase: UpdateCase, private val getLocation: GetLocation,
-                            private val getPersonsToSelect: GetPersonsToSelect, private val findPersonById: FindPersonById,
+                            private val updateCase: UpdateCase, private val getPersonsToSelect: GetPersonsToSelect, private val findPersonById: FindPersonById,
                           uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _case = MutableLiveData<Case>()

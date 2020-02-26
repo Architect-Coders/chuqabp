@@ -57,8 +57,8 @@ class CaseDetailFragment : Fragment() {
         })
 
         btnEditCase.setOnClickListener {
-            //val action = DetailCaseFragmentDirections.actionDetailFragmentToUpdatePersonFragment(args.id)
-            //navController.navigate(action)
+            val action = CaseDetailFragmentDirections.actionCaseDetailFragmentToUpdateCaseFragment(args.id)
+            navController.navigate(action)
         }
         btnDeleteCase.setOnClickListener {
             showDeleteConfirmationDialog()

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewmodel"
+                type="org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cvPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp"
+                        android:layout_margin="@dimen/margin_default">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                                android:id="@+id/ivOneStep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_looks_one"
+                                app:layout_constraintBottom_toTopOf="@+id/recycler_persons_selector"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </ImageView>
+
+                        <TextView
+                                android:id="@+id/tvPersonName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:hint="@string/hint_select_person"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintBottom_toTopOf="@+id/recycler_persons_selector"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/ivOneStep"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:fullnameCase="@{viewmodel.case}"
+                                android:paddingBottom="@dimen/margin_default">
+
+                        </TextView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_persons_selector"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:spanCount="1"
+                                android:background="@color/white"
+                                app:items="@{viewmodel.persons}"
+                                android:visibility="gone"
+                                app:layout_constraintTop_toBottomOf="@+id/tvPersonName"
+                                app:layout_constraintEnd_toStartOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cvDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp"
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                                android:id="@+id/ivTwoStep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_looks_two"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </ImageView>
+
+                        <TextView
+                                android:id="@+id/tvDate"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:text="@{viewmodel.case.date}"
+                                android:hint="@string/hint_select_date"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/ivTwoStep"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </TextView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cvTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp"
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                                android:id="@+id/ivThreeStep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_looks_3"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </ImageView>
+
+                        <TextView
+                                android:id="@+id/tvTime"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:text="@{viewmodel.case.hour}"
+                                android:hint="@string/hint_select_time"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/ivThreeStep"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                        </TextView>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cvPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp"
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                                android:id="@+id/ivFourStep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_looks_4"
+                                app:layout_constraintTop_toTopOf="@id/tvPlace"
+                                app:layout_constraintBottom_toBottomOf="@id/tvPlace"
+                                app:layout_constraintStart_toStartOf="parent">
+
+                        </ImageView>
+
+                        <TextView
+                                android:id="@+id/tvPlace"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:hint="@string/hint_select_where"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintStart_toEndOf="@id/ivFourStep"
+                                app:layout_constraintTop_toTopOf="parent">
+                        </TextView>
+
+                        <EditText
+                                android:id="@+id/etPlace"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:text="@{viewmodel.case.place}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvPlace">
+                        </EditText>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cvType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp"
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                                android:id="@+id/ivFiveStep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_looks_5"
+                                app:layout_constraintTop_toTopOf="@id/tvType"
+                                app:layout_constraintBottom_toBottomOf="@id/tvType"
+                                app:layout_constraintStart_toStartOf="parent">
+                        </ImageView>
+
+                        <TextView
+                                android:id="@+id/tvType"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:hint="@string/hint_select_type"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/ivFiveStep"
+                                app:layout_constraintTop_toTopOf="parent">
+                        </TextView>
+
+                        <CheckBox
+                                android:id="@+id/cvPysical"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:buttonTint="@color/colorPrimaryDark"
+                                android:hint="@string/checkbox_title_physical"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:checked="@{viewmodel.case.physic}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvType">
+                        </CheckBox>
+
+                        <CheckBox
+                                android:id="@+id/cvSexual"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:buttonTint="@color/colorPrimaryDark"
+                                android:hint="@string/checkbox_title_sexual"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:checked="@{viewmodel.case.sexual}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/cvPysical">
+                        </CheckBox>
+
+                        <CheckBox
+                                android:id="@+id/cvPsychological"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:buttonTint="@color/colorPrimaryDark"
+                                android:hint="@string/checkbox_title_psychological"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:checked="@{viewmodel.case.psychologic}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/cvSexual">
+                        </CheckBox>
+
+                        <CheckBox
+                                android:id="@+id/cvSocial"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:buttonTint="@color/colorPrimaryDark"
+                                android:hint="@string/checkbox_title_social"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:checked="@{viewmodel.case.social}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/cvPsychological">
+                        </CheckBox>
+
+                        <CheckBox
+                                android:id="@+id/cvEconomic"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:buttonTint="@color/colorPrimaryDark"
+                                android:hint="@string/checkbox_title_economic"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:checked="@{viewmodel.case.economic}"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/cvSocial">
+                        </CheckBox>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/cvHow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp"
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <ImageView
+                                android:id="@+id/ivSixStep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_looks_6"
+                                app:layout_constraintTop_toTopOf="@id/tvHow"
+                                app:layout_constraintBottom_toBottomOf="@id/tvHow"
+                                app:layout_constraintStart_toStartOf="parent">
+                        </ImageView>
+
+                        <TextView
+                                android:id="@+id/tvHow"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:hint="@string/hint_select_how"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/ivSixStep"
+                                app:layout_constraintTop_toTopOf="parent">
+                        </TextView>
+
+                        <EditText
+                                android:id="@+id/etHow"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
+                                android:layout_marginTop="@dimen/margin_default"
+                                android:layout_marginEnd="@dimen/margin_default"
+                                android:layout_marginBottom="@dimen/margin_default"
+                                android:textSize="@dimen/form_text_size"
+                                android:minLines="4"
+                                android:maxLines="4"
+                                android:lines="4"
+                                android:hint="@string/hint_select_how_explanation"
+                                android:inputType="textCapSentences"
+                                android:textColor="@color/colorPrimaryDark"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvHow">
+                        </EditText>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Button android:id="@+id/btnUpdateCase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:padding="4dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/update_case"
+                        android:textColor="@color/white"
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="gone">
+                </Button>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

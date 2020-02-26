@@ -158,7 +158,7 @@ class FirebaseDataSource : RemoteDataSource {
 
     override suspend fun updatePerson(user: User?, person: org.sic4change.domain.Person) {
         withContext(Dispatchers.IO) {
-            Timber.d("try to delete person from firebase")
+            Timber.d("try to update person from firebase")
             try {
                 val firestore = ChuqabpFirebaseService.mFirestore
                 val personRef = firestore.collection("persons")
@@ -173,10 +173,10 @@ class FirebaseDataSource : RemoteDataSource {
                     person.photo,
                     person.location)
                 personRef.document(person.id).set(personToUpdate).await()
-                Timber.d("Delete person result: ok")
-                uploadPersonFile(personToUpdate)
+                Timber.d("update person result: ok")
+                //uploadPersonFile(personToUpdate)
             } catch (ex: Exception) {
-                Timber.d("Delete person result: false ${ex.message}")
+                Timber.d("update person result: false ${ex.message}")
             }
         }
     }
@@ -244,6 +244,35 @@ class FirebaseDataSource : RemoteDataSource {
                 Timber.d("Delete case result: ok")
             } catch (ex: Exception) {
                 Timber.d("Delete case result: false ${ex.message}")
+            }
+        }
+    }
+
+    override suspend fun updateCase(user: User?, case: org.sic4change.domain.Case) {
+        withContext(Dispatchers.IO) {
+            Timber.d("try to update person from firebase")
+            try {
+                val firestore = ChuqabpFirebaseService.mFirestore
+                val caseRef = firestore.collection("cases")
+                val caseToUpdate = Case(
+                    case.id,
+                    case.person,
+                    case.name,
+                    case.surnames,
+                    user?.id,
+                    case.date,
+                    case.hour,
+                    case.place,
+                    case.physic,
+                    case.sexual,
+                    case.psychologic,
+                    case.social,
+                    case.economic,
+                    case.description)
+                caseRef.document(case.id).set(caseToUpdate).await()
+                Timber.d("update person result: ok")
+            } catch (ex: Exception) {
+                Timber.d("update person result: false ${ex.message}")
             }
         }
     }

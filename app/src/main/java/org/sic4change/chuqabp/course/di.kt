@@ -30,6 +30,8 @@ import org.sic4change.chuqabp.course.ui.main.newcase.NewCaseViewModel
 import org.sic4change.chuqabp.course.ui.main.newperson.NewPersonFragment
 import org.sic4change.chuqabp.course.ui.main.newperson.NewPersonViewModel
 import org.sic4change.chuqabp.course.ui.main.training.*
+import org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseFragment
+import org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseViewModel
 import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonFragment
 import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonViewModel
 import org.sic4change.chuqabp.course.ui.main.user.UserFragment
@@ -118,6 +120,15 @@ private val scopesModule = module {
         viewModel { (id: String) -> CaseDetailViewModel(id, get(), get(), get()) }
         scoped { FindCaseById(get()) }
         scoped { DeleteCase(get()) }
+    }
+
+    scope(named<UpdateCaseFragment>()) {
+        viewModel { (id: String) -> UpdateCaseViewModel(id, get(), get(), get(), get(), get(), get()) }
+        scoped { FindCaseById(get()) }
+        scoped { UpdateCase(get()) }
+        scoped { GetLocation(get()) }
+        scoped { GetPersonsToSelect(get()) }
+        scoped { FindPersonById(get()) }
     }
 
     scope(named<LoginFragment>()) {

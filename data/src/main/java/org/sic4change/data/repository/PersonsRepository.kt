@@ -16,12 +16,17 @@ class PersonsRepository(private val localDataSource: LocalDataSource,
     }
 
     suspend fun getPersons() : List<Person> {
-        if (localDataSource.getPersons().isEmpty()) {
+        /*if (localDataSource.getPersons().isEmpty()) {
             val user = localDataSource.getUser()
             val persons = remoteDataSource.getPersons(user?.id)
             localDataSource.deletePersons()
             localDataSource.insertPersons(persons)
         }
+        return localDataSource.getPersons()*/
+        val user = localDataSource.getUser()
+        val persons = remoteDataSource.getPersons(user?.id)
+        localDataSource.deletePersons()
+        localDataSource.insertPersons(persons)
         return localDataSource.getPersons()
     }
 

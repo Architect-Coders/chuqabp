@@ -22,18 +22,29 @@ class CasesRepository(private val localDataSource: LocalDataSource,
     }
 
     suspend fun getCases() : List<Case> {
-        if (localDataSource.getCases().isEmpty()) {
+        val user = localDataSource.getUser()
+        val cases = remoteDataSource.getCases(user?.id)
+        localDataSource.deleteCases()
+        localDataSource.insertCases(cases)
+        return localDataSource.getCases()
+        /*if (localDataSource.getCases().isEmpty()) {
             val user = localDataSource.getUser()
             val cases = remoteDataSource.getCases(user?.id)
             localDataSource.deleteCases()
             localDataSource.insertCases(cases)
         }
-        return localDataSource.getCases()
+        return localDataSource.getCases()*/
     }
 
     suspend fun deleteCase(id: String) {
         localDataSource.deleteCase(id)
         remoteDataSource.deleteCase(id)
+    }
+
+    suspend fun updatease(case: Case) {
+        val user = localDataSource.getUser()
+        localDataSource.updateCase(case)
+        remoteDataSource.updateCase(user, case)
     }
 
     suspend fun findCaseById(id: String): Case = localDataSource.findCaseById(id)

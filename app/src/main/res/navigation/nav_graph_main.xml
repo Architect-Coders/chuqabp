@@ -147,6 +147,9 @@
         <action
                 android:id="@+id/action_detailFragment_to_personsFragment"
                 app:destination="@id/mainFragment" />
+        <action
+                android:id="@+id/action_detailFragment_to_caseFragment"
+                app:destination="@id/caseDetailFragment" />
     </fragment>
     <fragment
             android:id="@+id/newPersonFragment"
@@ -186,7 +189,7 @@
                 android:name="id"
                 app:argType="string" />
         <action
-                android:id="@+id/action_updateCaseFragment_to_loginActivity"
-                app:destination="@id/loginActivity" />
+                android:id="@+id/action_updateCaseFragment_to_cases"
+                app:destination="@id/casesFragment" />
     </fragment>
 </navigation>

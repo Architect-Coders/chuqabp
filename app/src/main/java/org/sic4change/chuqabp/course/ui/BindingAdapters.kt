@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
 import org.sic4change.chuqabp.course.ui.main.cases.CasesAdapter
+import org.sic4change.chuqabp.course.ui.main.detail.CasesPersonAdapter
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.domain.Person
 import org.sic4change.domain.Case
@@ -76,6 +77,13 @@ fun RecyclerView.setItems(persons: List<Person>?) {
 @BindingAdapter("cases")
 fun RecyclerView.setCases(cases: List<Case>?) {
     (adapter as? CasesAdapter)?.let {
+        it.cases = cases ?: emptyList()
+    }
+}
+
+@BindingAdapter("casesPerson")
+fun RecyclerView.setCasesPerson(cases: List<Case>?) {
+    (adapter as? CasesPersonAdapter)?.let {
         it.cases = cases ?: emptyList()
     }
 }

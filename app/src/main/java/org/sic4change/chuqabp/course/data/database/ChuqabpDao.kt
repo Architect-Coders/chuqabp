@@ -65,5 +65,8 @@ interface ChuqabpDao {
     @Query("UPDATE `case` SET person=:person, date=:date, hour=:hour, place=:place, physic=:physic, sexual=:sexual, psychologic=:psychologic, social=:social, economic=:economic WHERE id = :id")
     fun updateCase(id: String, person: String, date: String, hour: String, place: String, physic: Boolean, sexual: Boolean, psychologic: Boolean, social: Boolean, economic: Boolean)
 
+    @Query("SELECT * FROM `case` WHERE person = :person")
+    fun getPersonCases(person: String): List<Case>
+
 
 }

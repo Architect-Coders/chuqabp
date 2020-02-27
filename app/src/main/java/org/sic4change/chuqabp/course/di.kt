@@ -75,9 +75,10 @@ private val scopesModule = module {
     }
 
     scope(named<DetailFragment>()) {
-        viewModel { (id: String) -> DetailViewModel(id, get(), get(), get()) }
+        viewModel { (id: String) -> DetailViewModel(id, get(), get(), get(), get()) }
         scoped { FindPersonById(get()) }
         scoped { DeletePerson(get()) }
+        scoped { GetCasesPerson(get()) }
     }
 
     scope(named<NewPersonFragment>()) {

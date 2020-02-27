@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="item"
+                type="org.sic4change.domain.Case" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                android:elevation="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="@dimen/margin_default">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+
+                <ImageView
+                        android:id="@+id/ivPlace"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:src="@drawable/ic_place"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginBottom="@dimen/margin_default">
+
+                </ImageView>
+
+                <TextView
+                        android:id="@+id/tvPersonLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/ivPlace"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="left"
+                        app:layout_constraintTop_toTopOf="@+id/ivPlace"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivPlace"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@{item.place}" />
+
+                <ImageView
+                        android:id="@+id/ivDate"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivPlace"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:src="@drawable/ic_date"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginBottom="@dimen/margin_default">
+                </ImageView>
+
+                <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/ivDate"
+                        android:gravity="left"
+                        app:layout_constraintTop_toTopOf="@+id/ivDate"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivDate"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@{item.date}" />
+
+                <ImageView
+                        android:id="@+id/ivHour"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintStart_toEndOf="@id/tvDate"
+                        app:layout_constraintTop_toBottomOf="@id/ivPlace"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:src="@drawable/ic_hour"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginBottom="@dimen/margin_default">
+                </ImageView>
+
+                <TextView
+                        android:id="@+id/tvHour"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/ivHour"
+                        android:gravity="left"
+                        app:layout_constraintTop_toTopOf="@+id/ivHour"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivHour"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@{item.hour}" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivDate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:layout_marginBottom="@dimen/margin_default">
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpPhysic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_physical"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            app:visible="@{item.physic}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpSexual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_sexual"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            app:visible="@{item.sexual}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpPsicological"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_psychological"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            app:visible="@{item.psychologic}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpSocial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_social"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            app:visible="@{item.social}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpEconomic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_economic"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            app:visible="@{item.economic}"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

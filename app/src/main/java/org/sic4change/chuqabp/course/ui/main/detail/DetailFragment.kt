@@ -9,15 +9,18 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_detail.recycler
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.sic4change.chuqabp.R
+import org.sic4change.chuqabp.course.ui.common.EventObserver
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.databinding.FragmentDetailBinding
 
 class DetailFragment: Fragment() {
 
+    private lateinit var adapter : CasesPersonAdapter
 
     private var binding: FragmentDetailBinding? = null
 
@@ -40,6 +43,9 @@ class DetailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = view.findNavController()
+
+        adapter = CasesPersonAdapter(viewModel::onCaseClicked)
+        recycler.adapter = adapter
 
         binding?.apply {
             viewmodel = viewModel
@@ -65,6 +71,11 @@ class DetailFragment: Fragment() {
             val action = DetailFragmentDirections.actionDetailFragmentToPersonsFragment()
             navController.navigate(action)
         }
+
+        viewModel.navigateToCase.observe(this, EventObserver{ id ->
+            val action = DetailFragmentDirections.actionDetailFragmentToCaseFragment(id)
+            navController.navigate(action)
+        })
     }
 
     private fun showDeleteConfirmationDialog() {

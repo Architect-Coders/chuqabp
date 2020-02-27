@@ -142,7 +142,7 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
                 viewModel.person.value?.surnames, tvDate.text.toString(), tvTime.text.toString(),
                 etPlace.text.toString(), cvPysical.isChecked, cvSexual.isChecked, cvPsychological.isChecked,
                 cvSocial.isChecked, cvEconomic.isChecked, etHow.text.toString())
-            navController.navigate(R.id.action_updateCaseFragment_to_loginActivity)
+            navController.navigate(R.id.action_updateCaseFragment_to_cases)
         }
 
         viewModel.person.observe(this, Observer<Person> {

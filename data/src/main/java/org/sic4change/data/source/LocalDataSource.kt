@@ -23,5 +23,6 @@ interface LocalDataSource {
     suspend fun createCase(case: Case)
     suspend fun updateCase(case: Case)
     suspend fun deleteCase(id: String)
+    suspend fun getPersonCases(person: String): List<Case>
 
 }

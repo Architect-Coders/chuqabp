@@ -2,6 +2,7 @@ package org.sic4change.data.repository
 
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.data.source.RemoteDataSource
+import org.sic4change.domain.Case
 import org.sic4change.domain.Person
 
 class PersonsRepository(private val localDataSource: LocalDataSource,
@@ -52,6 +53,10 @@ class PersonsRepository(private val localDataSource: LocalDataSource,
     }
 
     suspend fun findPersonById(id: String): Person = localDataSource.findPersonById(id)
+
+    suspend fun getCasesPerson(person: String) : List<Case> {
+        return localDataSource.getPersonCases(person)
+    }
 
 }
 

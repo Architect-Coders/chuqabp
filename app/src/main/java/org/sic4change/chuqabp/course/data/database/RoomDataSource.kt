@@ -93,6 +93,10 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         }
     }
 
+    override suspend fun getPersonCases(person: String): List<DomainCase> = withContext(Dispatchers.IO) {
+        chuqabpDao.getPersonCases(person).map { it.toDomainCase() }
+    }
+
     override suspend fun deleteCases() {
         withContext(Dispatchers.IO) {
             chuqabpDao.deleteCases()

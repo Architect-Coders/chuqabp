@@ -45,7 +45,6 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -186,23 +185,6 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
     private fun setType() {
         viewModel.setType(cvPysical.isChecked || cvSexual.isChecked || cvPsychological.isChecked ||
                 cvSocial.isChecked || cvEconomic.isChecked)
-    }
-
-    private fun showPersonSelection() {
-        recycler_persons_selector.visibility = VISIBLE
-    }
-
-    private fun hidePersonSelection() {
-        recycler_persons_selector.visibility = GONE
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = false
-        menu.findItem(R.id.action_add).isVisible = false
-        menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = false
-        menu.findItem(R.id.action_delete).isVisible = false
-        super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -3,7 +3,6 @@ package org.sic4change.chuqabp.course.ui.main.casedetail
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -34,7 +33,6 @@ class CaseDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -60,18 +58,15 @@ class CaseDetailFragment : Fragment() {
             val action = CaseDetailFragmentDirections.actionCaseDetailFragmentToUpdateCaseFragment(args.id)
             navController.navigate(action)
         }
+
         btnDeleteCase.setOnClickListener {
             showDeleteConfirmationDialog()
         }
-    }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = false
-        menu.findItem(R.id.action_add).isVisible = false
-        menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = false
-        menu.findItem(R.id.action_delete).isVisible = false
-        super.onPrepareOptionsMenu(menu)
+        btnCancelCase.setOnClickListener {
+            val action = CaseDetailFragmentDirections.actionCaseDetailFragmentToCasesFragment()
+            navController.navigate(action)
+        }
     }
 
     private fun showDeleteConfirmationDialog() {
@@ -89,7 +84,7 @@ class CaseDetailFragment : Fragment() {
     }
 
     private fun finish() {
-        navController.navigate(R.id.action_caseDetailFragment_to_loginActivity)
+        navController.navigate(R.id.action_caseDetailFragment_to_cases)
         activity?.finish()
     }
 

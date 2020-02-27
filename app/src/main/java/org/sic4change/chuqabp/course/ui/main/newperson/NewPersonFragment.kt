@@ -22,6 +22,7 @@ import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.*
 import org.sic4change.chuqabp.course.ui.common.CropQuality.Companion.IMAGE_ASPECT_RATIO_X_Y
 import org.sic4change.chuqabp.course.ui.common.CropQuality.Companion.IMAGE_COMPRESS_QUALITY
+import org.sic4change.chuqabp.course.ui.main.detail.DetailFragmentDirections
 import org.sic4change.chuqabp.databinding.FragmentNewPersonBinding
 
 
@@ -35,7 +36,6 @@ class NewPersonFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,6 +69,11 @@ class NewPersonFragment : Fragment() {
                 etPhone.text.toString(), etEmail.text.toString(), viewModel.photoUrl.value.toString(), etLocation.text.toString())
         }
 
+        btnCancelPerson.setOnClickListener {
+            val action = NewPersonFragmentDirections.actionNewPersonFragmentToPersons()
+            navController.navigate(action)
+        }
+
         viewModel.currentLocation.observe(this, Observer<String> {
             etLocation.setText(it)
         })
@@ -82,15 +87,6 @@ class NewPersonFragment : Fragment() {
             }
         })
 
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = false
-        menu.findItem(R.id.action_add).isVisible = false
-        menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = false
-        menu.findItem(R.id.action_delete).isVisible = false
-        super.onPrepareOptionsMenu(menu)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

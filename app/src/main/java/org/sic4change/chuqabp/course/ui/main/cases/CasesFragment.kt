@@ -30,7 +30,6 @@ class CasesFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -101,15 +100,6 @@ class CasesFragment: Fragment() {
             timer.start()
         }
 
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = false
-        menu.findItem(R.id.action_add).isVisible = false
-        menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = false
-        menu.findItem(R.id.action_delete).isVisible = false
-        super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

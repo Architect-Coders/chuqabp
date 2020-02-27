@@ -3,6 +3,7 @@ package org.sic4change.chuqabp.course.ui.main.user
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -19,7 +20,7 @@ import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.snackbar
 import org.sic4change.chuqabp.databinding.FragmentUserBinding
 
-class UserFragment : Fragment() {
+class UserFragment : Fragment(){
 
     private var binding: FragmentUserBinding? = null
 
@@ -29,7 +30,6 @@ class UserFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -102,15 +102,6 @@ class UserFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         bttNavigation.menu.findItem(R.id.configuration).isChecked = true
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = false
-        menu.findItem(R.id.action_add).isVisible = false
-        menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_delete).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = false
-        super.onPrepareOptionsMenu(menu)
     }
 
     private fun showLogoutConfirmationDialog() {

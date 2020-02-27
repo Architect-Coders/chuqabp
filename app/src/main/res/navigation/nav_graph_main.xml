@@ -122,11 +122,14 @@
                 android:name="id"
                 app:argType="string" />
         <action
-                android:id="@+id/action_caseDetailFragment_to_loginActivity"
-                app:destination="@id/loginActivity" />
+                android:id="@+id/action_caseDetailFragment_to_cases"
+                app:destination="@id/casesFragment" />
         <action
                 android:id="@+id/action_caseDetailFragment_to_updateCaseFragment"
                 app:destination="@id/updateCaseFragment" />
+        <action
+                android:id="@+id/action_caseDetailFragment_to_casesFragment"
+                app:destination="@id/casesFragment" />
     </fragment>
     <fragment
             android:id="@+id/detailFragment"
@@ -141,6 +144,9 @@
         <action
                 android:id="@+id/action_detailFragment_to_updatePersonFragment"
                 app:destination="@id/updatePersonFragment" />
+        <action
+                android:id="@+id/action_detailFragment_to_personsFragment"
+                app:destination="@id/mainFragment" />
     </fragment>
     <fragment
             android:id="@+id/newPersonFragment"
@@ -149,6 +155,9 @@
         <action
                 android:id="@+id/action_newPersonFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
+        <action
+                android:id="@+id/action_newPersonFragment_to_persons"
+                app:destination="@id/mainFragment" />
     </fragment>
     <activity
             android:id="@+id/loginActivity"
@@ -165,6 +174,9 @@
         <action
                 android:id="@+id/action_updateFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
+        <action
+                android:id="@+id/action_updateFragment_to_detailPerson"
+                app:destination="@id/detailFragment" />
     </fragment>
     <fragment
             android:id="@+id/updateCaseFragment"

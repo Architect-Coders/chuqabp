@@ -40,7 +40,6 @@ class UpdatePersonFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -76,6 +75,11 @@ class UpdatePersonFragment: Fragment() {
                 etPhone.text.toString(), etEmail.text.toString(), viewModel.photoUrl.value.toString(), etLocation.text.toString())
         }
 
+        btnCancelUpdatePerson.setOnClickListener {
+            val action = UpdatePersonFragmentDirections.actionUpdateFragmentToDetailPerson(args.id)
+            navController.navigate(action)
+        }
+
         viewModel.showingUpdatePersonError.observe(this, EventObserver {
             if (it) {
                 showMessage(getString(R.string.person_mandatory_field))
@@ -96,15 +100,6 @@ class UpdatePersonFragment: Fragment() {
                 Glide.with(this).load(result.uri).into(ivUpdatePhotoPerson)
             }
         }
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_refresh).isVisible = false
-        menu.findItem(R.id.action_add).isVisible = false
-        menu.findItem(R.id.action_account).isVisible = false
-        menu.findItem(R.id.action_edit).isVisible = false
-        menu.findItem(R.id.action_delete).isVisible = false
-        super.onPrepareOptionsMenu(menu)
     }
 
     private fun showMessage(message: String) {

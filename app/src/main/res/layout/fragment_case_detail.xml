@@ -221,9 +221,21 @@
                 android:layout_marginBottom="@dimen/margin_default"
                 android:clickable="true"
                 app:backgroundTint="@color/colorPrimaryDark"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btnCancelCase"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_delete"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCancelCase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:clickable="true"
+                app:backgroundTint="@color/cardview_dark_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_cancel"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,6 +28,9 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
     private val _resources = MutableLiveData<List<Resource>>()
     val resources: LiveData<List<Resource>> get() = _resources
 
+    private val _resourcesSelected = MutableLiveData<String>()
+    val resourceSelected: LiveData<String> get() = _resourcesSelected
+
     private val _person = MutableLiveData<Person>()
     val person: LiveData<Person> get() = _person
 
@@ -46,7 +49,6 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
             _currentLocation.value = getLocation.invoke()
             _persons.value = getPersons.invoke()
             _resources.value = getResources.invoke()
-            println("Aqui")
         }
     }
 
@@ -66,8 +68,22 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
         _person.value = person
     }
 
-    fun onResourceClicked(resource: Resource) {
-
+    fun onResourceClicked(resourceClicked: Resource) {
+        if (!_resourcesSelected.value.isNullOrEmpty()) {
+            for (resource: String in _resourcesSelected.value?.split(",")!!) {
+                if (resource == resourceClicked.id) {
+                    _resourcesSelected.value = _resourcesSelected.value!!.replace("$resource,", "")
+                    _resourcesSelected.value = _resourcesSelected.value!!.replace(resource , "")
+                    _resources.value?.find { it.id ==  resourceClicked.id}?.selected = false
+                    return
+                }
+            }
+            _resourcesSelected.value = _resourcesSelected.value + "," + resourceClicked.id
+            _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
+        } else {
+            _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
+            _resourcesSelected.value = resourceClicked.id
+        }
     }
 
     fun onRegisterCaseClicked(person: String?, name: String?, surnames: String?, date: String, hour: String, place: String,
@@ -78,7 +94,8 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
                 name?.let { it1 ->
                     surnames?.let { it2 ->
                         Case(Date().time.toString() + person, it, it1, it2, date, hour, place,
-                            physical, sexual, psycological, social, economic, description)
+                            physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString()
+                        )
                     }
                 }
             }?.let { createCase.invoke(it) }

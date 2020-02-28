@@ -23,6 +23,7 @@ import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.chuqabp.databinding.FragmentNewCaseBinding
 import org.sic4change.domain.Person
+import org.sic4change.domain.Resource
 import java.util.*
 
 class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
@@ -202,6 +203,10 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
                 disabledRegister()
                 ivFiveStep.setImageResource(R.drawable.ic_looks_5)
             }
+        })
+
+        viewModel.resourceSelected.observe(this, Observer<String>{
+            resourcesAdapter.notifyDataSetChanged()
         })
 
     }

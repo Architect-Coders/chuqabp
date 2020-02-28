@@ -7,6 +7,7 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
 import org.sic4change.chuqabp.course.ui.main.cases.CasesAdapter
 import org.sic4change.chuqabp.course.ui.main.detail.CasesPersonAdapter
@@ -101,5 +102,14 @@ fun RecyclerView.setCasesPerson(cases: List<Case>?) {
 fun RecyclerView.setResources(resources: List<Resource>?) {
     (adapter as? ResourcesAdapter)?.let {
         it.resources = resources ?: emptyList()
+    }
+}
+
+@BindingAdapter("resourceSelected")
+fun TextView.resourceSelected(resource: Resource?) = resource?.run {
+    if (resource.selected) {
+        setBackgroundColor(resources.getColor(R.color.colorPrimary))
+    } else {
+        setBackgroundColor(resources.getColor(R.color.gray))
     }
 }

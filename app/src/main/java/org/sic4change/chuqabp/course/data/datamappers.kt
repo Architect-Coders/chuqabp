@@ -38,16 +38,16 @@ fun ServerPerson.toDomainPerson() : Person = Person(
     id, name, surnames, birthday, phone, email, photo, location
 )
 
-fun Case.toDatabaseCase() : DatabaseCase =  DatabaseCase(
-    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description
+fun Case.toDatabaseCase() : DatabaseCase = DatabaseCase(
+        id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description, resources
 )
 
 fun DatabaseCase.toDomainCase() : Case = Case(
-    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description, resources
 )
 
 fun ServerCase.toDomainCase() : Case = Case(
-    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description, resources
 )
 
 fun Resource.toDatabaseResource() : DatabaseResource =  DatabaseResource(
@@ -55,9 +55,9 @@ fun Resource.toDatabaseResource() : DatabaseResource =  DatabaseResource(
 )
 
 fun DatabaseResource.toDomainResource() : Resource = Resource(
-    id, name, place, physic, sexual, psychologic, social, economic, description
+    id, name, place, physic, sexual, psychologic, social, economic, description, false
 )
 
 fun ServerResource.toDomainResource() : Resource = Resource(
-    id, name, place, physic, sexual, psychologic, social, economic, description
+    id, name, place, physic, sexual, psychologic, social, economic, description, false
 )

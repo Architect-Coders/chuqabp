@@ -9,4 +9,5 @@ data class Resource (
     val psychologic: Boolean = false,
     val social: Boolean = false,
     val economic: Boolean = false,
-    val description: String = "")
+    val description: String = "",
+    var selected: Boolean = false)

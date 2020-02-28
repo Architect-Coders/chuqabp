@@ -39,7 +39,8 @@ data class Case (
     val psychologic: Boolean = false,
     val social: Boolean = false,
     val economic: Boolean = false,
-    val description: String = "")
+    val description: String = "",
+    val resources: String = "")
 
 @Entity
 data class Resource (

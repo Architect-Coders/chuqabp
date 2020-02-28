@@ -3,6 +3,7 @@ package org.sic4change.data.source
 import org.sic4change.domain.Person
 import org.sic4change.domain.User
 import org.sic4change.domain.Case
+import org.sic4change.domain.Resource
 
 interface LocalDataSource {
     suspend fun getUser() : User?
@@ -24,5 +25,7 @@ interface LocalDataSource {
     suspend fun updateCase(case: Case)
     suspend fun deleteCase(id: String)
     suspend fun getPersonCases(person: String): List<Case>
-
+    suspend fun getResources() : List<Resource>
+    suspend fun deleteResources()
+    suspend fun insertResources(resources: List<Resource>)
 }

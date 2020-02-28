@@ -6,6 +6,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import org.sic4change.chuqabp.course.data.toDomainCase
 import org.sic4change.chuqabp.course.data.toDomainPerson
+import org.sic4change.chuqabp.course.data.toDomainResource
 import org.sic4change.chuqabp.course.data.toDomainUser
 import org.sic4change.data.source.RemoteDataSource
 import org.sic4change.domain.User
@@ -227,8 +228,8 @@ class FirebaseDataSource : RemoteDataSource {
 
     override suspend fun getCases(mentorId: String?): List<org.sic4change.domain.Case> = withContext(Dispatchers.IO) {
         val firestore = ChuqabpFirebaseService.mFirestore
-        val personsRef = firestore.collection("cases")
-        val query = personsRef.whereEqualTo("mentorId", mentorId)
+        val casesRef = firestore.collection("cases")
+        val query = casesRef.whereEqualTo("mentorId", mentorId)
         val result = query.get().await()
         val networkCasesContainer = NetworkCasesContainer(result.toObjects(Case::class.java))
         networkCasesContainer.results.map { it.toDomainCase() }
@@ -275,6 +276,15 @@ class FirebaseDataSource : RemoteDataSource {
                 Timber.d("update person result: false ${ex.message}")
             }
         }
+    }
+
+    override suspend fun getResources(): List<org.sic4change.domain.Resource> = withContext(Dispatchers.IO) {
+        val firestore = ChuqabpFirebaseService.mFirestore
+        val resourcesRef = firestore.collection("resources")
+        val query = resourcesRef.whereEqualTo("organization", "Organization")
+        val result = query.get().await()
+        val networkResourcesContainer = NetworkResourcesContainer(result.toObjects(Resource::class.java))
+        networkResourcesContainer.results.map { it.toDomainResource() }
     }
 
 }

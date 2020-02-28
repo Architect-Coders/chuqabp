@@ -59,7 +59,7 @@
                 </ImageView>
 
                 <TextView
-                        android:id="@+id/tvPersonLocation"
+                        android:id="@+id/tvResourceLocation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@+id/ivPlace"

@@ -7,6 +7,7 @@ import org.sic4change.data.source.LocalDataSource
 import org.sic4change.domain.User as DomainUser
 import org.sic4change.domain.Person as DomainPerson
 import org.sic4change.domain.Case as DomainCase
+import org.sic4change.domain.Resource as DomainResource
 
 class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
@@ -115,6 +116,22 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     override suspend fun findCaseById(id: String): DomainCase = withContext(Dispatchers.IO) {
         chuqabpDao.findCaseById(id).toDomainCase()
+    }
+
+    override suspend fun getResources(): List<DomainResource> = withContext(Dispatchers.IO) {
+        chuqabpDao.getAllResources().map { it.toDomainResource() }
+    }
+
+    override suspend fun insertResources(resources: List<DomainResource>) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.insertResources(resources.map { it.toDatabaseResource() })
+        }
+    }
+
+    override suspend fun deleteResources() {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.deleteResources()
+        }
     }
 
 }

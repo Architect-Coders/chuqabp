@@ -44,7 +44,22 @@ data class Case (
     @Exclude val description: String = "")
 
 @JsonClass(generateAdapter = true)
+data class Resource (
+    @Exclude val id: String = "",
+    @Exclude val name: String = "",
+    @Exclude val place: String = "",
+    @Exclude val physic: Boolean = false,
+    @Exclude val sexual: Boolean = false,
+    @Exclude val psychologic: Boolean = false,
+    @Exclude val social: Boolean = false,
+    @Exclude val economic: Boolean = false,
+    @Exclude val description: String = "")
+
+@JsonClass(generateAdapter = true)
 data class NetworkPersonsContainer(val results: List<Person>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkCasesContainer(val results: List<Case>)
+
+@JsonClass(generateAdapter = true)
+data class NetworkResourcesContainer(val results: List<Resource>)

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-                name="item"
-                type="org.sic4change.domain.Case" />
+                name="resource"
+                type="org.sic4change.domain.Resource" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:fullnameCase="@{item}"
+                        app:fullnameResource="@{resource}"
                         android:background="@color/colorPrimaryDark"
                         android:textSize="18sp"
                         android:textColor="@color/white"/>
@@ -70,60 +70,7 @@
                         android:layout_marginEnd="@dimen/margin_default"
                         android:textSize="12sp"
                         android:textColor="@color/colorPrimary"
-                        android:text="@{item.place}" />
-
-                <ImageView
-                        android:id="@+id/ivDate"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ivPlace"
-                        android:layout_marginTop="@dimen/margin_default"
-                        android:src="@drawable/ic_date"
-                        android:layout_marginStart="@dimen/margin_default"
-                        android:layout_marginBottom="@dimen/margin_default">
-                </ImageView>
-
-                <TextView
-                        android:id="@+id/tvDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@+id/ivDate"
-                        android:gravity="left"
-                        app:layout_constraintTop_toTopOf="@+id/ivDate"
-                        app:layout_constraintBottom_toBottomOf="@+id/ivDate"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="@dimen/margin_default"
-                        android:layout_marginTop="@dimen/margin_default"
-                        android:textSize="12sp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="@{item.date}" />
-
-                <ImageView
-                        android:id="@+id/ivHour"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:layout_constraintStart_toEndOf="@id/tvDate"
-                        app:layout_constraintTop_toBottomOf="@id/ivPlace"
-                        android:layout_marginTop="@dimen/margin_default"
-                        android:src="@drawable/ic_hour"
-                        android:layout_marginStart="@dimen/margin_default"
-                        android:layout_marginBottom="@dimen/margin_default">
-                </ImageView>
-
-                <TextView
-                        android:id="@+id/tvHour"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@+id/ivHour"
-                        android:gravity="left"
-                        app:layout_constraintTop_toTopOf="@+id/ivHour"
-                        app:layout_constraintBottom_toBottomOf="@+id/ivHour"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="@dimen/margin_default"
-                        android:textSize="12sp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="@{item.hour}" />
+                        android:text="@{resource.place}" />
 
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -131,12 +78,13 @@
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ivDate"
+                        app:layout_constraintTop_toBottomOf="@+id/ivPlace"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginStart="@dimen/margin_default"
                         android:layout_marginEnd="@dimen/margin_default"
                         android:layout_marginTop="@dimen/margin_default"
-                        android:layout_marginBottom="@dimen/margin_default">
+                        android:layout_marginBottom="@dimen/margin_default"
+                        android:visibility="gone">
 
                     <com.google.android.material.chip.Chip
                             android:id="@+id/cpPhysic"
@@ -145,7 +93,7 @@
                             android:text="@string/checkbox_title_physical"
                             android:theme="@style/Theme.MaterialComponents.Light"
                             android:layout_margin="4dp"
-                            app:visible="@{item.physic}"/>
+                            app:visible="@{resource.physic}"/>
 
                     <com.google.android.material.chip.Chip
                             android:id="@+id/cpSexual"
@@ -154,7 +102,7 @@
                             android:text="@string/checkbox_title_sexual"
                             android:theme="@style/Theme.MaterialComponents.Light"
                             android:layout_margin="4dp"
-                            app:visible="@{item.sexual}"/>
+                            app:visible="@{resource.sexual}"/>
 
                     <com.google.android.material.chip.Chip
                             android:id="@+id/cpPsicological"
@@ -163,7 +111,7 @@
                             android:text="@string/checkbox_title_psychological"
                             android:theme="@style/Theme.MaterialComponents.Light"
                             android:layout_margin="4dp"
-                            app:visible="@{item.psychologic}"/>
+                            app:visible="@{resource.psychologic}"/>
 
                     <com.google.android.material.chip.Chip
                             android:id="@+id/cpSocial"
@@ -172,7 +120,7 @@
                             android:text="@string/checkbox_title_social"
                             android:theme="@style/Theme.MaterialComponents.Light"
                             android:layout_margin="4dp"
-                            app:visible="@{item.social}"/>
+                            app:visible="@{resource.social}"/>
 
                     <com.google.android.material.chip.Chip
                             android:id="@+id/cpEconomic"
@@ -181,7 +129,7 @@
                             android:text="@string/checkbox_title_economic"
                             android:theme="@style/Theme.MaterialComponents.Light"
                             android:layout_margin="4dp"
-                            app:visible="@{item.economic}"/>
+                            app:visible="@{resource.economic}"/>
 
                 </LinearLayout>
 

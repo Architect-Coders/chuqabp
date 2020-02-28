@@ -29,6 +29,8 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var adapter : PersonsAdapter
 
+    private lateinit var resourcesAdapter: ResourcesAdapter
+
     private lateinit var datePickerDialog: DatePickerDialog
 
     private lateinit var timePickerDialog: TimePickerDialog
@@ -55,6 +57,9 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         adapter = PersonsAdapter(viewModel::onPersonClicked)
         recycler_persons_selector.adapter = adapter
+
+        resourcesAdapter = ResourcesAdapter(viewModel::onResourceClicked)
+        recycler_resources_selector.adapter = resourcesAdapter
 
         binding?.apply {
             viewmodel = viewModel
@@ -140,12 +145,18 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             setType()
         }
 
+        cvResources.setOnClickListener {
+            hideShowResourceSelection()
+        }
+
         etHow.addTextChangedListener {
             if (it != null && it.isNotEmpty()) {
+                enabledResourcesView()
                 enabledRegister()
                 ivSixStep.setImageResource(R.drawable.ic_check)
             } else {
                 disabledRegister()
+                disabledResourcesView()
                 ivSixStep.setImageResource(R.drawable.ic_looks_6)
             }
         }
@@ -209,6 +220,12 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
         tvPersonName.text = ""
     }
 
+    private fun hideShowResourceSelection() = if (recycler_resources_selector.isVisible) {
+        recycler_resources_selector.visibility = GONE
+    } else {
+        recycler_resources_selector.visibility = VISIBLE
+    }
+
     override fun onResume() {
         super.onResume()
         bttNavigation.menu.findItem(R.id.new_case).isChecked = true
@@ -240,6 +257,14 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun disabledHowQuestion() {
         cvHow.visibility = GONE
+    }
+
+    private fun enabledResourcesView() {
+        cvResources.visibility = VISIBLE
+    }
+
+    private fun disabledResourcesView() {
+        cvResources.visibility = GONE
     }
 
     private fun enabledRegister() {

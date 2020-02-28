@@ -68,5 +68,14 @@ interface ChuqabpDao {
     @Query("SELECT * FROM `case` WHERE person = :person")
     fun getPersonCases(person: String): List<Case>
 
+    @Query("SELECT * FROM `resource` ORDER BY id DESC")
+    fun getAllResources() : List<Resource>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertResources(resources: List<Resource>)
+
+    @Query("DELETE FROM `resource`")
+    fun deleteResources()
+
 
 }

@@ -64,6 +64,7 @@ val dataModule = module {
     factory { UserRepository(get(), get())}
     factory { PersonsRepository(get(), get())}
     factory { CasesRepository(get(), get()) }
+    factory { ResourcesRepository(get(), get()) }
 }
 
 private val scopesModule = module {
@@ -105,10 +106,11 @@ private val scopesModule = module {
     }
 
     scope(named<NewCaseFragment>()) {
-        viewModel { NewCaseViewModel(get(), get(), get(), get()) }
+        viewModel { NewCaseViewModel(get(), get(), get(), get(), get()) }
         scoped { GetPersonsToSelect(get()) }
         scoped { GetLocation(get()) }
         scoped { CreateCase(get()) }
+        scoped { GetResources(get()) }
     }
 
     scope(named<CasesFragment>()) {

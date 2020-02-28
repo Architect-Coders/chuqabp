@@ -98,4 +98,7 @@
     <!--Update Case-->
     <string name="update_case">Actualizar</string>
 
+    <!--Resources-->
+    <string name="add_resource">Añada los recursos</string>
+
 </resources>

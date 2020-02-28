@@ -11,8 +11,10 @@ import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
 import org.sic4change.chuqabp.course.ui.main.cases.CasesAdapter
 import org.sic4change.chuqabp.course.ui.main.detail.CasesPersonAdapter
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
+import org.sic4change.chuqabp.course.ui.main.newcase.ResourcesAdapter
 import org.sic4change.domain.Person
 import org.sic4change.domain.Case
+import org.sic4change.domain.Resource
 
 @BindingAdapter("url")
 fun ImageView.bindUrl(url: String?) {
@@ -67,6 +69,13 @@ fun TextView.setFullNameCaseText(case: Case?) = case?.run {
     }
 }
 
+@BindingAdapter("fullnameResource")
+fun TextView.setFullNameCaseText(resource: Resource?) = resource?.run {
+    text = buildSpannedString {
+        append(name)
+    }
+}
+
 @BindingAdapter("items")
 fun RecyclerView.setItems(persons: List<Person>?) {
     (adapter as? PersonsAdapter)?.let {
@@ -85,5 +94,12 @@ fun RecyclerView.setCases(cases: List<Case>?) {
 fun RecyclerView.setCasesPerson(cases: List<Case>?) {
     (adapter as? CasesPersonAdapter)?.let {
         it.cases = cases ?: emptyList()
+    }
+}
+
+@BindingAdapter("resources")
+fun RecyclerView.setResources(resources: List<Resource>?) {
+    (adapter as? ResourcesAdapter)?.let {
+        it.resources = resources ?: emptyList()
     }
 }

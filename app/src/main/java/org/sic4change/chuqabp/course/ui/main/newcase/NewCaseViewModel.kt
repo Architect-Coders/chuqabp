@@ -46,6 +46,7 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
     init {
         initScope()
         launch {
+            _resourcesSelected.value = ""
             _currentLocation.value = getLocation.invoke()
             _persons.value = getPersons.invoke()
             _resources.value = getResources.invoke()

@@ -40,9 +40,10 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:fullname="@{item}"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/white"
                         android:textSize="18sp"
-                        android:textColor="@color/white"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"/>
 
                 <ImageView
                         android:id="@+id/ivPlace"
@@ -70,7 +71,6 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="@dimen/margin_default"
                         android:textSize="12sp"
-                        android:textColor="@color/colorPrimary"
                         android:text="@{item.location}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

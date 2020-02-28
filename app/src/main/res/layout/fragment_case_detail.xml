@@ -67,7 +67,6 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.case.place}" />
 
             <ImageView
@@ -94,7 +93,6 @@
                     android:layout_marginEnd="@dimen/margin_default"
                     android:layout_marginTop="@dimen/margin_default"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.case.date}" />
 
             <ImageView
@@ -120,7 +118,6 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.case.hour}" />
 
             <LinearLayout
@@ -205,9 +202,9 @@
                 android:id="@+id/tvResources"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:text="@string/resources"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvCaseDetail"
                 android:layout_marginTop="@dimen/margin_default"
@@ -221,7 +218,6 @@
                 android:id="@+id/tvCasesLine"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvResources"
                 android:layout_marginTop="2dp"

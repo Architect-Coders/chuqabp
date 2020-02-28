@@ -67,7 +67,6 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.location}" />
 
             <ImageView
@@ -91,7 +90,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivBirthdate"
                     android:layout_marginStart="4dp"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.birthdate}" />
 
             <ImageView
@@ -115,7 +113,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivPhone"
                     android:layout_marginStart="4dp"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.phone}" />
 
             <ImageView
@@ -141,7 +138,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivEmail"
                     android:layout_marginStart="4dp"
                     android:textSize="12sp"
-                    android:textColor="@color/colorPrimary"
                     android:text="@{viewmodel.person.email}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,9 +148,9 @@
             android:id="@+id/tvCases"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:text="@string/cases"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cvDetail"
                 android:layout_marginTop="@dimen/margin_default"
@@ -168,7 +164,6 @@
                 android:id="@+id/tvCasesLine"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCases"
                 android:layout_marginTop="2dp"

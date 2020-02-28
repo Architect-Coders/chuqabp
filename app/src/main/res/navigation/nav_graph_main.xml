@@ -8,7 +8,7 @@
     <fragment
             android:id="@+id/mainFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.main.MainFragment"
-            android:label="@string/app_name">
+            android:label="@string/persons">
         <action
                 android:id="@+id/action_mainFragment_to_detailFragment"
                 app:destination="@id/detailFragment"
@@ -39,7 +39,7 @@
     <fragment
             android:id="@+id/userFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.user.UserFragment"
-            android:label="@string/app_name">
+            android:label="@string/configuration">
         <action
                 android:id="@+id/action_userFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
@@ -59,7 +59,7 @@
     <fragment
             android:id="@+id/trainingFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.training.TrainingFragment"
-            android:label="@string/app_name">
+            android:label="@string/training">
         <action
                 android:id="@+id/action_trainingFragment_to_mainFragment"
                 app:destination="@id/mainFragment" />
@@ -76,7 +76,7 @@
     <fragment
             android:id="@+id/newCaseFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment"
-            android:label="@string/app_name">
+            android:label="@string/new_case">
         <action
                 android:id="@+id/action_newCaseFragment_to_mainFragment"
                 app:destination="@id/mainFragment" />
@@ -93,7 +93,7 @@
     <fragment
             android:id="@+id/casesFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.cases.CasesFragment"
-            android:label="@string/app_name">
+            android:label="@string/cases">
         <action
                 android:id="@+id/action_casesFragment_to_CaseDetailFragment"
                 app:destination="@id/caseDetailFragment"
@@ -117,7 +117,7 @@
     <fragment
             android:id="@+id/caseDetailFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailFragment"
-            android:label="@string/app_name">
+            android:label="">
         <argument
                 android:name="id"
                 app:argType="string" />
@@ -134,7 +134,7 @@
     <fragment
             android:id="@+id/detailFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.detail.DetailFragment"
-            android:label="@string/app_name">
+            android:label="">
         <argument
                 android:name="id"
                 app:argType="string" />
@@ -154,7 +154,7 @@
     <fragment
             android:id="@+id/newPersonFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.newperson.NewPersonFragment"
-            android:label="@string/app_name" >
+            android:label="" >
         <action
                 android:id="@+id/action_newPersonFragment_to_loginActivity"
                 app:destination="@id/loginActivity" />
@@ -183,8 +183,7 @@
     </fragment>
     <fragment
             android:id="@+id/updateCaseFragment"
-            android:name="org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseFragment"
-            android:label="@string/app_name" >
+            android:name="org.sic4change.chuqabp.course.ui.main.updatecase.UpdateCaseFragment">
         <argument
                 android:name="id"
                 app:argType="string" />

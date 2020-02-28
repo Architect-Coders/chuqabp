@@ -15,7 +15,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
             <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -45,7 +44,7 @@
                                 android:padding="@dimen/margin_medium"
                                 android:text="@string/edit_password"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                         <ImageView
                                 android:id="@+id/ivChangePassword"
@@ -58,7 +57,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_edit_user"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -82,7 +81,7 @@
                                 android:textColor="@color/colorPrimaryDark"
                                 android:padding="@dimen/margin_medium"
                                 android:text="@string/logout"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                         <ImageView
                                 android:id="@+id/ivLogout"
@@ -95,7 +94,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_exit"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -119,7 +118,7 @@
                                 android:padding="@dimen/margin_medium"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="@string/delete_account"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                         <ImageView
                                 android:id="@+id/ivDeleteAccount"
@@ -132,7 +131,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_delete_user"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -156,7 +155,7 @@
                                 android:padding="@dimen/margin_medium"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:text="@string/terms_and_conditions"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                         <ImageView
                                 android:id="@+id/ivTermsAndConditions"
@@ -169,7 +168,7 @@
                                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                                 android:src="@drawable/ic_file"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="12sp" />
+                                android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -200,8 +199,5 @@
             </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </layout>

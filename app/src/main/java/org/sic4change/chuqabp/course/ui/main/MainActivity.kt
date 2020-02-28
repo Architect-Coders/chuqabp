@@ -19,27 +19,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = this.findNavController(R.id.nav_host_fragment)
-        //NavigationUI.setupActionBarWithNavController(this, navController)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if (destination.label == getString(R.string.new_case) ||
+                destination.label == getString(R.string.cases)  ||
+                destination.label == getString(R.string.persons) ||
+                destination.label == getString(R.string.training) ||
+                destination.label == getString(R.string.configuration)) {
+                title = getString(R.string.app_name) + ": " + destination.label
+            } else {
+                title = getString(R.string.app_name)
+            }
+        }
 
     }
-
-    /*override fun onSupportNavigateUp(): Boolean {
-        navController = this.findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp()
-    }*/
-
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return true
-    }*/
 
     override fun onBackPressed() {
-
+        if (title.contains(":")) {
+            finishAffinity()
+        }
     }
-
-
-
-
 
 }

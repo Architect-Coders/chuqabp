@@ -101,5 +101,6 @@
     <!--Resources-->
     <string name="add_resource">Añada los recursos</string>
     <string name="resources">Recursos asignados</string>
+    <string name="new_person">Nueva Persona</string>
 
 </resources>

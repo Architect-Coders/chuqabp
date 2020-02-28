@@ -29,8 +29,7 @@
 
         <activity
                 android:name="org.sic4change.chuqabp.course.ui.main.MainActivity"
-                android:screenOrientation="portrait"
-                android:label="@string/app_name">
+                android:screenOrientation="portrait">
 
         </activity>
 

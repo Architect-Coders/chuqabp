@@ -120,9 +120,10 @@ private val scopesModule = module {
     }
 
     scope(named<CaseDetailFragment>()) {
-        viewModel { (id: String) -> CaseDetailViewModel(id, get(), get(), get()) }
+        viewModel { (id: String) -> CaseDetailViewModel(id, get(), get(), get(), get()) }
         scoped { FindCaseById(get()) }
         scoped { DeleteCase(get()) }
+        scoped { GetResourcesCase(get()) }
     }
 
     scope(named<UpdateCaseFragment>()) {

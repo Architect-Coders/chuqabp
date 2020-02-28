@@ -113,3 +113,10 @@ fun TextView.resourceSelected(resource: Resource?) = resource?.run {
         setBackgroundColor(resources.getColor(R.color.gray))
     }
 }
+
+@BindingAdapter("resourcesCase")
+fun RecyclerView.setResourcesCase(resources: List<Resource>?) {
+    (adapter as? ResourcesAdapter)?.let {
+        it.resources = resources ?: emptyList()
+    }
+}

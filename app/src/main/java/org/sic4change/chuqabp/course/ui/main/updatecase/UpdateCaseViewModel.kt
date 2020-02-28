@@ -104,6 +104,9 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
                 if (resource == resourceClicked.id) {
                     _resourcesSelected.value = _resourcesSelected.value!!.replace("$resource,", "")
                     _resourcesSelected.value = _resourcesSelected.value!!.replace(resource , "")
+                    if (_resourcesSelected.value!!.last() == ',') {
+                        _resourcesSelected.value = _resourcesSelected.value!!.substring(0, _resourcesSelected.value!!.length -1)
+                    }
                     _resources.value?.find { it.id ==  resourceClicked.id}?.selected = false
                     return
                 }

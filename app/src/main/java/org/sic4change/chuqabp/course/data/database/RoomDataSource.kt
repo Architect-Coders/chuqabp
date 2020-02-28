@@ -134,6 +134,10 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         }
     }
 
+    override suspend fun findResourceById(id: String): DomainResource = withContext(Dispatchers.IO) {
+        chuqabpDao.findResourceById(id).toDomainResource()
+    }
+
 }
 
 

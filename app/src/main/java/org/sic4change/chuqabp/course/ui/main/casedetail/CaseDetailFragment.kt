@@ -16,10 +16,12 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
+import org.sic4change.chuqabp.course.ui.main.newcase.ResourcesAdapter
 import org.sic4change.chuqabp.databinding.FragmentCaseDetailBinding
 
 class CaseDetailFragment : Fragment() {
 
+    private lateinit var adapter : ResourcesAdapter
 
     private var binding: FragmentCaseDetailBinding? = null
 
@@ -42,6 +44,9 @@ class CaseDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = view.findNavController()
+
+        adapter = ResourcesAdapter(viewModel::onResourceClicked)
+        recycler.adapter = adapter
 
         binding?.apply {
             viewmodel = viewModel

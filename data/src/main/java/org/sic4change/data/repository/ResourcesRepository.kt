@@ -14,6 +14,24 @@ class ResourcesRepository (private val localDataSource: LocalDataSource,
         return localDataSource.getResources()
     }
 
+    suspend fun getCaseResources(resources: String) : List<Resource> {
+        var listResources = emptyList<Resource>().toMutableList()
+        if (!resources.isNullOrEmpty()) {
+            if (!resources.contains(",")) {
+                var resourceToAdd = localDataSource.findResourceById(resources)
+                resourceToAdd.selected = true
+                listResources.add(resourceToAdd)
+            } else {
+                for (resourceSplitted: String in resources.split(",")) {
+                    var resourceToAdd = localDataSource.findResourceById(resourceSplitted)
+                    resourceToAdd.selected = true
+                    listResources.add(resourceToAdd)
+                }
+            }
+        }
+        return listResources.toList()
+    }
+
 
 }
 

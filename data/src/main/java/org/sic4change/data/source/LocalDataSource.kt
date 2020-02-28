@@ -28,4 +28,5 @@ interface LocalDataSource {
     suspend fun getResources() : List<Resource>
     suspend fun deleteResources()
     suspend fun insertResources(resources: List<Resource>)
+    suspend fun findResourceById(id: String) : Resource
 }

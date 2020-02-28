@@ -77,5 +77,8 @@ interface ChuqabpDao {
     @Query("DELETE FROM `resource`")
     fun deleteResources()
 
+    @Query("SELECT * FROM `resource` WHERE id = :id")
+    fun findResourceById(id: String): Resource
+
 
 }

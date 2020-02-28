@@ -11,12 +11,12 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white">
 
         <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="4dp"
                 android:elevation="2dp"
@@ -27,7 +27,7 @@
                 android:layout_margin="@dimen/margin_default">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/white">
 
@@ -37,7 +37,6 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/margin_default"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:fullnameResource="@{resource}"
                         app:resourceSelected="@{resource}"
@@ -52,6 +51,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvPersonName"
                         android:layout_marginTop="@dimen/margin_default"
                         android:src="@drawable/ic_place"
+                        android:visibility="gone"
                         android:layout_marginStart="@dimen/margin_default"
                         android:layout_marginBottom="@dimen/margin_default">
 
@@ -59,7 +59,7 @@
 
                 <TextView
                         android:id="@+id/tvResourceLocation"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@+id/ivPlace"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +68,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivPlace"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="@dimen/margin_default"
+                        android:visibility="gone"
                         android:textSize="12sp"
                         android:textColor="@color/colorPrimary"
                         android:text="@{resource.place}" />

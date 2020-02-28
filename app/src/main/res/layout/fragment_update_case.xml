@@ -47,6 +47,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_looks_one"
+                                android:layout_marginStart="@dimen/margin_default"
                                 app:layout_constraintBottom_toTopOf="@+id/recycler_persons_selector"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -111,6 +112,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_looks_two"
+                                android:layout_marginStart="@dimen/margin_default"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -157,6 +159,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_looks_3"
+                                android:layout_marginStart="@dimen/margin_default"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -203,6 +206,7 @@
                                 android:id="@+id/ivFourStep"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default"
                                 android:src="@drawable/ic_looks_4"
                                 app:layout_constraintTop_toTopOf="@id/tvPlace"
                                 app:layout_constraintBottom_toBottomOf="@id/tvPlace"
@@ -265,6 +269,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_looks_5"
+                                android:layout_marginStart="@dimen/margin_default"
                                 app:layout_constraintTop_toTopOf="@id/tvType"
                                 app:layout_constraintBottom_toBottomOf="@id/tvType"
                                 app:layout_constraintStart_toStartOf="parent">
@@ -398,6 +403,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_looks_6"
+                                android:layout_marginStart="@dimen/margin_default"
                                 app:layout_constraintTop_toTopOf="@id/tvHow"
                                 app:layout_constraintBottom_toBottomOf="@id/tvHow"
                                 app:layout_constraintStart_toStartOf="parent">
@@ -461,6 +467,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_new_case"
+                                android:layout_marginStart="@dimen/margin_default"
                                 app:layout_constraintBottom_toTopOf="@+id/recycler_update_resources_selector"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -486,15 +493,14 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recycler_update_resources_selector"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:spanCount="1"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                android:orientation="horizontal"
                                 android:background="@color/white"
                                 app:resources="@{viewmodel.resources}"
                                 android:visibility="visible"
                                 app:layout_constraintTop_toBottomOf="@+id/tvResources"
-                                app:layout_constraintEnd_toStartOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginStart="@dimen/margin_default"
                                 android:layout_marginTop="@dimen/margin_default"
@@ -506,7 +512,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <Button android:id="@+id/btnUpdateCase"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_gravity="center"

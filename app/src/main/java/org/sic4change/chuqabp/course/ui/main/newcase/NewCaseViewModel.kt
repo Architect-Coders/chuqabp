@@ -74,7 +74,7 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
                 if (resource == resourceClicked.id) {
                     _resourcesSelected.value = _resourcesSelected.value!!.replace("$resource,", "")
                     _resourcesSelected.value = _resourcesSelected.value!!.replace(resource , "")
-                    if (_resourcesSelected.value!!.last() == ',') {
+                    if (_resourcesSelected.value!!.isNotEmpty() && _resourcesSelected.value!!.last() == ',') {
                         _resourcesSelected.value = _resourcesSelected.value!!.substring(0, _resourcesSelected.value!!.length -1)
                     }
                     _resources.value?.find { it.id ==  resourceClicked.id}?.selected = false

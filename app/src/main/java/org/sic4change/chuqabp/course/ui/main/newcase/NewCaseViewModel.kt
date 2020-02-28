@@ -78,27 +78,26 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
                     return
                 }
             }
-            _resourcesSelected.value = _resourcesSelected.value + "," + resourceClicked.id
-            _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
+            if (_resourcesSelected.value == resourceClicked.id) {
+                _resourcesSelected.value = ""
+                _resources.value?.find { it.id ==  resourceClicked.id}?.selected = false
+            } else {
+                _resourcesSelected.value = _resourcesSelected.value + "," + resourceClicked.id
+                _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
+            }
         } else {
             _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
             _resourcesSelected.value = resourceClicked.id
         }
     }
 
-    fun onRegisterCaseClicked(person: String?, name: String?, surnames: String?, date: String, hour: String, place: String,
+    fun onRegisterCaseClicked(person: String, name: String, surnames: String, date: String, hour: String, place: String,
                               physical: Boolean, sexual: Boolean, psycological: Boolean,
                               social: Boolean, economic: Boolean, description: String) {
         launch {
-            person?.let {
-                name?.let { it1 ->
-                    surnames?.let { it2 ->
-                        Case(Date().time.toString() + person, it, it1, it2, date, hour, place,
-                            physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString()
-                        )
-                    }
-                }
-            }?.let { createCase.invoke(it) }
+            createCase.invoke(Case(Date().time.toString() + person, person, name, surnames, date, hour, place,
+                physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString()
+            ))
         }
     }
 

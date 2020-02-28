@@ -7,6 +7,7 @@ import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.DatePicker
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -20,13 +21,40 @@ import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.chuqabp.databinding.FragmentUpdateCaseBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_new_case.*
+import kotlinx.android.synthetic.main.fragment_update_case.cvDate
+import kotlinx.android.synthetic.main.fragment_update_case.cvEconomic
+import kotlinx.android.synthetic.main.fragment_update_case.cvHow
+import kotlinx.android.synthetic.main.fragment_update_case.cvPerson
+import kotlinx.android.synthetic.main.fragment_update_case.cvPlace
+import kotlinx.android.synthetic.main.fragment_update_case.cvPsychological
+import kotlinx.android.synthetic.main.fragment_update_case.cvPysical
+import kotlinx.android.synthetic.main.fragment_update_case.cvSexual
+import kotlinx.android.synthetic.main.fragment_update_case.cvSocial
+import kotlinx.android.synthetic.main.fragment_update_case.cvTime
+import kotlinx.android.synthetic.main.fragment_update_case.cvType
+import kotlinx.android.synthetic.main.fragment_update_case.etHow
+import kotlinx.android.synthetic.main.fragment_update_case.etPlace
+import kotlinx.android.synthetic.main.fragment_update_case.ivFiveStep
+import kotlinx.android.synthetic.main.fragment_update_case.ivFourStep
+import kotlinx.android.synthetic.main.fragment_update_case.ivOneStep
+import kotlinx.android.synthetic.main.fragment_update_case.ivSixStep
+import kotlinx.android.synthetic.main.fragment_update_case.ivThreeStep
+import kotlinx.android.synthetic.main.fragment_update_case.ivTwoStep
+import kotlinx.android.synthetic.main.fragment_update_case.recycler_persons_selector
+import kotlinx.android.synthetic.main.fragment_update_case.tvDate
+import kotlinx.android.synthetic.main.fragment_update_case.tvPersonName
+import kotlinx.android.synthetic.main.fragment_update_case.tvTime
 import org.koin.core.parameter.parametersOf
+import org.sic4change.chuqabp.course.ui.main.newcase.ResourcesAdapter
 import org.sic4change.domain.Person
 import java.util.*
 
 class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var adapter : PersonsAdapter
+
+    private lateinit var resourcesAdapter: ResourcesAdapter
 
     private lateinit var datePickerDialog: DatePickerDialog
 
@@ -58,6 +86,9 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         adapter = PersonsAdapter(viewModel::onPersonClicked)
         recycler_persons_selector.adapter = adapter
+
+        resourcesAdapter = ResourcesAdapter(viewModel::onResourceClicked)
+        recycler_update_resources_selector.adapter = resourcesAdapter
 
         binding?.apply {
             viewmodel = viewModel
@@ -119,9 +150,11 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         etHow.addTextChangedListener {
             if (it != null && it.isNotEmpty()) {
+                enabledResourcesView()
                 enabledRegister()
                 ivSixStep.setImageResource(R.drawable.ic_check)
             } else {
+                disabledResourcesView()
                 disabledRegister()
                 ivSixStep.setImageResource(R.drawable.ic_looks_6)
             }
@@ -138,8 +171,9 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
         })
 
         btnUpdateCase.setOnClickListener {
-            viewModel.onUpdateCaseClicked(viewModel.case.value?.id, viewModel.person.value?.id, viewModel.person.value?.name,
-                viewModel.person.value?.surnames, tvDate.text.toString(), tvTime.text.toString(),
+            viewModel.onUpdateCaseClicked(
+                viewModel.case.value!!.id, viewModel.person.value!!.id, viewModel.person.value!!.name,
+                viewModel.person.value!!.surnames, tvDate.text.toString(), tvTime.text.toString(),
                 etPlace.text.toString(), cvPysical.isChecked, cvSexual.isChecked, cvPsychological.isChecked,
                 cvSocial.isChecked, cvEconomic.isChecked, etHow.text.toString())
             navController.navigate(R.id.action_updateCaseFragment_to_cases)
@@ -180,6 +214,10 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             }
         })
 
+        viewModel.resourceSelected.observe(this, Observer<String>{
+            resourcesAdapter.notifyDataSetChanged()
+        })
+
     }
 
     private fun setType() {
@@ -217,6 +255,14 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun disabledHowQuestion() {
         cvHow.visibility = GONE
+    }
+
+    private fun enabledResourcesView() {
+        cvResourcesToUpdate.visibility = VISIBLE
+    }
+
+    private fun disabledResourcesView() {
+        cvResourcesToUpdate.visibility = GONE
     }
 
     private fun enabledRegister() {

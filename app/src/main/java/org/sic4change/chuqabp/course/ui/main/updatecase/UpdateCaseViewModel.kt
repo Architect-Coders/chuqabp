@@ -7,14 +7,22 @@ import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Case
 import org.sic4change.domain.Person
+import org.sic4change.domain.Resource
 import org.sic4change.usescases.*
 
 class UpdateCaseViewModel(private val caseId: String, private val findCaseById: FindCaseById,
-                            private val updateCase: UpdateCase, private val getPersonsToSelect: GetPersonsToSelect, private val findPersonById: FindPersonById,
+                            private val updateCase: UpdateCase, private val getPersonsToSelect: GetPersonsToSelect,
+                          private val findPersonById: FindPersonById, private val getResources: GetResources,
                           uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _case = MutableLiveData<Case>()
     val case: LiveData<Case> get() = _case
+
+    private val _resources = MutableLiveData<List<Resource>>()
+    val resources: LiveData<List<Resource>> get() = _resources
+
+    private val _resourcesSelected = MutableLiveData<String>()
+    val resourceSelected: LiveData<String> get() = _resourcesSelected
 
     private val _currentLocation = MutableLiveData<String>()
     val currentLocation: LiveData<String> get() = _currentLocation
@@ -49,9 +57,11 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
                 _hour.value = _case.value!!.hour
                 _currentLocation.value = _case.value!!.place
                 _description.value = _case.value!!.description
+                _persons.value = getPersonsToSelect.invoke()
+                _resourcesSelected.value = _case.value!!.resources
+                _resources.value = getResources.invoke()
+                updateInitialSelectedResources()
             }
-
-            _persons.value = getPersonsToSelect.invoke()
         }
     }
 
@@ -76,26 +86,48 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
         _personSelected.value = selected
     }
 
-    fun onUpdateCaseClicked(id: String?, person: String?, name: String?, surnames: String?, date: String,
+    private fun updateInitialSelectedResources() {
+        if (!_resourcesSelected.value.isNullOrEmpty()) {
+            if (_resourcesSelected.value!!.contains(",")) {
+                for (resource: String in _resourcesSelected.value?.split(",")!!) {
+                    _resources.value?.find { it.id ==  resource}?.selected = true
+                }
+            } else {
+                _resources.value?.find { it.id ==  _resourcesSelected.value}?.selected = true
+            }
+        }
+    }
+
+    fun onResourceClicked(resourceClicked: Resource) {
+        if (!_resourcesSelected.value.isNullOrEmpty()) {
+            for (resource: String in _resourcesSelected.value?.split(",")!!) {
+                if (resource == resourceClicked.id) {
+                    _resourcesSelected.value = _resourcesSelected.value!!.replace("$resource,", "")
+                    _resourcesSelected.value = _resourcesSelected.value!!.replace(resource , "")
+                    _resources.value?.find { it.id ==  resourceClicked.id}?.selected = false
+                    return
+                }
+            }
+            if (_resourcesSelected.value == resourceClicked.id) {
+                _resourcesSelected.value = ""
+                _resources.value?.find { it.id ==  resourceClicked.id}?.selected = false
+            } else {
+                _resourcesSelected.value = _resourcesSelected.value + "," + resourceClicked.id
+                _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
+            }
+        } else {
+            _resources.value?.find { it.id ==  resourceClicked.id}?.selected = true
+            _resourcesSelected.value = resourceClicked.id
+        }
+    }
+
+    fun onUpdateCaseClicked(id: String, person: String, name: String, surnames: String, date: String,
         hour: String, place: String, physic: Boolean, sexual: Boolean, psycological: Boolean, social: Boolean,
         economic: Boolean, description: String) {
-        launch {
-            id?.let {
-                person?.let { it1 ->
-                    name?.let { it2 ->
-                        surnames?.let { it3 ->
-                            Case(
-                                it, it1, it2, it3, date, hour, place, physic, sexual, psycological,
-                                social, economic, description
-                            )
-                        }
-                    }
-                }
-            }?.let {
-                updateCase.invoke(
-                    it
-                )
-            }
+        launch{
+            updateCase.invoke(Case(id, person, name, surnames, date, hour, place, physic, sexual,
+                psycological, social, economic, description, _resourcesSelected.value.toString()
+            ))
         }
     }
 

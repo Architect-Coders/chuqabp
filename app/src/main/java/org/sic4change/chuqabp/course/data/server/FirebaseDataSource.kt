@@ -270,7 +270,8 @@ class FirebaseDataSource : RemoteDataSource {
                     case.psychologic,
                     case.social,
                     case.economic,
-                    case.description)
+                    case.description,
+                    case.resources)
                 caseRef.document(case.id).set(caseToUpdate).await()
                 Timber.d("update person result: ok")
             } catch (ex: Exception) {

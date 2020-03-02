@@ -94,7 +94,6 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivDate"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="@dimen/margin_default"
-                        android:layout_marginTop="@dimen/margin_default"
                         android:textSize="12sp"
                         android:text="@{item.date}" />
 
@@ -123,65 +122,83 @@
                         android:textSize="12sp"
                         android:text="@{item.hour}" />
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                <ScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ivDate"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginStart="@dimen/margin_default"
                         android:layout_marginEnd="@dimen/margin_default"
                         android:layout_marginTop="@dimen/margin_default"
                         android:layout_marginBottom="@dimen/margin_default">
 
-                    <com.google.android.material.chip.Chip
-                            android:id="@+id/cpPhysic"
+                    <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/checkbox_title_physical"
-                            android:theme="@style/Theme.MaterialComponents.Light"
-                            android:layout_margin="4dp"
-                            app:visible="@{item.physic}"/>
+                            android:orientation="horizontal">
 
-                    <com.google.android.material.chip.Chip
-                            android:id="@+id/cpSexual"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/checkbox_title_sexual"
-                            android:theme="@style/Theme.MaterialComponents.Light"
-                            android:layout_margin="4dp"
-                            app:visible="@{item.sexual}"/>
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/cpPhysic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checkbox_title_physical"
+                                android:theme="@style/Theme.MaterialComponents.Light"
+                                android:layout_margin="4dp"
+                                app:visible="@{item.physic}"
+                                android:clickable="false"
+                                android:enabled="false"/>
 
-                    <com.google.android.material.chip.Chip
-                            android:id="@+id/cpPsicological"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/checkbox_title_psychological"
-                            android:theme="@style/Theme.MaterialComponents.Light"
-                            android:layout_margin="4dp"
-                            app:visible="@{item.psychologic}"/>
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/cpSexual"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checkbox_title_sexual"
+                                android:theme="@style/Theme.MaterialComponents.Light"
+                                android:layout_margin="4dp"
+                                app:visible="@{item.sexual}"
+                                android:clickable="false"
+                                android:enabled="false"/>
 
-                    <com.google.android.material.chip.Chip
-                            android:id="@+id/cpSocial"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/checkbox_title_social"
-                            android:theme="@style/Theme.MaterialComponents.Light"
-                            android:layout_margin="4dp"
-                            app:visible="@{item.social}"/>
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/cpPsicological"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checkbox_title_psychological"
+                                android:theme="@style/Theme.MaterialComponents.Light"
+                                android:layout_margin="4dp"
+                                app:visible="@{item.psychologic}"
+                                android:clickable="false"
+                                android:enabled="false"/>
 
-                    <com.google.android.material.chip.Chip
-                            android:id="@+id/cpEconomic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/checkbox_title_economic"
-                            android:theme="@style/Theme.MaterialComponents.Light"
-                            android:layout_margin="4dp"
-                            app:visible="@{item.economic}"/>
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/cpSocial"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checkbox_title_social"
+                                android:theme="@style/Theme.MaterialComponents.Light"
+                                android:layout_margin="4dp"
+                                app:visible="@{item.social}"
+                                android:clickable="false"
+                                android:enabled="false"/>
 
-                </LinearLayout>
+                        <com.google.android.material.chip.Chip
+                                android:id="@+id/cpEconomic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checkbox_title_economic"
+                                android:theme="@style/Theme.MaterialComponents.Light"
+                                android:layout_margin="4dp"
+                                app:visible="@{item.economic}"
+                                android:clickable="false"
+                                android:enabled="false"/>
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

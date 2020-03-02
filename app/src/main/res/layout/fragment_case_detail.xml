@@ -91,7 +91,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ivDate"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
-                    android:layout_marginTop="@dimen/margin_default"
                     android:textSize="12sp"
                     android:text="@{viewmodel.case.date}" />
 

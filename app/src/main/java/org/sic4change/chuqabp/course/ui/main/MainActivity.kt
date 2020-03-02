@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (title.contains(":")) {
             finishAffinity()
+        } else {
+            super.onBackPressed()
         }
     }
 

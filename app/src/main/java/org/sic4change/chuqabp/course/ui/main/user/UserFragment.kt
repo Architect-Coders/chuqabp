@@ -105,7 +105,7 @@ class UserFragment : Fragment(){
     }
 
     private fun showLogoutConfirmationDialog() {
-        val builder = AlertDialog.Builder(activity)
+        val builder = AlertDialog.Builder(activity, R.style.AlertDialogTheme)
         builder.setTitle(R.string.logout)
         builder.setMessage(R.string.logout_question)
         builder.setCancelable(true)
@@ -119,7 +119,7 @@ class UserFragment : Fragment(){
     }
 
     private fun showDeleteUserConfirmationDialog() {
-        val builder = AlertDialog.Builder(activity)
+        val builder = AlertDialog.Builder(activity, R.style.AlertDialogTheme)
         builder.setTitle(R.string.delete_account)
         builder.setMessage(R.string.delete_account_first_question)
         builder.setCancelable(true)

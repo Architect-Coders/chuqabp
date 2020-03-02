@@ -75,7 +75,7 @@ class CaseDetailFragment : Fragment() {
     }
 
     private fun showDeleteConfirmationDialog() {
-        val builder = AlertDialog.Builder(activity)
+        val builder = AlertDialog.Builder(activity, R.style.AlertDialogTheme)
         builder.setTitle(R.string.delete_case_question_title)
         builder.setMessage(R.string.delete_Case_question_description)
         builder.setCancelable(true)

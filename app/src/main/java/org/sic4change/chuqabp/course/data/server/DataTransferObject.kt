@@ -45,7 +45,8 @@ data class Case (
     @Exclude val resources: String = "",
     @Exclude val status: String = "",
     @Exclude val closeDescription: String = "",
-    @Exclude val closeReason: String = "")
+    @Exclude val closeReason: String = "",
+    @Exclude val closeDate: String = "")
 
 @JsonClass(generateAdapter = true)
 data class Resource (

@@ -39,15 +39,18 @@ fun ServerPerson.toDomainPerson() : Person = Person(
 )
 
 fun Case.toDatabaseCase() : DatabaseCase = DatabaseCase(
-        id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description, resources, status, closeDescription, closeReason
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic,
+    description, resources, status, closeDescription, closeReason, closeDate
 )
 
 fun DatabaseCase.toDomainCase() : Case = Case(
-    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description, resources, status, closeDescription, closeReason
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic,
+    description, resources, status, closeDescription, closeReason, closeDate
 )
 
 fun ServerCase.toDomainCase() : Case = Case(
-    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic, description, resources, status, closeDescription, closeReason
+    id, person, name, surnames, date, hour, place, physic, sexual, psychologic, social, economic,
+    description, resources, status, closeDescription, closeReason, closeDate
 )
 
 fun Resource.toDatabaseResource() : DatabaseResource =  DatabaseResource(

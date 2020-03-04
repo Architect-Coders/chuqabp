@@ -43,7 +43,8 @@ data class Case (
     val resources: String = "",
     val status: String = "",
     val closeDescription: String = "",
-    val closeReason: String = "")
+    val closeReason: String = "",
+    val closeDate: String = "")
 
 @Entity
 data class Resource (

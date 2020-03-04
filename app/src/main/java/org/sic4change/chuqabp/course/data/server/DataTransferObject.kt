@@ -42,7 +42,10 @@ data class Case (
     @Exclude val social: Boolean = false,
     @Exclude val economic: Boolean = false,
     @Exclude val description: String = "",
-    @Exclude val resources: String = "")
+    @Exclude val resources: String = "",
+    @Exclude val status: String = "",
+    @Exclude val closeDescription: String = "",
+    @Exclude val closeReason: String = "")
 
 @JsonClass(generateAdapter = true)
 data class Resource (

@@ -100,7 +100,8 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
                               social: Boolean, economic: Boolean, description: String) {
         launch {
             createCase.invoke(Case(Date().time.toString() + person, person, name, surnames, date, hour, place,
-                physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString()
+                physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString(),
+                "open", "", ""
             ))
         }
     }

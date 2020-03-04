@@ -110,9 +110,9 @@
                         android:text="@{item.hour}" />
 
                 <ScrollView
+                        android:id="@+id/svChips"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ivDate"
                         android:layout_marginStart="@dimen/margin_default"
@@ -184,8 +184,34 @@
 
                 </ScrollView>
 
+                <ImageView
+                        android:id="@+id/ivClosed"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:layout_constraintEnd_toStartOf="@id/tvClosed"
+                        app:layout_constraintTop_toBottomOf="@id/svChips"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:src="@drawable/ic_closed"
+                        android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginBottom="@dimen/margin_default"
+                        app:closed="@{item.status}">
+                </ImageView>
 
-
+                <TextView
+                        android:id="@+id/tvClosed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="left"
+                        app:layout_constraintTop_toTopOf="@+id/ivClosed"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivClosed"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:textSize="12sp"
+                        android:text="@string/closed"
+                        app:closed="@{item.status}"/>
+                
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

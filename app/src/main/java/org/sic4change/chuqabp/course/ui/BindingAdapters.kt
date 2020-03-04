@@ -120,3 +120,10 @@ fun RecyclerView.setResourcesCase(resources: List<Resource>?) {
         it.resources = resources ?: emptyList()
     }
 }
+
+@BindingAdapter("closed")
+fun View.setClosed(closed: String?) {
+    visibility = closed?.let {
+        if (closed == "closed") View.VISIBLE else View.GONE
+    } ?: View.GONE
+}

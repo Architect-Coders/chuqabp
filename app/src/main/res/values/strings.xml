@@ -76,7 +76,6 @@
     <string name="configuration">Ajustes</string>
 
     <!--Main Menu-->
-
     <string name="hint_select_person">¿Quién sufrió la agresión?</string>
     <string name="hint_select_date">¿Qué día ocurrió?</string>
     <string name="hint_select_time">¿Sobre qué hora?</string>
@@ -102,5 +101,9 @@
     <string name="add_resource">Añada los recursos</string>
     <string name="resources">Recursos asignados</string>
     <string name="new_person">Nueva Persona</string>
+
+    <!--Case status-->
+    <string name="open">Abierto</string>
+    <string name="closed">Cerrado</string>
 
 </resources>

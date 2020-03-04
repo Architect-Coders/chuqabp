@@ -14,4 +14,7 @@ data class Case (
     val social: Boolean = false,
     val economic: Boolean = false,
     val description: String = "",
-    val resources: String = "")
+    val resources: String = "",
+    val status: String = "",
+    val closeDescription: String = "",
+    val closeReason: String = "")

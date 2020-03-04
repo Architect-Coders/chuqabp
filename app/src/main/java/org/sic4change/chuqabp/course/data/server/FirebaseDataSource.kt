@@ -218,7 +218,10 @@ class FirebaseDataSource : RemoteDataSource {
                     case.social,
                     case.economic,
                     case.description,
-                    case.resources)
+                    case.resources,
+                    case.status,
+                    case.closeDescription,
+                    case.closeReason)
                 personsRef.document(key).set(caseToCreate).await()
                 Timber.d("Create case result: ok")
             } catch (ex : Exception) {

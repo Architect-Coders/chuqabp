@@ -185,13 +185,39 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lyChips"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginTop="@dimen/margin_default"
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginBottom="@dimen/margin_default"
                     android:text="@{viewmodel.case.description}">
             </TextView>
 
+            <ImageView
+                    android:id="@+id/ivClosed"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintEnd_toStartOf="@id/tvClosed"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:src="@drawable/ic_closed"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default"
+                    app:closed="@{viewmodel.case.status}">
+            </ImageView>
+
+            <TextView
+                    android:id="@+id/tvClosed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:gravity="left"
+                    app:layout_constraintTop_toTopOf="@+id/ivClosed"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivClosed"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:textSize="12sp"
+                    android:text="@string/closed"
+                    app:closed="@{viewmodel.case.status}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

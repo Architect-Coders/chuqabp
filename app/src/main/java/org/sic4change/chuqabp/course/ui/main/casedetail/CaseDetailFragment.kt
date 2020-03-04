@@ -55,7 +55,8 @@ class CaseDetailFragment : Fragment() {
 
         viewModel.deleted.observe(this, Observer<Boolean> {
             if (it) {
-                finish()
+                val action = CaseDetailFragmentDirections.actionCaseDetailFragmentToCasesFragment()
+                navController.navigate(action)
             }
         })
 

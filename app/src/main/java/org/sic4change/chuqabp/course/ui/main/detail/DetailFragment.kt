@@ -55,7 +55,8 @@ class DetailFragment: Fragment() {
 
         viewModel.deleted.observe(this, Observer<Boolean> {
             if (it) {
-                finish()
+                val action = DetailFragmentDirections.actionDetailFragmentToPersonsFragment()
+                navController.navigate(action)
             }
         })
 

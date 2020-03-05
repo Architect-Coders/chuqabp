@@ -73,6 +73,11 @@ class CaseDetailFragment : Fragment() {
             val action = CaseDetailFragmentDirections.actionCaseDetailFragmentToCasesFragment()
             navController.navigate(action)
         }
+
+        btnCloseCase.setOnClickListener {
+            val action = CaseDetailFragmentDirections.actionCaseDetailFragmentToCloseCaseFragment(args.id)
+            navController.navigate(action)
+        }
     }
 
     private fun showDeleteConfirmationDialog() {

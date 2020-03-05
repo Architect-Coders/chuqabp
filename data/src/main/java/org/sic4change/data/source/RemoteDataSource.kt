@@ -22,5 +22,6 @@ interface RemoteDataSource {
     suspend fun deleteCase(id: String)
     suspend fun updateCase(user: User?, case: Case)
     suspend fun getResources() : List<Resource>
+    suspend fun getClosedReasons(): List<org.sic4change.domain.ClosedReason>
 
 }

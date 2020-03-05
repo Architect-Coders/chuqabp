@@ -21,6 +21,8 @@ import org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailFragment
 import org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailViewModel
 import org.sic4change.chuqabp.course.ui.main.cases.CasesFragment
 import org.sic4change.chuqabp.course.ui.main.cases.CasesViewModel
+import org.sic4change.chuqabp.course.ui.main.closecase.CloseCaseFragment
+import org.sic4change.chuqabp.course.ui.main.closecase.CloseCaseViewModel
 import org.sic4change.chuqabp.course.ui.main.detail.DetailFragment
 import org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel
 import org.sic4change.chuqabp.course.ui.main.main.MainFragment
@@ -65,6 +67,7 @@ val dataModule = module {
     factory { PersonsRepository(get(), get())}
     factory { CasesRepository(get(), get()) }
     factory { ResourcesRepository(get(), get()) }
+    factory { ClosedReasonsRepository(get(), get()) }
 }
 
 private val scopesModule = module {
@@ -133,6 +136,13 @@ private val scopesModule = module {
         scoped { GetPersonsToSelect(get()) }
         scoped { FindPersonById(get()) }
         scoped { GetResources(get()) }
+    }
+
+    scope(named<CloseCaseFragment>()) {
+        viewModel { (id: String) -> CloseCaseViewModel(id, get(), get(), get(), get()) }
+        scoped { FindCaseById(get()) }
+        scoped { UpdateCase(get()) }
+        scoped { GetClosedReasons(get()) }
     }
 
     scope(named<LoginFragment>()) {

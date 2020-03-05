@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
 import org.sic4change.chuqabp.course.ui.main.cases.CasesAdapter
+import org.sic4change.chuqabp.course.ui.main.closecase.ClosedReasonAdapter
 import org.sic4change.chuqabp.course.ui.main.detail.CasesPersonAdapter
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.chuqabp.course.ui.main.newcase.ResourcesAdapter
 import org.sic4change.domain.Person
 import org.sic4change.domain.Case
+import org.sic4change.domain.ClosedReason
 import org.sic4change.domain.Resource
 
 @BindingAdapter("url")
@@ -126,4 +128,27 @@ fun View.setClosed(closed: String?) {
     visibility = closed?.let {
         if (closed == "closed") View.VISIBLE else View.GONE
     } ?: View.GONE
+}
+
+@BindingAdapter("open")
+fun View.setOpen(open: String?) {
+    visibility = open?.let {
+        if (open == "open") View.VISIBLE else View.GONE
+    } ?: View.GONE
+}
+
+@BindingAdapter("closedReasonSelected")
+fun TextView.closedReasonSelected(closedReason: ClosedReason?) = closedReason?.run {
+    if (closedReason.selected) {
+        setBackgroundColor(resources.getColor(R.color.red))
+    } else {
+        setBackgroundColor(resources.getColor(R.color.gray))
+    }
+}
+
+@BindingAdapter("closeReasons")
+fun RecyclerView.setCloseReasons(closeReasons: List<ClosedReason>?) {
+    (adapter as? ClosedReasonAdapter)?.let {
+        it.closedReasons = closeReasons ?: emptyList()
+    }
 }

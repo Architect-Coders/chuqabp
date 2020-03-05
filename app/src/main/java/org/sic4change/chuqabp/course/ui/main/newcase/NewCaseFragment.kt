@@ -9,7 +9,6 @@ import android.view.View.VISIBLE
 import android.widget.DatePicker
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -23,7 +22,6 @@ import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.chuqabp.databinding.FragmentNewCaseBinding
 import org.sic4change.domain.Person
-import org.sic4change.domain.Resource
 import java.util.*
 
 class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
@@ -171,7 +169,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         viewModel.person.observe(this, Observer<Person> {
             hideShowPersonSelection()
-            tvPersonName.text = "${it.name} ${it.surnames}"
+            tvResourceName.text = "${it.name} ${it.surnames}"
             ivOneStep.setImageResource(R.drawable.ic_check)
             enabledDayQuestion()
         })
@@ -219,10 +217,10 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     private fun hideShowPersonSelection() = if (recycler_persons_selector.isVisible) {
         recycler_persons_selector.visibility = GONE
-        tvPersonName.text = "${viewModel.person.value?.name} ${viewModel.person.value?.surnames}"
+        tvResourceName.text = "${viewModel.person.value?.name} ${viewModel.person.value?.surnames}"
     } else {
         recycler_persons_selector.visibility = VISIBLE
-        tvPersonName.text = ""
+        tvResourceName.text = ""
     }
 
     private fun hideShowResourceSelection() = if (recycler_resources_selector.isVisible) {

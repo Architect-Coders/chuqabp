@@ -7,7 +7,6 @@ import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.DatePicker
-import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -21,7 +20,6 @@ import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
 import org.sic4change.chuqabp.databinding.FragmentUpdateCaseBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.fragment_new_case.*
 import kotlinx.android.synthetic.main.fragment_update_case.cvDate
 import kotlinx.android.synthetic.main.fragment_update_case.cvEconomic
 import kotlinx.android.synthetic.main.fragment_update_case.cvHow
@@ -43,7 +41,7 @@ import kotlinx.android.synthetic.main.fragment_update_case.ivThreeStep
 import kotlinx.android.synthetic.main.fragment_update_case.ivTwoStep
 import kotlinx.android.synthetic.main.fragment_update_case.recycler_persons_selector
 import kotlinx.android.synthetic.main.fragment_update_case.tvDate
-import kotlinx.android.synthetic.main.fragment_update_case.tvPersonName
+import kotlinx.android.synthetic.main.fragment_update_case.tvResourceName
 import kotlinx.android.synthetic.main.fragment_update_case.tvTime
 import org.koin.core.parameter.parametersOf
 import org.sic4change.chuqabp.course.ui.main.newcase.ResourcesAdapter
@@ -180,7 +178,7 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
         }
 
         viewModel.person.observe(this, Observer<Person> {
-            tvPersonName.text = "${it.name} ${it.surnames}"
+            tvResourceName.text = "${it.name} ${it.surnames}"
             ivOneStep.setImageResource(R.drawable.ic_check)
             enabledDayQuestion()
         })

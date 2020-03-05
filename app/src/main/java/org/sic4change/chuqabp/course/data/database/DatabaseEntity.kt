@@ -57,3 +57,8 @@ data class Resource (
     val social: Boolean = false,
     val economic: Boolean = false,
     val description: String = "")
+
+@Entity
+data class ClosedReason (
+    @PrimaryKey val id: String = "",
+    val name: String = "")

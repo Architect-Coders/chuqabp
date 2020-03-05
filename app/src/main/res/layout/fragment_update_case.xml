@@ -55,7 +55,7 @@
                         </ImageView>
 
                         <TextView
-                                android:id="@+id/tvPersonName"
+                                android:id="@+id/tvResourceName"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/margin_default"
@@ -82,7 +82,7 @@
                                 android:background="@color/white"
                                 app:items="@{viewmodel.persons}"
                                 android:visibility="gone"
-                                app:layout_constraintTop_toBottomOf="@+id/tvPersonName"
+                                app:layout_constraintTop_toBottomOf="@+id/tvResourceName"
                                 app:layout_constraintEnd_toStartOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginStart="@dimen/margin_default"

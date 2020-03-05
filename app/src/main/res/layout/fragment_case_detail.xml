@@ -32,7 +32,7 @@
                 android:background="@color/white">
 
             <TextView
-                    android:id="@+id/tvPersonName"
+                    android:id="@+id/tvResourceName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_default"
@@ -49,7 +49,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvPersonName"
+                    app:layout_constraintTop_toBottomOf="@id/tvResourceName"
                     android:layout_marginTop="@dimen/margin_default"
                     android:src="@drawable/ic_place"
                     android:layout_marginStart="@dimen/margin_default"
@@ -59,11 +59,12 @@
 
             <TextView
                     android:id="@+id/tvResourceLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@+id/ivPlace"
                     app:layout_constraintTop_toTopOf="@+id/ivPlace"
                     app:layout_constraintBottom_toBottomOf="@+id/ivPlace"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:textSize="12sp"
@@ -185,9 +186,12 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lyChips"
+                    app:layout_constraintBottom_toTopOf="@id/ivClosed"
                     android:layout_marginTop="@dimen/margin_default"
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginBottom="@dimen/margin_default"
+                    android:textSize="12sp"
+                    android:paddingBottom="@dimen/margin_default"
                     android:text="@{viewmodel.case.description}">
             </TextView>
 
@@ -335,6 +339,19 @@
                 app:resourcesCase="@{viewmodel.resources}" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCloseCase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:clickable="true"
+                app:backgroundTint="@color/red"
+                app:layout_constraintBottom_toTopOf="@id/btnEditCase"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_close"
+                app:open="@{viewmodel.case.status}"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnEditCase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -344,8 +361,8 @@
                 app:backgroundTint="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toTopOf="@id/btnDeleteCase"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_edit"/>
-
+                app:srcCompat="@drawable/ic_edit"
+                app:open="@{viewmodel.case.status}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnDeleteCase"
@@ -357,7 +374,8 @@
                 app:backgroundTint="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toTopOf="@id/btnCancelCase"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_delete"/>
+                app:srcCompat="@drawable/ic_delete"
+                app:open="@{viewmodel.case.status}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnCancelCase"

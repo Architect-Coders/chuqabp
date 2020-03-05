@@ -8,4 +8,6 @@
     <color name="disabled_color">#E0E0E0</color>
     <color name="lightBackground">#E0E0E0</color>
     <color name="gray">#707070</color>
+    <color name="red">#E54C49</color>
+
 </resources>

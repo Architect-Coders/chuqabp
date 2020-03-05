@@ -41,7 +41,7 @@ class CasesRepository(private val localDataSource: LocalDataSource,
         remoteDataSource.deleteCase(id)
     }
 
-    suspend fun updatease(case: Case) {
+    suspend fun updateCase(case: Case) {
         val user = localDataSource.getUser()
         localDataSource.updateCase(case)
         remoteDataSource.updateCase(user, case)

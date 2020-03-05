@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [User::class, Person::class, Case::class, Resource::class], version = 2)
+@Database(entities = [User::class, Person::class, Case::class, Resource::class, ClosedReason::class], version = 2)
 abstract class ChuqabpDatabase: RoomDatabase() {
     companion object {
         fun build(context: Context) = Room.databaseBuilder(

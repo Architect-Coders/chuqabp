@@ -8,6 +8,7 @@ import org.sic4change.domain.User as DomainUser
 import org.sic4change.domain.Person as DomainPerson
 import org.sic4change.domain.Case as DomainCase
 import org.sic4change.domain.Resource as DomainResource
+import org.sic4change.domain.ClosedReason as DomainClosedReason
 
 class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
@@ -84,9 +85,11 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     override suspend fun updateCase(case: org.sic4change.domain.Case) {
         withContext(Dispatchers.IO) {
-            chuqabpDao.updateCase(case.id, case.person, case.date, case.hour, case.place, case.physic, case.sexual, case.psychologic, case.social, case.economic)
+            chuqabpDao.updateCase(case.id, case.person, case.date, case.hour, case.place, case.physic, case.sexual, case.psychologic, case.social, case.economic,
+            case.description, case.resources, case.status, case.closeDescription, case.closeReason, case.closeDate)
         }
     }
+
 
     override suspend fun deleteCase(id: String) {
         withContext(Dispatchers.IO) {
@@ -136,6 +139,26 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     override suspend fun findResourceById(id: String): DomainResource = withContext(Dispatchers.IO) {
         chuqabpDao.findResourceById(id).toDomainResource()
+    }
+
+    override suspend fun getClosedReasons(): List<DomainClosedReason> = withContext(Dispatchers.IO) {
+        chuqabpDao.getAllClosedReasons().map { it.toDomainClosedReason() }
+    }
+
+    override suspend fun insertClosedReasons(resources: List<DomainClosedReason>) {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.insertClosedReasons(resources.map { it.toDatabaseClosedReason() })
+        }
+    }
+
+    override suspend fun deleteClosedReasons() {
+        withContext(Dispatchers.IO) {
+            chuqabpDao.deleteClosedReasons()
+        }
+    }
+
+    override suspend fun findClosedReasonById(id: String): DomainClosedReason = withContext(Dispatchers.IO) {
+        chuqabpDao.findClosedReasonById(id).toDomainClosedReason()
     }
 
 }

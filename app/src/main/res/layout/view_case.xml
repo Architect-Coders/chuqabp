@@ -32,7 +32,7 @@
                     android:background="@color/white">
 
                 <TextView
-                        android:id="@+id/tvPersonName"
+                        android:id="@+id/tvResourceName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/margin_default"
@@ -50,7 +50,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvPersonName"
+                        app:layout_constraintTop_toBottomOf="@id/tvResourceName"
                         android:layout_marginTop="@dimen/margin_default"
                         android:src="@drawable/ic_place"
                         android:layout_marginStart="@dimen/margin_default"

@@ -61,6 +61,11 @@ data class Resource (
     @Exclude val description: String = "")
 
 @JsonClass(generateAdapter = true)
+data class ClosedReason (
+    @Exclude val id: String = "",
+    @Exclude val name: String = "")
+
+@JsonClass(generateAdapter = true)
 data class NetworkPersonsContainer(val results: List<Person>)
 
 @JsonClass(generateAdapter = true)
@@ -68,3 +73,6 @@ data class NetworkCasesContainer(val results: List<Case>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkResourcesContainer(val results: List<Resource>)
+
+@JsonClass(generateAdapter = true)
+data class NetworkClosedReasonsContainer(val results: List<ClosedReason>)

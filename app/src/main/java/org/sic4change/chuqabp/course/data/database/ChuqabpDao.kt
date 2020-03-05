@@ -62,8 +62,8 @@ interface ChuqabpDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCase(case: Case)
 
-    @Query("UPDATE `case` SET person=:person, date=:date, hour=:hour, place=:place, physic=:physic, sexual=:sexual, psychologic=:psychologic, social=:social, economic=:economic WHERE id = :id")
-    fun updateCase(id: String, person: String, date: String, hour: String, place: String, physic: Boolean, sexual: Boolean, psychologic: Boolean, social: Boolean, economic: Boolean)
+    @Query("UPDATE `case` SET person=:person, date=:date, hour=:hour, place=:place, physic=:physic, sexual=:sexual, psychologic=:psychologic, social=:social, economic=:economic, description=:description, resources=:resources, status=:status, closeDescription=:closeDescription, closeReason=:closeReason, closeDate=:closeDate     WHERE id = :id")
+    fun updateCase(id: String, person: String, date: String, hour: String, place: String, physic: Boolean, sexual: Boolean, psychologic: Boolean, social: Boolean, economic: Boolean, description: String, resources: String, status: String, closeDescription: String, closeReason: String, closeDate: String)
 
     @Query("SELECT * FROM `case` WHERE person = :person")
     fun getPersonCases(person: String): List<Case>
@@ -79,6 +79,18 @@ interface ChuqabpDao {
 
     @Query("SELECT * FROM `resource` WHERE id = :id")
     fun findResourceById(id: String): Resource
+
+    @Query("SELECT * FROM `closedreason` ORDER BY id DESC")
+    fun getAllClosedReasons() : List<ClosedReason>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertClosedReasons(closedReasons: List<ClosedReason>)
+
+    @Query("DELETE FROM `closedreason`")
+    fun deleteClosedReasons()
+
+    @Query("SELECT * FROM `closedreason` WHERE id = :id")
+    fun findClosedReasonById(id: String): ClosedReason
 
 
 }

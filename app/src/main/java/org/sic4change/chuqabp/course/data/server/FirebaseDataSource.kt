@@ -4,10 +4,7 @@ import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import org.sic4change.chuqabp.course.data.toDomainCase
-import org.sic4change.chuqabp.course.data.toDomainPerson
-import org.sic4change.chuqabp.course.data.toDomainResource
-import org.sic4change.chuqabp.course.data.toDomainUser
+import org.sic4change.chuqabp.course.data.*
 import org.sic4change.data.source.RemoteDataSource
 import org.sic4change.domain.User
 import timber.log.Timber
@@ -219,7 +216,7 @@ class FirebaseDataSource : RemoteDataSource {
                     case.economic,
                     case.description,
                     case.resources,
-                    case.status,
+                    "open",
                     case.closeDescription,
                     case.closeReason,
                     case.closeDate)
@@ -275,7 +272,11 @@ class FirebaseDataSource : RemoteDataSource {
                     case.social,
                     case.economic,
                     case.description,
-                    case.resources)
+                    case.resources,
+                    case.status,
+                    case.closeDescription,
+                    case.closeReason,
+                    case.closeDate)
                 caseRef.document(case.id).set(caseToUpdate).await()
                 Timber.d("update person result: ok")
             } catch (ex: Exception) {
@@ -291,6 +292,15 @@ class FirebaseDataSource : RemoteDataSource {
         val result = query.get().await()
         val networkResourcesContainer = NetworkResourcesContainer(result.toObjects(Resource::class.java))
         networkResourcesContainer.results.map { it.toDomainResource() }
+    }
+
+    override suspend fun getClosedReasons(): List<org.sic4change.domain.ClosedReason> = withContext(Dispatchers.IO) {
+        val firestore = ChuqabpFirebaseService.mFirestore
+        val closedReasonsRef = firestore.collection("closedReasons")
+        val query = closedReasonsRef.whereEqualTo("organization", "Organization")
+        val result = query.get().await()
+        val networkClosedReasonsContainer = NetworkClosedReasonsContainer(result.toObjects(ClosedReason::class.java))
+        networkClosedReasonsContainer.results.map { it.toDomainClosedReason() }
     }
 
 }

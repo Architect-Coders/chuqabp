@@ -106,4 +106,9 @@
     <string name="open">Abierto</string>
     <string name="closed">Cerrado</string>
 
+    <!--Close case-->
+    <string name="close_case">Cerrar caso</string>
+    <string name="close_case_description">Seleccione el motivo</string>
+    <string name="close_case_description_hint">Describe el motivo...</string>
+
 </resources>

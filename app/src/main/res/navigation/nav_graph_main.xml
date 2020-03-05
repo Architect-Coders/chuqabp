@@ -128,6 +128,9 @@
                 android:id="@+id/action_caseDetailFragment_to_updateCaseFragment"
                 app:destination="@id/updateCaseFragment" />
         <action
+                android:id="@+id/action_caseDetailFragment_to_closeCaseFragment"
+                app:destination="@id/closeCaseFragment" />
+        <action
                 android:id="@+id/action_caseDetailFragment_to_casesFragment"
                 app:destination="@id/casesFragment" />
     </fragment>
@@ -189,6 +192,16 @@
                 app:argType="string" />
         <action
                 android:id="@+id/action_updateCaseFragment_to_cases"
+                app:destination="@id/casesFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/closeCaseFragment"
+            android:name="org.sic4change.chuqabp.course.ui.main.closecase.CloseCaseFragment">
+        <argument
+                android:name="id"
+                app:argType="string" />
+        <action
+                android:id="@+id/action_closeCaseFragment_to_cases"
                 app:destination="@id/casesFragment" />
     </fragment>
 </navigation>

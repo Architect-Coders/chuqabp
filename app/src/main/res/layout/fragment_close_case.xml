@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewmodel"
+                type="org.sic4change.chuqabp.course.ui.main.closecase.CloseCaseViewModel" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/hight_bottom_navigation">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                    <androidx.cardview.widget.CardView
+                            android:id="@+id/cvReasons"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="4dp"
+                            android:elevation="2dp"
+                            android:layout_margin="@dimen/margin_default">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:id="@+id/tvReason"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_default"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:layout_marginEnd="@dimen/margin_default"
+                                    android:textSize="@dimen/form_text_size"
+                                    android:hint="@string/close_case_description"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    app:layout_constraintBottom_toTopOf="@+id/recycler_resources_selector"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:paddingBottom="@dimen/margin_default">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recycler_reasons"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    android:orientation="horizontal"
+                                    android:background="@color/white"
+                                    app:closeReasons="@{viewmodel.closeReasons}"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvReason"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    android:layout_marginStart="@dimen/margin_default"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:layout_marginEnd="@dimen/margin_default"
+                                    android:layout_marginBottom="@dimen/margin_default"/>
+
+                            <EditText
+                                    android:id="@+id/etDescription"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintTop_toBottomOf="@id/recycler_reasons"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    android:textSize="12sp"
+                                    android:inputType="textCapSentences"
+                                    android:hint="@string/close_case_description_hint"
+                                    android:lines="4"
+                                    android:maxLines="4"
+                                    android:minLines="4"
+                                    android:layout_marginStart="@dimen/margin_default"
+                                    android:layout_marginTop="@dimen/margin_default"
+                                    android:layout_marginEnd="@dimen/margin_default"
+                                    android:layout_marginBottom="@dimen/margin_default">
+
+                            </EditText>
+
+                            <Button
+                                    android:id="@+id/btnCloseCase"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/red"
+                                    android:text="@string/close_case"
+                                    android:layout_margin="@dimen/margin_default"
+                                    android:enabled="false"
+                                    android:clickable="false"
+                                    android:textColor="@color/white"
+                                    app:layout_constraintStart_toEndOf="@id/ivCenter"
+                                    app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+                            <View
+                                    android:id="@+id/ivCenter"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/etDescription">
+                            </View>
+
+                            <Button
+                                    android:id="@+id/btnCancelCloseCase"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/cardview_dark_background"
+                                    android:text="@string/cancel"
+                                    android:layout_margin="@dimen/margin_default"
+                                    android:textColor="@color/white"
+                                    app:layout_constraintEnd_toStartOf="@id/ivCenter"
+                                    app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

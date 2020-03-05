@@ -4,6 +4,7 @@ import org.sic4change.domain.Person
 import org.sic4change.domain.User
 import org.sic4change.domain.Case
 import org.sic4change.domain.Resource
+import org.sic4change.domain.ClosedReason
 
 interface LocalDataSource {
     suspend fun getUser() : User?
@@ -29,4 +30,11 @@ interface LocalDataSource {
     suspend fun deleteResources()
     suspend fun insertResources(resources: List<Resource>)
     suspend fun findResourceById(id: String) : Resource
+    suspend fun getClosedReasons(): List<ClosedReason>
+    suspend fun insertClosedReasons(resources: List<ClosedReason>)
+    suspend fun deleteClosedReasons()
+    suspend fun findClosedReasonById(id: String) : ClosedReason
+
+
+
 }

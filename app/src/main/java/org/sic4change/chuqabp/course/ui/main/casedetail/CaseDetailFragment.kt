@@ -85,10 +85,10 @@ class CaseDetailFragment : Fragment() {
         builder.setTitle(R.string.delete_case_question_title)
         builder.setMessage(R.string.delete_Case_question_description)
         builder.setCancelable(true)
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
             viewModel.deleteCase()
         }
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+        builder.setNegativeButton(android.R.string.no) { dialog, _ ->
             dialog.cancel()
         }
         builder.show()

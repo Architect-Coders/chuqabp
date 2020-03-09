@@ -10,10 +10,11 @@ import org.sic4change.domain.Case
 import org.sic4change.domain.Resource
 import org.sic4change.usescases.DeleteCase
 import org.sic4change.usescases.FindCaseById
+import org.sic4change.usescases.GetResources
 import org.sic4change.usescases.GetResourcesCase
 
 class CaseDetailViewModel (private val caseId: String, private val findCaseById: FindCaseById,
-                           private val deleteCase: DeleteCase, private val getResourcesCase: GetResourcesCase,
+                           private val deleteCase: DeleteCase, private val getResources: GetResources, private val getResourcesCase: GetResourcesCase,
                            uiDispatcher: CoroutineDispatcher
 ) : ScopedViewModel(uiDispatcher) {
 
@@ -34,6 +35,7 @@ class CaseDetailViewModel (private val caseId: String, private val findCaseById:
         launch {
             _deleted.value = false
             _case.value = findCaseById.invoke(caseId)
+            getResources.invoke()
             _resources.value = getResourcesCase.invoke(_case.value!!.resources)
             updateUI()
         }

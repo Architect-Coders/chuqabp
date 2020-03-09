@@ -6,14 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [User::class, Person::class, Case::class, Resource::class, ClosedReason::class], version = 2)
+@Database(entities = [User::class, Person::class, Case::class, Resource::class, ClosedReason::class], version = 3)
 abstract class ChuqabpDatabase: RoomDatabase() {
     companion object {
         fun build(context: Context) = Room.databaseBuilder(
             context,
             ChuqabpDatabase::class.java,
             "chuqabp-db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     abstract fun chuqabpDao(): ChuqabpDao

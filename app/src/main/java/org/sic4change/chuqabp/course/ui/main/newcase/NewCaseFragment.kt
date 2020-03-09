@@ -13,10 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_main.bttNavigation
 import kotlinx.android.synthetic.main.fragment_new_case.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.main.main.PersonsAdapter
@@ -38,8 +40,11 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var navController: NavController
 
+    private val args: NewCaseFragmentArgs by navArgs()
 
-    private val viewModel : NewCaseViewModel by currentScope.viewModel(this)
+    private val viewModel : NewCaseViewModel by currentScope.viewModel(this) {
+        parametersOf(args.personId)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,7 +105,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
             datePickerDialog = DatePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 val month = monthOfYear + 1
                     viewModel.setDate("$dayOfMonth/$month/$year")
                 tvDate.text = "$dayOfMonth/$month/$year"
@@ -115,7 +120,7 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             val hour = c.get(Calendar.HOUR_OF_DAY)
             val minute = c.get(Calendar.MINUTE)
             timePickerDialog = TimePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
-                TimePickerDialog.OnTimeSetListener { view, hour, minute  ->
+                TimePickerDialog.OnTimeSetListener { _, hour, minute  ->
                     viewModel.setHour("$hour:$minute")
                 tvTime.text = "$hour:$minute"
             }, hour, minute, true)
@@ -124,23 +129,23 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         }
 
-        cvPysical.setOnCheckedChangeListener { compoundButton, b ->
+        cvPysical.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvSexual.setOnCheckedChangeListener { compoundButton, b ->
+        cvSexual.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvPsychological.setOnCheckedChangeListener { compoundButton, b ->
+        cvPsychological.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvSocial.setOnCheckedChangeListener { compoundButton, b ->
+        cvSocial.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvEconomic.setOnCheckedChangeListener { compoundButton, b ->
+        cvEconomic.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
@@ -168,7 +173,9 @@ class NewCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
         }
 
         viewModel.person.observe(this, Observer<Person> {
-            hideShowPersonSelection()
+            //hideShowPersonSelection()
+            recycler_persons_selector.visibility = GONE
+            tvResourceName.text = "${viewModel.person.value?.name} ${viewModel.person.value?.surnames}"
             tvResourceName.text = "${it.name} ${it.surnames}"
             ivOneStep.setImageResource(R.drawable.ic_check)
             enabledDayQuestion()

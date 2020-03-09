@@ -82,7 +82,8 @@ class NewPersonFragment : Fragment() {
             if (it) {
                 showMessage(getString(R.string.person_mandatory_field))
             } else {
-                navController.navigate(R.id.action_newPersonFragment_to_newCase)
+                val action = NewPersonFragmentDirections.actionNewPersonFragmentToNewCase(viewModel.personId.value.toString())
+                navController.navigate(action)
             }
         })
 

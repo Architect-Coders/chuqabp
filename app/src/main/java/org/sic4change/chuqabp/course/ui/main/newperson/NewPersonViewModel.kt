@@ -23,6 +23,9 @@ class NewPersonViewModel (private val getLocation: GetLocation, private val crea
     private val _photoUrl = MutableLiveData<String>()
     val photoUrl: LiveData<String> get() = _photoUrl
 
+    private val _personId = MutableLiveData<String>()
+    val personId: LiveData<String> get() = _personId
+
     init {
         initScope()
         getLocation()
@@ -40,8 +43,9 @@ class NewPersonViewModel (private val getLocation: GetLocation, private val crea
             if (name.isEmpty() || surnames.isEmpty() || location.isEmpty() || date.isEmpty()) {
                 _showingCreatePersonError.value = Event(true)
             } else {
+                _personId.value = Date().time.toString()
                 _showingCreatePersonError.value = Event(false)
-                createPerson.invoke(Person(Date().time.toString(), name, surnames, date, phone, email, photo, location))
+                createPerson.invoke(Person(personId.value.toString(), name, surnames, date, phone, email, photo, location))
             }
         }
     }

@@ -77,6 +77,9 @@
             android:id="@+id/newCaseFragment"
             android:name="org.sic4change.chuqabp.course.ui.main.newcase.NewCaseFragment"
             android:label="@string/new_case">
+        <argument
+                android:name="personId"
+                app:argType="string" />
         <action
                 android:id="@+id/action_newCaseFragment_to_mainFragment"
                 app:destination="@id/mainFragment" />

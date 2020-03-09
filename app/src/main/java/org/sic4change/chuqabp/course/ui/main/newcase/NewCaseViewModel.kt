@@ -9,13 +9,11 @@ import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Person
 import org.sic4change.domain.Case
 import org.sic4change.domain.Resource
-import org.sic4change.usescases.CreateCase
-import org.sic4change.usescases.GetLocation
-import org.sic4change.usescases.GetPersonsToSelect
-import org.sic4change.usescases.GetResources
+import org.sic4change.usescases.*
 import java.util.*
 
-class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val getLocation: GetLocation,
+class NewCaseViewModel (private val personId: String, private val findPersonById: FindPersonById,
+                        private val getPersons: GetPersonsToSelect, private val getLocation: GetLocation,
                         private val createCase: CreateCase, private val getResources: GetResources,
                         uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
@@ -50,6 +48,9 @@ class NewCaseViewModel (private val getPersons: GetPersonsToSelect, private val 
             _currentLocation.value = getLocation.invoke()
             _persons.value = getPersons.invoke()
             _resources.value = getResources.invoke()
+            try {
+                _person.value = findPersonById.invoke(personId)
+            } catch (e:Exception) { }
         }
     }
 

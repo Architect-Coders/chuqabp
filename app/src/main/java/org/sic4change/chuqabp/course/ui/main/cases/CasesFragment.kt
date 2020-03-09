@@ -60,7 +60,8 @@ class CasesFragment: Fragment() {
         bttNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.new_case -> {
-                    navController.navigate(R.id.action_casesFragment_to_newCaseFragement)
+                    val action = CasesFragmentDirections.actionCasesFragmentToNewCaseFragement("")
+                    navController.navigate(action)
                     true
                 }
                 R.id.cases -> {
@@ -83,7 +84,8 @@ class CasesFragment: Fragment() {
         }
 
         btnNewCase.setOnClickListener {
-            navController.navigate(R.id.action_casesFragment_to_newCaseFragement)
+            val action = CasesFragmentDirections.actionCasesFragmentToNewCaseFragement("")
+            navController.navigate(action)
         }
 
         swipe_container.setOnRefreshListener {

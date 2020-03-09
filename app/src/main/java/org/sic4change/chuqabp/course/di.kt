@@ -109,7 +109,8 @@ private val scopesModule = module {
     }
 
     scope(named<NewCaseFragment>()) {
-        viewModel { NewCaseViewModel(get(), get(), get(), get(), get()) }
+        viewModel { (id: String) ->  NewCaseViewModel(id, get(), get(), get(), get(), get(), get()) }
+        scoped { FindPersonById(get()) }
         scoped { GetPersonsToSelect(get()) }
         scoped { GetLocation(get()) }
         scoped { CreateCase(get()) }

@@ -45,7 +45,8 @@ class TrainingFragment: Fragment() {
         bttNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.new_case -> {
-                    navController.navigate(R.id.action_trainingFragment_to_newCase)
+                    val action = TrainingFragmentDirections.actionTrainingFragmentToNewCase("")
+                    navController.navigate(action)
                     true
                 }
                 R.id.cases -> {

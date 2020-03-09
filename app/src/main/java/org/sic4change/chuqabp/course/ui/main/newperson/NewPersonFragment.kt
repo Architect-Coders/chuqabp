@@ -82,8 +82,7 @@ class NewPersonFragment : Fragment() {
             if (it) {
                 showMessage(getString(R.string.person_mandatory_field))
             } else {
-                navController.navigate(R.id.action_newPersonFragment_to_loginActivity)
-                activity?.finish()
+                navController.navigate(R.id.action_newPersonFragment_to_newCase)
             }
         })
 

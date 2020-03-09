@@ -159,8 +159,8 @@
             android:name="org.sic4change.chuqabp.course.ui.main.newperson.NewPersonFragment"
             android:label="" >
         <action
-                android:id="@+id/action_newPersonFragment_to_loginActivity"
-                app:destination="@id/loginActivity" />
+                android:id="@+id/action_newPersonFragment_to_newCase"
+                app:destination="@id/newCaseFragment" />
         <action
                 android:id="@+id/action_newPersonFragment_to_persons"
                 app:destination="@id/mainFragment" />

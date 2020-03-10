@@ -6,9 +6,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
-import org.sic4change.usescases.ChangePassword
-import org.sic4change.usescases.DeleteUser
-import org.sic4change.usescases.Logout
+import org.sic4change.usescases.users.ChangePassword
+import org.sic4change.usescases.users.DeleteUser
+import org.sic4change.usescases.users.Logout
 
 class UserViewModel (private val changePassword: ChangePassword, private val logout: Logout,
                      private val deleteUser: DeleteUser, uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {

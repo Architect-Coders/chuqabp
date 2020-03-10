@@ -2,7 +2,6 @@ package org.sic4change.chuqabp.usescases
 
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -10,7 +9,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.UserRepository
 import org.sic4change.testshared.mockedUser
-import org.sic4change.usescases.ForgotPassword
+import org.sic4change.usescases.users.ForgotPassword
 
 @RunWith(MockitoJUnitRunner::class)
 class ForgotPasswordTest {
@@ -22,7 +21,8 @@ class ForgotPasswordTest {
 
     @Before
     fun setUp() {
-        forgotPassword = ForgotPassword(userRepository)
+        forgotPassword =
+            ForgotPassword(userRepository)
     }
 
     @Test

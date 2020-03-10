@@ -58,6 +58,8 @@ class PersonsRepository(private val localDataSource: LocalDataSource,
         return localDataSource.getPersonCases(person)
     }
 
+    suspend fun filterPersons(nameSurnames: String, location: String) = localDataSource.filterPersons(nameSurnames, location)
+
 }
 
 

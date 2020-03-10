@@ -15,14 +15,53 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toTopOf="@id/bttNavigation"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFilter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone">
+
+            <EditText
+                android:id="@+id/etNameSurnames"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/filter_name_surnames"
+                    android:inputType="textCapWords"
+                    android:textSize="12sp">
+
+            </EditText>
+
+            <EditText
+                    android:id="@+id/etLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etNameSurnames"
+                    android:layout_margin="@dimen/margin_default"
+                    android:hint="@string/filter_location"
+                    android:inputType="textCapWords"
+                    android:textSize="12sp">
+
+            </EditText>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/bttNavigation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clFilter"
                 android:layout_marginBottom="@dimen/hight_bottom_navigation">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -32,8 +71,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="1"
                 android:background="@color/white"
-                app:items="@{viewmodel.persons}"
-                />
+                app:items="@{viewmodel.persons}" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -66,6 +104,18 @@
                 app:menu="@menu/navigation_basic">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFilterPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toTopOf="@+id/btnNewPerson"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_search" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnNewPerson"

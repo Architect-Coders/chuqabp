@@ -1,4 +1,4 @@
-package org.sic4change.usescases
+package org.sic4change.usescases.locations
 
 import org.sic4change.data.repository.RegionRepository
 

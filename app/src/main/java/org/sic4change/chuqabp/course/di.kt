@@ -42,7 +42,13 @@ import org.sic4change.data.repository.*
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.data.source.LocationDataSource
 import org.sic4change.data.source.RemoteDataSource
-import org.sic4change.usescases.*
+import org.sic4change.usescases.cases.*
+import org.sic4change.usescases.locations.GetLocation
+import org.sic4change.usescases.persons.*
+import org.sic4change.usescases.reasons.GetClosedReasons
+import org.sic4change.usescases.resources.GetResources
+import org.sic4change.usescases.resources.GetResourcesCase
+import org.sic4change.usescases.users.*
 
 fun Application.initDI() {
     startKoin {
@@ -73,9 +79,10 @@ val dataModule = module {
 private val scopesModule = module {
 
     scope(named<MainFragment>()) {
-        viewModel { MainViewModel(get(), get(), get()) }
+        viewModel { MainViewModel(get(), get(), get(), get()) }
         scoped { GetPersons(get()) }
         scoped { RefreshPersons(get()) }
+        scoped { FilterPersons(get()) }
     }
 
     scope(named<DetailFragment>()) {

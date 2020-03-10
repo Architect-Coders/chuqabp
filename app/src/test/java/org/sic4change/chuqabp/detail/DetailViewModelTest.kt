@@ -16,8 +16,8 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.chuqabp.course.ui.main.detail.DetailViewModel
 import org.sic4change.domain.Person
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.DeletePerson
-import org.sic4change.usescases.FindPersonById
+import org.sic4change.usescases.persons.DeletePerson
+import org.sic4change.usescases.persons.FindPersonById
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {

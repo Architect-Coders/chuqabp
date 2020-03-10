@@ -14,7 +14,7 @@ import org.sic4change.chuqabp.FakeLocalDataSource
 import org.sic4change.chuqabp.initMockedDi
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.FindPersonById
+import org.sic4change.usescases.persons.FindPersonById
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -25,7 +25,7 @@ import org.koin.dsl.module
 import org.koin.test.get
 import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonViewModel
 import org.sic4change.chuqabp.defaultFakePersons
-import org.sic4change.usescases.UpdatePerson
+import org.sic4change.usescases.persons.UpdatePerson
 
 @RunWith(MockitoJUnitRunner::class)
 class UpdateIntegrationTest: AutoCloseKoinTest() {

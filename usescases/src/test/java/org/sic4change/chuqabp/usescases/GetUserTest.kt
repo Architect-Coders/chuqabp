@@ -10,7 +10,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.UserRepository
 import org.sic4change.testshared.mockedUser
-import org.sic4change.usescases.GetUser
+import org.sic4change.usescases.users.GetUser
 
 @RunWith(MockitoJUnitRunner::class)
 class GetUserTest {

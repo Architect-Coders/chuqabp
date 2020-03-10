@@ -9,7 +9,11 @@ import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Person
 import org.sic4change.domain.Case
 import org.sic4change.domain.Resource
-import org.sic4change.usescases.*
+import org.sic4change.usescases.cases.CreateCase
+import org.sic4change.usescases.locations.GetLocation
+import org.sic4change.usescases.persons.FindPersonById
+import org.sic4change.usescases.persons.GetPersonsToSelect
+import org.sic4change.usescases.resources.GetResources
 import java.util.*
 
 class NewCaseViewModel (private val personId: String, private val findPersonById: FindPersonById,

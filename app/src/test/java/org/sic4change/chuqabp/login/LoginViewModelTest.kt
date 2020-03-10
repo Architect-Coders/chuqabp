@@ -16,10 +16,10 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.login.LoginViewModel
 import org.sic4change.testshared.mockedUser
-import org.sic4change.usescases.CreateUser
-import org.sic4change.usescases.ForgotPassword
-import org.sic4change.usescases.GetSavedUser
-import org.sic4change.usescases.Login
+import org.sic4change.usescases.users.CreateUser
+import org.sic4change.usescases.users.ForgotPassword
+import org.sic4change.usescases.users.GetSavedUser
+import org.sic4change.usescases.users.Login
 
 @RunWith(MockitoJUnitRunner::class)
 class LoginViewModelTest {

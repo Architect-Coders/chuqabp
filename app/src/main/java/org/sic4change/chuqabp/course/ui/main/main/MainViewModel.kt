@@ -8,10 +8,12 @@ import kotlinx.coroutines.launch
 import org.sic4change.domain.Person
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
-import org.sic4change.usescases.GetPersons
-import org.sic4change.usescases.RefreshPersons
+import org.sic4change.usescases.persons.FilterPersons
+import org.sic4change.usescases.persons.GetPersons
+import org.sic4change.usescases.persons.RefreshPersons
 
 class MainViewModel(private val getPersons: GetPersons, private val refreshPersons: RefreshPersons,
+                    private val filterPersons: FilterPersons,
                     uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _persons = MutableLiveData<List<Person>>()
@@ -47,6 +49,15 @@ class MainViewModel(private val getPersons: GetPersons, private val refreshPerso
         launch {
             _loading.value = true
             _persons.value = refreshPersons.invoke()
+            _loading.value = false
+        }
+    }
+
+    fun filterPersons(nameSurnames: String, location: String) {
+        launch {
+            _loading.value = true
+            _persons.value = emptyList()
+            _persons.value = filterPersons.invoke(nameSurnames, location)
             _loading.value = false
         }
     }

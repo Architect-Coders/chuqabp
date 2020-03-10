@@ -18,8 +18,8 @@ import org.sic4change.chuqabp.course.ui.main.main.MainViewModel
 import org.sic4change.domain.Person
 
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.GetPersons
-import org.sic4change.usescases.RefreshPersons
+import org.sic4change.usescases.persons.GetPersons
+import org.sic4change.usescases.persons.RefreshPersons
 
 @RunWith(MockitoJUnitRunner::class)
 class MainViewModelTest {

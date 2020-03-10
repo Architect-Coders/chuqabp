@@ -16,8 +16,8 @@ import org.sic4change.chuqabp.initMockedDi
 import org.sic4change.chuqabp.defaultFakePersons
 import org.sic4change.data.source.LocalDataSource
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.DeletePerson
-import org.sic4change.usescases.FindPersonById
+import org.sic4change.usescases.persons.DeletePerson
+import org.sic4change.usescases.persons.FindPersonById
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer

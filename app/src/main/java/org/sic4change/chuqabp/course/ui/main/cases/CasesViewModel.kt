@@ -8,11 +8,11 @@ import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Case
-import org.sic4change.usescases.GetCases
-import org.sic4change.usescases.RefreshCases
+import org.sic4change.usescases.cases.GetCases
+import org.sic4change.usescases.cases.RefreshCases
 
 class CasesViewModel (private val getCases: GetCases, private val refreshCases: RefreshCases,
-    uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
+                      uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 
     private val _cases = MutableLiveData<List<Case>>()
     val cases: LiveData<List<Case>> get() = _cases

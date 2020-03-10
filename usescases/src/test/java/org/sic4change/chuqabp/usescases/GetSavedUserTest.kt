@@ -10,7 +10,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.UserRepository
 import org.sic4change.testshared.mockedUser
-import org.sic4change.usescases.GetSavedUser
+import org.sic4change.usescases.users.GetSavedUser
 
 @RunWith(MockitoJUnitRunner::class)
 class GetSavedUserTest {
@@ -22,7 +22,8 @@ class GetSavedUserTest {
 
     @Before
     fun setUp() {
-        getSavedUser = GetSavedUser(userRepository)
+        getSavedUser =
+            GetSavedUser(userRepository)
     }
 
     @Test

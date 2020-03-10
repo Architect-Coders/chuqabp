@@ -92,5 +92,10 @@ interface ChuqabpDao {
     @Query("SELECT * FROM `closedreason` WHERE id = :id")
     fun findClosedReasonById(id: String): ClosedReason
 
+    @Query("SELECT * FROM `person` WHERE name LIKE '%' || :nameSurname || '%' OR surnames LIKE '%' || :nameSurname || '%' ")
+    fun filterPersonsByNameAndSurnames(nameSurname: String): List<Person>
+
+    @Query("SELECT * FROM `person` WHERE location LIKE '%' || :location || '%'")
+    fun filterPersonsByLocation(location: String): List<Person>
 
 }

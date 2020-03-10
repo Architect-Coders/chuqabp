@@ -77,6 +77,19 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         chuqabpDao.findPersonById(id).toDomainPerson()
     }
 
+    override suspend fun filterPersons(nameSurname: String, location: String) : List<org.sic4change.domain.Person> {
+        var persons = mutableListOf<org.sic4change.domain.Person>()
+        withContext(Dispatchers.IO) {
+            if (!nameSurname.isNullOrEmpty()) {
+                persons.addAll(chuqabpDao.filterPersonsByNameAndSurnames(nameSurname).map { it.toDomainPerson() })
+            }
+            if (!location.isNullOrEmpty()) {
+                persons.addAll(chuqabpDao.filterPersonsByLocation(location).map { it.toDomainPerson() })
+            }
+        }
+        return persons.distinct()
+    }
+
     override suspend fun createCase(case: org.sic4change.domain.Case) {
         withContext(Dispatchers.IO) {
             chuqabpDao.insertCase(case.toDatabaseCase())
@@ -89,7 +102,6 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
             case.description, case.resources, case.status, case.closeDescription, case.closeReason, case.closeDate)
         }
     }
-
 
     override suspend fun deleteCase(id: String) {
         withContext(Dispatchers.IO) {

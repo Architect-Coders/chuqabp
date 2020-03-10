@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.domain.Person
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
-import org.sic4change.usescases.FindPersonById
-import org.sic4change.usescases.UpdatePerson
+import org.sic4change.usescases.persons.FindPersonById
+import org.sic4change.usescases.persons.UpdatePerson
 
 
 class UpdatePersonViewModel(private val personId: String, private val findPersonById: FindPersonById,

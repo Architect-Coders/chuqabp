@@ -17,8 +17,8 @@ import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.main.newperson.NewPersonViewModel
 
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.CreatePerson
-import org.sic4change.usescases.GetLocation
+import org.sic4change.usescases.persons.CreatePerson
+import org.sic4change.usescases.locations.GetLocation
 
 @RunWith(MockitoJUnitRunner::class)
 class NewPersonViewModelTest {

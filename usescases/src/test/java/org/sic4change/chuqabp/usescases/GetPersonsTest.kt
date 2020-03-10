@@ -10,7 +10,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.PersonsRepository
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.GetPersons
+import org.sic4change.usescases.persons.GetPersons
 
 @RunWith(MockitoJUnitRunner::class)
 class GetPersonsTest {
@@ -22,7 +22,8 @@ class GetPersonsTest {
 
     @Before
     fun setUp() {
-        getPersons = GetPersons(personsRepository)
+        getPersons =
+            GetPersons(personsRepository)
     }
 
     @Test

@@ -15,6 +15,7 @@ interface LocalDataSource {
     suspend fun insertPersons(persons: List<Person>)
     suspend fun getPersons() : List<Person>
     suspend fun findPersonById(id: String) : Person
+    suspend fun filterPersons(nameSurname: String, location: String) : List<Person>
     suspend fun createPerson(person: Person)
     suspend fun updatePerson(person: Person)
     suspend fun deletePerson(id: String)

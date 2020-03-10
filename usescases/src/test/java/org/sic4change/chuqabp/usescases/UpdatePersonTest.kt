@@ -11,7 +11,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.PersonsRepository
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.UpdatePerson
+import org.sic4change.usescases.persons.UpdatePerson
 
 @RunWith(MockitoJUnitRunner::class)
 class UpdatePersonTest {
@@ -23,7 +23,8 @@ class UpdatePersonTest {
 
     @Before
     fun setUp() {
-        updatePerson = UpdatePerson(personsRepository)
+        updatePerson =
+            UpdatePerson(personsRepository)
     }
 
     @Test

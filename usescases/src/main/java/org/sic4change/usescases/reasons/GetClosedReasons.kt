@@ -1,4 +1,4 @@
-package org.sic4change.usescases
+package org.sic4change.usescases.reasons
 
 import org.sic4change.data.repository.ClosedReasonsRepository
 import org.sic4change.domain.ClosedReason

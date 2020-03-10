@@ -11,7 +11,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.PersonsRepository
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.DeletePerson
+import org.sic4change.usescases.persons.DeletePerson
 
 @RunWith(MockitoJUnitRunner::class)
 class DeletePersonTest {
@@ -23,7 +23,8 @@ class DeletePersonTest {
 
     @Before
     fun setUp() {
-        deletePerson = DeletePerson(personsRepository)
+        deletePerson =
+            DeletePerson(personsRepository)
     }
 
     @Test

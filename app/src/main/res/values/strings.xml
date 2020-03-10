@@ -111,4 +111,8 @@
     <string name="close_case_description">Seleccione el motivo</string>
     <string name="close_case_description_hint">Describe el motivo...</string>
 
+    <!--Filter persons-->
+    <string name="filter_name_surnames">Filtrar por nombre y apellidos...</string>
+    <string name="filter_location">Filtrar por ubicación...</string>
+
 </resources>

@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Person
-import org.sic4change.usescases.CreatePerson
-import org.sic4change.usescases.GetLocation
+import org.sic4change.usescases.persons.CreatePerson
+import org.sic4change.usescases.locations.GetLocation
 import java.util.*
 
 class NewPersonViewModel (private val getLocation: GetLocation, private val createPerson: CreatePerson,

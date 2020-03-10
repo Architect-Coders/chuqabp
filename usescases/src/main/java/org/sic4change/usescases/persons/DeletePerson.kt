@@ -1,4 +1,4 @@
-package org.sic4change.usescases
+package org.sic4change.usescases.persons
 
 import org.sic4change.data.repository.PersonsRepository
 

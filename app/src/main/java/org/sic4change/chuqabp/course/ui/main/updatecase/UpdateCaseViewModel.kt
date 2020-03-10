@@ -8,10 +8,14 @@ import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Case
 import org.sic4change.domain.Person
 import org.sic4change.domain.Resource
-import org.sic4change.usescases.*
+import org.sic4change.usescases.cases.FindCaseById
+import org.sic4change.usescases.cases.UpdateCase
+import org.sic4change.usescases.persons.FindPersonById
+import org.sic4change.usescases.persons.GetPersonsToSelect
+import org.sic4change.usescases.resources.GetResources
 
 class UpdateCaseViewModel(private val caseId: String, private val findCaseById: FindCaseById,
-                            private val updateCase: UpdateCase, private val getPersonsToSelect: GetPersonsToSelect,
+                          private val updateCase: UpdateCase, private val getPersonsToSelect: GetPersonsToSelect,
                           private val findPersonById: FindPersonById, private val getResources: GetResources,
                           uiDispatcher: CoroutineDispatcher) : ScopedViewModel(uiDispatcher) {
 

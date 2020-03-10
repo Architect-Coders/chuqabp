@@ -18,7 +18,8 @@ import org.sic4change.chuqabp.course.ui.main.updateperson.UpdatePersonViewModel
 import org.sic4change.domain.Person
 
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.*
+import org.sic4change.usescases.persons.FindPersonById
+import org.sic4change.usescases.persons.UpdatePerson
 
 @RunWith(MockitoJUnitRunner::class)
 class UpdatePersonViewModelTest {

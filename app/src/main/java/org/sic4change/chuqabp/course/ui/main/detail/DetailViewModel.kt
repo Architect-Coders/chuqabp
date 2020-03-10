@@ -8,9 +8,9 @@ import org.sic4change.chuqabp.course.ui.common.Event
 import org.sic4change.domain.Person
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Case
-import org.sic4change.usescases.FindPersonById
-import org.sic4change.usescases.DeletePerson
-import org.sic4change.usescases.GetCasesPerson
+import org.sic4change.usescases.persons.FindPersonById
+import org.sic4change.usescases.persons.DeletePerson
+import org.sic4change.usescases.cases.GetCasesPerson
 
 
 class DetailViewModel(private val personId: String, private val findPersonById: FindPersonById,

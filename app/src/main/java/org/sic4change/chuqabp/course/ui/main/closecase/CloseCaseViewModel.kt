@@ -7,7 +7,9 @@ import kotlinx.coroutines.launch
 import org.sic4change.chuqabp.course.ui.common.ScopedViewModel
 import org.sic4change.domain.Case
 import org.sic4change.domain.ClosedReason
-import org.sic4change.usescases.*
+import org.sic4change.usescases.cases.FindCaseById
+import org.sic4change.usescases.cases.UpdateCase
+import org.sic4change.usescases.reasons.GetClosedReasons
 import java.text.SimpleDateFormat
 import java.util.*
 

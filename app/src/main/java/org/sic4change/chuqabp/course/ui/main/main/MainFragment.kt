@@ -4,6 +4,8 @@ import android.Manifest
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.*
+import android.widget.EditText
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -14,6 +16,8 @@ import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.PermissionRequester
 import org.sic4change.chuqabp.course.ui.common.EventObserver
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
+import org.sic4change.chuqabp.course.ui.common.hideKeyboard
+import org.sic4change.chuqabp.course.ui.setVisible
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
 
 
@@ -50,6 +54,7 @@ class MainFragment : Fragment() {
             resources.getColor(R.color.colorPrimaryDark), resources.getColor(R.color.colorPrimaryDark))
 
         viewModel.navigateToPerson.observe(this, EventObserver{ id ->
+            initView()
             val action = MainFragmentDirections.actionMainFragmentToDetailFragment(id)
             navController.navigate(action)
         })
@@ -69,6 +74,7 @@ class MainFragment : Fragment() {
         }
 
         bttNavigation.setOnNavigationItemSelectedListener {
+            initView()
             when (it.itemId) {
                 R.id.new_case -> {
                     val action = MainFragmentDirections.actionMainFragmentToNewCase("")
@@ -95,10 +101,24 @@ class MainFragment : Fragment() {
         }
 
         btnNewPerson.setOnClickListener {
+            initView()
             navController.navigate(R.id.action_mainFragment_to_newPersonFragment)
         }
 
+        btnFilterPerson.setOnClickListener {
+            showHideFilter()
+        }
+
+        etNameSurnames.doOnTextChanged { _, _, _, _ ->
+            viewModel.filterPersons(etNameSurnames.text.toString(), etLocation.text.toString())
+        }
+
+        etLocation.doOnTextChanged { _, _, _, _ ->
+            viewModel.filterPersons(etNameSurnames.text.toString(), etLocation.text.toString())
+        }
+
         swipe_container.setOnRefreshListener {
+            initView()
             viewModel.refreshPersons()
             val timer = object: CountDownTimer(3000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {}
@@ -112,6 +132,22 @@ class MainFragment : Fragment() {
             timer.start()
         }
 
+    }
+
+    private fun initView() {
+        etNameSurnames.text.clear()
+        etLocation.text.clear()
+        clFilter.visibility = View.GONE
+        this.hideKeyboard()
+    }
+
+    private fun showHideFilter() {
+        if (clFilter.visibility == View.VISIBLE) {
+            initView()
+            viewModel.refreshPersons()
+        } else {
+            clFilter.visibility = View.VISIBLE
+        }
     }
 
     override fun onResume() {

@@ -10,7 +10,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.sic4change.data.repository.PersonsRepository
 import org.sic4change.testshared.mockedPerson
-import org.sic4change.usescases.FindPersonById
+import org.sic4change.usescases.persons.FindPersonById
 
 @RunWith(MockitoJUnitRunner::class)
 class FindPersonByIdTest {
@@ -22,7 +22,8 @@ class FindPersonByIdTest {
 
     @Before
     fun setUp() {
-        findPersonById = FindPersonById(personsRepository)
+        findPersonById =
+            FindPersonById(personsRepository)
     }
 
     @Test

@@ -119,5 +119,7 @@ interface ChuqabpDao {
     @Query("SELECT * FROM `case` WHERE economic = :economic")
     fun filterCasesByEconomic(economic: Boolean): List<Case>
 
+    @Query("SELECT * FROM `case` WHERE status = :status")
+    fun filterCasesByStatus(status: String): List<Case>
 
 }

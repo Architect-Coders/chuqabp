@@ -103,7 +103,7 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
             datePickerDialog = DatePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                     val month = monthOfYear + 1
                     viewModel.setDate("$dayOfMonth/$month/$year")
                     tvDate.text = "$dayOfMonth/$month/$year"
@@ -117,7 +117,7 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
             val hour = c.get(Calendar.HOUR_OF_DAY)
             val minute = c.get(Calendar.MINUTE)
             timePickerDialog = TimePickerDialog(this.context!!, R.style.DateTimeDialogTheme,
-                TimePickerDialog.OnTimeSetListener { view, hour, minute  ->
+                TimePickerDialog.OnTimeSetListener { _, hour, minute  ->
                     viewModel.setHour("$hour:$minute")
                     tvTime.text = "$hour:$minute"
                 }, hour, minute, true)
@@ -126,23 +126,23 @@ class UpdateCaseFragment: Fragment(), DatePickerDialog.OnDateSetListener {
 
         }
 
-        cvPysical.setOnCheckedChangeListener { compoundButton, b ->
+        cvPysical.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvSexual.setOnCheckedChangeListener { compoundButton, b ->
+        cvSexual.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvPsychological.setOnCheckedChangeListener { compoundButton, b ->
+        cvPsychological.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvSocial.setOnCheckedChangeListener { compoundButton, b ->
+        cvSocial.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 
-        cvEconomic.setOnCheckedChangeListener { compoundButton, b ->
+        cvEconomic.setOnCheckedChangeListener { _, _ ->
             setType()
         }
 

@@ -2,6 +2,7 @@ package org.sic4change.chuqabp.course.ui
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.Switch
 import android.widget.TextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString

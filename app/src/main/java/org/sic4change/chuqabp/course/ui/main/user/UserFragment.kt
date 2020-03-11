@@ -110,10 +110,10 @@ class UserFragment : Fragment(){
         builder.setTitle(R.string.logout)
         builder.setMessage(R.string.logout_question)
         builder.setCancelable(true)
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
             viewModel.onLogoutClicked()
         }
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+        builder.setNegativeButton(android.R.string.no) { dialog, _ ->
             dialog.cancel()
         }
         builder.show()
@@ -124,10 +124,10 @@ class UserFragment : Fragment(){
         builder.setTitle(R.string.delete_account)
         builder.setMessage(R.string.delete_account_first_question)
         builder.setCancelable(true)
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
             viewModel.onDeleteUserClicked()
         }
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+        builder.setNegativeButton(android.R.string.no) { dialog, _ ->
             dialog.cancel()
         }
         builder.show()

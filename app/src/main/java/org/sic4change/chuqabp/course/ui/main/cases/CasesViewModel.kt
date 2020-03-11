@@ -39,6 +39,9 @@ class CasesViewModel (private val getCases: GetCases, private val refreshCases: 
     private val _cpEconomicSelected = MutableLiveData<Boolean>()
     val cpEconomicSelected: LiveData<Boolean> get() = _cpEconomicSelected
 
+    private val _statusSelected = MutableLiveData<String>()
+    val statusSelected: LiveData<String> get() = _statusSelected
+
     fun selectUnSelectPhysic() {
         _cpPhysicSelected.value = _cpPhysicSelected.value != true
     }
@@ -59,12 +62,17 @@ class CasesViewModel (private val getCases: GetCases, private val refreshCases: 
         _cpSocialSelected.value = _cpSocialSelected.value != true
     }
 
+    fun selectStatus(status: String) {
+        _statusSelected.value = status
+    }
+
     fun resetTypesSelected() {
         _cpPhysicSelected.value = false
         _cpSexualSelected.value = false
         _cpPsicologicalSelected.value = false
         _cpEconomicSelected.value = false
         _cpSocialSelected.value = false
+        _statusSelected.value = ""
     }
 
     init {
@@ -94,7 +102,7 @@ class CasesViewModel (private val getCases: GetCases, private val refreshCases: 
             _cases.value = emptyList()
             _cases.value = filterCases.invoke(nameSurnames, place, _cpPhysicSelected.value,
                 _cpSexualSelected.value, _cpPsicologicalSelected.value, _cpSocialSelected.value,
-                _cpEconomicSelected.value)
+                _cpEconomicSelected.value, _statusSelected.value)
             _loading.value = false
         }
     }

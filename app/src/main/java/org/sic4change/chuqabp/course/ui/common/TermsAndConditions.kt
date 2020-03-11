@@ -18,7 +18,7 @@ class TermsAndConditions {
             val webView = LayoutInflater.from(context).inflate(R.layout.fragment_terms_and_conditions, null) as WebView
             webView.loadUrl(urlTermsAndConditions)
             builder.setView(webView)
-            builder.setPositiveButton(android.R.string.ok) { dialog, which ->
+            builder.setPositiveButton(android.R.string.ok) { dialog, _ ->
                 dialog.dismiss()
             }
             builder.show()

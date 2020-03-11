@@ -135,7 +135,7 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     override suspend fun filterCases(nameSurname: String, place: String, physic: Boolean?,
                                      sexual: Boolean?, psychologic: Boolean?, social: Boolean?,
-                                     economic: Boolean?) : List<org.sic4change.domain.Case> {
+                                     economic: Boolean?, status: String?) : List<org.sic4change.domain.Case> {
         var cases = mutableListOf<org.sic4change.domain.Case>()
         withContext(Dispatchers.IO) {
             if (!nameSurname.isNullOrEmpty()) {
@@ -168,6 +168,9 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
                 if (economic) {
                     cases.addAll(chuqabpDao.filterCasesByEconomic(economic).map { it.toDomainCase() })
                 }
+            }
+            if (!status.isNullOrEmpty()) {
+                cases.addAll(chuqabpDao.filterCasesByStatus(status).map { it.toDomainCase() })
             }
         }
         return cases.distinct()

@@ -53,7 +53,7 @@ class NewPersonFragment : Fragment() {
         }
 
         ivPhotoPerson.setOnClickListener {
-            activity?.let { it1 ->
+            activity?.let { _ ->
                 CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setCropShape(CropImageView.CropShape.RECTANGLE)

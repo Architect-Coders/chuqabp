@@ -132,6 +132,29 @@ class CasesFragment: Fragment() {
             viewModel.selectUnSelectSocial()
         }
 
+        swStatus.setOnToggleSwitchChangeListener { position, _ ->
+            when (position) {
+                0 -> {
+                    viewModel.selectStatus("open")
+                }
+                2 -> {
+                    viewModel.selectStatus("closed")
+                }
+                else -> {
+                    viewModel.selectStatus("")
+                }
+            }
+
+        }
+
+        ivClose.setOnClickListener {
+            swStatus.isSelected = true
+        }
+
+        ivOpen.setOnClickListener {
+            swStatus.isSelected = false
+        }
+
         swipe_container.setOnRefreshListener {
             initView()
             viewModel.refreshCases()
@@ -167,6 +190,12 @@ class CasesFragment: Fragment() {
             viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
         })
 
+        viewModel.statusSelected.observe(this, Observer<String> {
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        })
+
+        initView()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -182,6 +211,7 @@ class CasesFragment: Fragment() {
         cpPsicologicalFilter.setTextColor(resources.getColor(R.color.gray))
         cpEconomicFilter.setTextColor(resources.getColor(R.color.gray))
         cpSocialFilter.setTextColor(resources.getColor(R.color.gray))
+        swStatus.checkedTogglePosition = 1
         clFilter.visibility = View.GONE
         this.hideKeyboard()
     }

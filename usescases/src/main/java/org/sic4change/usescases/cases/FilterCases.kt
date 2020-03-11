@@ -6,8 +6,8 @@ import org.sic4change.domain.Case
 class FilterCases(private val casesRepository: CasesRepository) {
 
     suspend fun invoke(nameSurnames: String, place: String, physic: Boolean?, sexual: Boolean?,
-                       psychologic: Boolean?, social: Boolean?, economic: Boolean?) : List<Case> =
-        casesRepository.filterCases(nameSurnames, place, physic, sexual, psychologic, social, economic)
+                       psychologic: Boolean?, social: Boolean?, economic: Boolean?, status: String?) : List<Case> =
+        casesRepository.filterCases(nameSurnames, place, physic, sexual, psychologic, social, economic, status)
 
 
 }

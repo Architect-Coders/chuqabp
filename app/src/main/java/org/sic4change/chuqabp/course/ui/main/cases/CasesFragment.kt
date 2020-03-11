@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.view.*
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_cases.*
@@ -14,14 +15,17 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.bttNavigation
 import kotlinx.android.synthetic.main.fragment_main.recycler
 import kotlinx.android.synthetic.main.fragment_main.swipe_container
+import kotlinx.android.synthetic.main.view_case.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.EventObserver
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.hideKeyboard
+import org.sic4change.chuqabp.course.ui.setSelected
 import org.sic4change.chuqabp.databinding.FragmentCasesBinding
 
+@Suppress("DEPRECATION")
 class CasesFragment: Fragment() {
 
     private lateinit var adapter : CasesAdapter
@@ -108,6 +112,26 @@ class CasesFragment: Fragment() {
             viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
         }
 
+        cpPhysicFilter.setOnClickListener {
+            viewModel.selectUnSelectPhysic()
+        }
+
+        cpPsicologicalFilter.setOnClickListener {
+            viewModel.selectUnSelectPsicological()
+        }
+
+        cpSexualFilter.setOnClickListener {
+            viewModel.selectUnSelectSexual()
+        }
+
+        cpEconomicFilter.setOnClickListener {
+            viewModel.selectUnSelectEconomic()
+        }
+
+        cpSocialFilter.setOnClickListener {
+            viewModel.selectUnSelectSocial()
+        }
+
         swipe_container.setOnRefreshListener {
             initView()
             viewModel.refreshCases()
@@ -123,6 +147,26 @@ class CasesFragment: Fragment() {
             timer.start()
         }
 
+        viewModel.cpPhysicSelected.observe(this, Observer<Boolean> {
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        })
+
+        viewModel.cpSexualSelected.observe(this, Observer<Boolean> {
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        })
+
+        viewModel.cpPsicologicalSelected.observe(this, Observer<Boolean> {
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        })
+
+        viewModel.cpSocialSelected.observe(this, Observer<Boolean> {
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        })
+
+        viewModel.cpEconomicSelected.observe(this, Observer<Boolean> {
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        })
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -132,6 +176,12 @@ class CasesFragment: Fragment() {
     private fun initView() {
         etNameSurnames.text.clear()
         etPlace.text.clear()
+        viewModel.resetTypesSelected()
+        cpPhysicFilter.setTextColor(resources.getColor(R.color.gray))
+        cpSexualFilter.setTextColor(resources.getColor(R.color.gray))
+        cpPsicologicalFilter.setTextColor(resources.getColor(R.color.gray))
+        cpEconomicFilter.setTextColor(resources.getColor(R.color.gray))
+        cpSocialFilter.setTextColor(resources.getColor(R.color.gray))
         clFilter.visibility = View.GONE
         this.hideKeyboard()
     }

@@ -104,4 +104,20 @@ interface ChuqabpDao {
     @Query("SELECT * FROM `case` WHERE place LIKE '%' || :place || '%'")
     fun filterCasesByPlace(place: String): List<Case>
 
+    @Query("SELECT * FROM `case` WHERE physic = :physic")
+    fun filterCasesByPhysic(physic: Boolean): List<Case>
+
+    @Query("SELECT * FROM `case` WHERE sexual = :sexual")
+    fun filterCasesBySexual(sexual: Boolean): List<Case>
+
+    @Query("SELECT * FROM `case` WHERE psychologic = :psychologic")
+    fun filterCasesByPsychologic(psychologic: Boolean): List<Case>
+
+    @Query("SELECT * FROM `case` WHERE social = :social")
+    fun filterCasesBySocial(social: Boolean): List<Case>
+
+    @Query("SELECT * FROM `case` WHERE economic = :economic")
+    fun filterCasesByEconomic(economic: Boolean): List<Case>
+
+
 }

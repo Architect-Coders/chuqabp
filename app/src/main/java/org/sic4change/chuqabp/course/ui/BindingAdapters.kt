@@ -7,6 +7,7 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.loadPersonUrl
 import org.sic4change.chuqabp.course.ui.main.cases.CasesAdapter
@@ -150,5 +151,14 @@ fun TextView.closedReasonSelected(closedReason: ClosedReason?) = closedReason?.r
 fun RecyclerView.setCloseReasons(closeReasons: List<ClosedReason>?) {
     (adapter as? ClosedReasonAdapter)?.let {
         it.closedReasons = closeReasons ?: emptyList()
+    }
+}
+
+@BindingAdapter("selected")
+fun Chip.setSelected(selected: Boolean) {
+    if (selected) {
+        setTextColor(resources.getColor(R.color.colorPrimaryDark))
+    } else {
+        setTextColor(resources.getColor(R.color.gray))
     }
 }

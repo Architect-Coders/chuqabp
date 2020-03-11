@@ -133,7 +133,9 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         chuqabpDao.findCaseById(id).toDomainCase()
     }
 
-    override suspend fun filterCases(nameSurname: String, place: String) : List<org.sic4change.domain.Case> {
+    override suspend fun filterCases(nameSurname: String, place: String, physic: Boolean?,
+                                     sexual: Boolean?, psychologic: Boolean?, social: Boolean?,
+                                     economic: Boolean?) : List<org.sic4change.domain.Case> {
         var cases = mutableListOf<org.sic4change.domain.Case>()
         withContext(Dispatchers.IO) {
             if (!nameSurname.isNullOrEmpty()) {
@@ -141,6 +143,31 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
             }
             if (!place.isNullOrEmpty()) {
                 cases.addAll(chuqabpDao.filterCasesByPlace(place).map { it.toDomainCase() })
+            }
+            if (physic != null) {
+                if (physic) {
+                    cases.addAll(chuqabpDao.filterCasesByPhysic(physic).map { it.toDomainCase() })
+                }
+            }
+            if (sexual != null) {
+                if (sexual) {
+                    cases.addAll(chuqabpDao.filterCasesBySexual(sexual).map { it.toDomainCase() })
+                }
+            }
+            if (psychologic != null) {
+                if (psychologic) {
+                    cases.addAll(chuqabpDao.filterCasesByPsychologic(psychologic).map { it.toDomainCase() })
+                }
+            }
+            if (social != null) {
+                if(social) {
+                    cases.addAll(chuqabpDao.filterCasesBySocial(social).map { it.toDomainCase() })
+                }
+            }
+            if (economic != null) {
+                if (economic) {
+                    cases.addAll(chuqabpDao.filterCasesByEconomic(economic).map { it.toDomainCase() })
+                }
             }
         }
         return cases.distinct()

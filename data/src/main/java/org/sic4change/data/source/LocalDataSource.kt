@@ -27,7 +27,8 @@ interface LocalDataSource {
     suspend fun updateCase(case: Case)
     suspend fun deleteCase(id: String)
     suspend fun getPersonCases(person: String): List<Case>
-    suspend fun filterCases(nameSurname: String, place: String) : List<Case>
+    suspend fun filterCases(nameSurname: String, place: String, physic: Boolean?, sexual: Boolean?,
+                            psychologic: Boolean?, social: Boolean?, economic: Boolean?) : List<Case>
     suspend fun getResources() : List<Resource>
     suspend fun deleteResources()
     suspend fun insertResources(resources: List<Resource>)

@@ -52,6 +52,76 @@
 
             </EditText>
 
+            <ScrollView
+                    android:id="@+id/svTypes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPlace"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default">
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpPhysicFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_physical"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            android:textSize="10sp"
+                            app:selected="@{viewmodel.cpPhysicSelected}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpSexualFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_sexual"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            android:textSize="10sp"
+                            app:selected="@{viewmodel.cpSexualSelected}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpPsicologicalFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_psychological"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            android:textSize="10sp"
+                            app:selected="@{viewmodel.cpPsicologicalSelected}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpSocialFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_social"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            android:textSize="10sp"
+                            app:selected="@{viewmodel.cpSocialSelected}"/>
+
+                    <com.google.android.material.chip.Chip
+                            android:id="@+id/cpEconomicFilter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/checkbox_title_economic"
+                            android:theme="@style/Theme.MaterialComponents.Light"
+                            android:layout_margin="4dp"
+                            android:textSize="10sp"
+                            app:selected="@{viewmodel.cpEconomicSelected}"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

@@ -49,7 +49,9 @@ class CasesRepository(private val localDataSource: LocalDataSource,
 
     suspend fun findCaseById(id: String): Case = localDataSource.findCaseById(id)
 
-    suspend fun filterCases(nameSurnames: String, place: String) = localDataSource.filterCases(nameSurnames, place)
+    suspend fun filterCases(nameSurnames: String, place: String, physic: Boolean?, sexual: Boolean?,
+                            psychologic: Boolean?, social: Boolean?, economic: Boolean?) =
+        localDataSource.filterCases(nameSurnames, place, physic, sexual, psychologic, social, economic)
 
 }
 

@@ -115,4 +115,8 @@
     <string name="filter_name_surnames">Filtrar por nombre y apellidos...</string>
     <string name="filter_location">Filtrar por ubicación...</string>
 
+    <!--Filter cases-->
+    <string name="filter_case_name_surnames">Filtrar por nombre y apellidos...</string>
+    <string name="filter_case_location">Filtrar por ubicación...</string>
+
 </resources>

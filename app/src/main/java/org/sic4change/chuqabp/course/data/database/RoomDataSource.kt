@@ -133,6 +133,19 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
         chuqabpDao.findCaseById(id).toDomainCase()
     }
 
+    override suspend fun filterCases(nameSurname: String, place: String) : List<org.sic4change.domain.Case> {
+        var cases = mutableListOf<org.sic4change.domain.Case>()
+        withContext(Dispatchers.IO) {
+            if (!nameSurname.isNullOrEmpty()) {
+                cases.addAll(chuqabpDao.filterCasesByNameAndSurnames(nameSurname).map { it.toDomainCase() })
+            }
+            if (!place.isNullOrEmpty()) {
+                cases.addAll(chuqabpDao.filterCasesByPlace(place).map { it.toDomainCase() })
+            }
+        }
+        return cases.distinct()
+    }
+
     override suspend fun getResources(): List<DomainResource> = withContext(Dispatchers.IO) {
         chuqabpDao.getAllResources().map { it.toDomainResource() }
     }

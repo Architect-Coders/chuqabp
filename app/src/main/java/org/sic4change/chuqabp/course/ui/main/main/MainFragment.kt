@@ -4,7 +4,6 @@ import android.Manifest
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.*
-import android.widget.EditText
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -17,7 +16,6 @@ import org.sic4change.chuqabp.course.ui.PermissionRequester
 import org.sic4change.chuqabp.course.ui.common.EventObserver
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.hideKeyboard
-import org.sic4change.chuqabp.course.ui.setVisible
 import org.sic4change.chuqabp.databinding.FragmentMainBinding
 
 

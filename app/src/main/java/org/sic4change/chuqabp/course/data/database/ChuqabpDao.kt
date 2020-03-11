@@ -98,4 +98,10 @@ interface ChuqabpDao {
     @Query("SELECT * FROM `person` WHERE location LIKE '%' || :location || '%'")
     fun filterPersonsByLocation(location: String): List<Person>
 
+    @Query("SELECT * FROM `case` WHERE name LIKE '%' || :nameSurname || '%' OR surnames LIKE '%' || :nameSurname || '%' ")
+    fun filterCasesByNameAndSurnames(nameSurname: String): List<Case>
+
+    @Query("SELECT * FROM `case` WHERE place LIKE '%' || :place || '%'")
+    fun filterCasesByPlace(place: String): List<Case>
+
 }

@@ -3,10 +3,14 @@ package org.sic4change.chuqabp.course.ui.main.cases
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.*
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_cases.*
+import kotlinx.android.synthetic.main.fragment_cases.clFilter
+import kotlinx.android.synthetic.main.fragment_cases.etNameSurnames
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.bttNavigation
 import kotlinx.android.synthetic.main.fragment_main.recycler
 import kotlinx.android.synthetic.main.fragment_main.swipe_container
@@ -15,6 +19,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.EventObserver
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
+import org.sic4change.chuqabp.course.ui.common.hideKeyboard
 import org.sic4change.chuqabp.databinding.FragmentCasesBinding
 
 class CasesFragment: Fragment() {
@@ -45,6 +50,7 @@ class CasesFragment: Fragment() {
             resources.getColor(R.color.colorPrimaryDark), resources.getColor(R.color.colorPrimaryDark))
 
         viewModel.navigateToCase.observe(this, EventObserver{ id ->
+            initView()
             val action = CasesFragmentDirections.actionCasesFragmentToCaseDetailFragment(id)
             navController.navigate(action)
         })
@@ -58,6 +64,7 @@ class CasesFragment: Fragment() {
         }
 
         bttNavigation.setOnNavigationItemSelectedListener {
+            initView()
             when (it.itemId) {
                 R.id.new_case -> {
                     val action = CasesFragmentDirections.actionCasesFragmentToNewCaseFragement("")
@@ -84,11 +91,25 @@ class CasesFragment: Fragment() {
         }
 
         btnNewCase.setOnClickListener {
+            initView()
             val action = CasesFragmentDirections.actionCasesFragmentToNewCaseFragement("")
             navController.navigate(action)
         }
 
+        btnFilterCase.setOnClickListener {
+            showHideFilter()
+        }
+
+        etNameSurnames.doOnTextChanged { _, _, _, _ ->
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        }
+
+        etPlace.doOnTextChanged { _, _, _, _ ->
+            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+        }
+
         swipe_container.setOnRefreshListener {
+            initView()
             viewModel.refreshCases()
             val timer = object: CountDownTimer(3000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {}
@@ -106,6 +127,22 @@ class CasesFragment: Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
+    }
+
+    private fun initView() {
+        etNameSurnames.text.clear()
+        etPlace.text.clear()
+        clFilter.visibility = View.GONE
+        this.hideKeyboard()
+    }
+
+    private fun showHideFilter() {
+        if (clFilter.visibility == View.VISIBLE) {
+            initView()
+            viewModel.refreshCases()
+        } else {
+            clFilter.visibility = View.VISIBLE
+        }
     }
 
     override fun onResume() {

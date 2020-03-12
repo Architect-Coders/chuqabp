@@ -96,13 +96,13 @@ class CasesViewModel (private val getCases: GetCases, private val refreshCases: 
         }
     }
 
-    fun filterCases(nameSurnames: String, place: String) {
+    fun filterCases(nameSurnames: String, place: String, rangeDate: String) {
         launch {
             _loading.value = true
             _cases.value = emptyList()
             _cases.value = filterCases.invoke(nameSurnames, place, _cpPhysicSelected.value,
                 _cpSexualSelected.value, _cpPsicologicalSelected.value, _cpSocialSelected.value,
-                _cpEconomicSelected.value, _statusSelected.value)
+                _cpEconomicSelected.value, _statusSelected.value, rangeDate)
             _loading.value = false
         }
     }

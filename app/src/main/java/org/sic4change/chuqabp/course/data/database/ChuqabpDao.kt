@@ -122,4 +122,7 @@ interface ChuqabpDao {
     @Query("SELECT * FROM `case` WHERE status = :status")
     fun filterCasesByStatus(status: String): List<Case>
 
+    @Query("SELECT * FROM `case` WHERE date BETWEEN :first AND :end")
+    fun filterCasesByDateRange(first: Long, end: Long): List<Case>
+
 }

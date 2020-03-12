@@ -1,8 +1,12 @@
 package org.sic4change.chuqabp.course.ui.main.cases
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,22 +15,23 @@ import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_cases.*
 import kotlinx.android.synthetic.main.fragment_cases.clFilter
 import kotlinx.android.synthetic.main.fragment_cases.etNameSurnames
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.bttNavigation
 import kotlinx.android.synthetic.main.fragment_main.recycler
 import kotlinx.android.synthetic.main.fragment_main.swipe_container
-import kotlinx.android.synthetic.main.view_case.*
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.sic4change.chuqabp.R
 import org.sic4change.chuqabp.course.ui.common.EventObserver
 import org.sic4change.chuqabp.course.ui.common.bindingInflate
 import org.sic4change.chuqabp.course.ui.common.hideKeyboard
-import org.sic4change.chuqabp.course.ui.setSelected
 import org.sic4change.chuqabp.databinding.FragmentCasesBinding
+import ru.slybeaver.slycalendarview.SlyCalendarDialog
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 @Suppress("DEPRECATION")
-class CasesFragment: Fragment() {
+class CasesFragment: Fragment(), SlyCalendarDialog.Callback {
 
     private lateinit var adapter : CasesAdapter
 
@@ -105,11 +110,15 @@ class CasesFragment: Fragment() {
         }
 
         etNameSurnames.doOnTextChanged { _, _, _, _ ->
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         }
 
         etPlace.doOnTextChanged { _, _, _, _ ->
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
+        }
+
+        etRangeDate.doOnTextChanged { _, _, _, _ ->
+            callFilter()
         }
 
         cpPhysicFilter.setOnClickListener {
@@ -171,31 +180,45 @@ class CasesFragment: Fragment() {
         }
 
         viewModel.cpPhysicSelected.observe(this, Observer<Boolean> {
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         })
 
         viewModel.cpSexualSelected.observe(this, Observer<Boolean> {
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         })
 
         viewModel.cpPsicologicalSelected.observe(this, Observer<Boolean> {
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         })
 
         viewModel.cpSocialSelected.observe(this, Observer<Boolean> {
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         })
 
         viewModel.cpEconomicSelected.observe(this, Observer<Boolean> {
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         })
 
         viewModel.statusSelected.observe(this, Observer<String> {
-            viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString())
+            callFilter()
         })
 
+        etRangeDate.setOnClickListener {
+            if (fragmentManager != null) {
+                this.hideKeyboard()
+                SlyCalendarDialog()
+                    .setSingle(false)
+                    .setHeaderColor(Color.parseColor("#00c6c6"))
+                    .setSelectedColor(Color.parseColor("#00c6c6"))
+                    .setCallback(this).show(fragmentManager!!, "")
+            }
+        }
         initView()
 
+    }
+
+    private fun callFilter() {
+        viewModel.filterCases(etNameSurnames.text.toString(), etPlace.text.toString(), etRangeDate.text.toString())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -205,6 +228,7 @@ class CasesFragment: Fragment() {
     private fun initView() {
         etNameSurnames.text.clear()
         etPlace.text.clear()
+        etRangeDate.text = ""
         viewModel.resetTypesSelected()
         cpPhysicFilter.setTextColor(resources.getColor(R.color.gray))
         cpSexualFilter.setTextColor(resources.getColor(R.color.gray))
@@ -228,6 +252,21 @@ class CasesFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         bttNavigation.menu.findItem(R.id.cases).isChecked = true
+    }
+
+    override fun onDataSelected(firstDate: Calendar?, secondDate: Calendar?, hours: Int, minutes: Int) {
+        try {
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+            val dateFirst = dateFormat.format(firstDate?.time)
+            val dateEnd = dateFormat.format(secondDate?.time)
+            etRangeDate.text = "$dateFirst - $dateEnd"
+        } catch (e: Exception){
+            println("malformed range date")
+        }
+    }
+
+    override fun onCancelled() {
+
     }
 
 }

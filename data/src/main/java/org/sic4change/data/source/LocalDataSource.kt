@@ -28,7 +28,7 @@ interface LocalDataSource {
     suspend fun deleteCase(id: String)
     suspend fun getPersonCases(person: String): List<Case>
     suspend fun filterCases(nameSurname: String, place: String, physic: Boolean?, sexual: Boolean?,
-                            psychologic: Boolean?, social: Boolean?, economic: Boolean?, status: String?)
+                            psychologic: Boolean?, social: Boolean?, economic: Boolean?, status: String?, rangeDate: String)
                             : List<Case>
     suspend fun getResources() : List<Resource>
     suspend fun deleteResources()

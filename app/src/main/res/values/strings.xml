@@ -118,6 +118,7 @@
     <!--Filter cases-->
     <string name="filter_case_name_surnames">Filtrar por nombre y apellidos...</string>
     <string name="filter_case_location">Filtrar por ubicación...</string>
+    <string name="filter_case_range_date">Filtrar por rango de fechas...</string>
     <string name="all">Todas</string>
     <string name="open_cases_filter">Abiertas</string>
     <string name="closed_cases_filter">Cerradas</string>

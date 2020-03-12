@@ -53,12 +53,42 @@
 
             </EditText>
 
+            <TextView
+                    android:id="@+id/etRangeDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etPlace"
+                    android:hint="@string/filter_case_range_date"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginBottom="16dp">
+
+            </TextView>
+
+            <View
+                    android:id="@+id/line"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etRangeDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#c0c0c0"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="@dimen/margin_default"/>
+
             <ScrollView
                     android:id="@+id/svTypes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etPlace"
+                    app:layout_constraintTop_toBottomOf="@+id/line"
                     android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:layout_marginTop="@dimen/margin_default"

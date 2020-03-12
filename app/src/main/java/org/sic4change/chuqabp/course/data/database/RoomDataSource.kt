@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.sic4change.chuqabp.course.data.*
 import org.sic4change.data.source.LocalDataSource
+import java.text.SimpleDateFormat
 import org.sic4change.domain.User as DomainUser
 import org.sic4change.domain.Person as DomainPerson
 import org.sic4change.domain.Case as DomainCase
@@ -135,7 +136,7 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
 
     override suspend fun filterCases(nameSurname: String, place: String, physic: Boolean?,
                                      sexual: Boolean?, psychologic: Boolean?, social: Boolean?,
-                                     economic: Boolean?, status: String?) : List<org.sic4change.domain.Case> {
+                                     economic: Boolean?, status: String?, rangeDate: String) : List<org.sic4change.domain.Case> {
         var cases = mutableListOf<org.sic4change.domain.Case>()
         withContext(Dispatchers.IO) {
             if (!nameSurname.isNullOrEmpty()) {
@@ -143,6 +144,13 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
             }
             if (!place.isNullOrEmpty()) {
                 cases.addAll(chuqabpDao.filterCasesByPlace(place).map { it.toDomainCase() })
+            }
+            if (!rangeDate.isNullOrEmpty()) {
+                val dates = rangeDate.split(" - ")
+                val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy")
+                val startDate = dateformatddMMyyyy.parse(dates[0]).time/1000
+                val endDate = dateformatddMMyyyy.parse(dates[1]).time/1000
+                cases.addAll(chuqabpDao.filterCasesByDateRange(startDate, endDate).map { it.toDomainCase() })
             }
             if (physic != null) {
                 if (physic) {

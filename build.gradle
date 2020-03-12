@@ -96,7 +96,8 @@ allprojects {
                 circleimageview  : 'de.hdodenhof:circleimageview:3.0.0',
                 showhideedittext :'com.github.scottyab:showhidepasswordedittext:0.8',
                 imagecropper     : 'com.theartofdev.edmodo:android-image-cropper:2.8.0',
-                switchmulti      : 'us.belka:androidtoggleswitch:1.2.2'
+                switchmulti      : 'us.belka:androidtoggleswitch:1.2.2',
+                rangecalendar    : 'com.github.psinetron:slycalendarview:0.0.9'
         ]
 
         log = [

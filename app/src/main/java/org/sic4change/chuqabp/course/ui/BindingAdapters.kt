@@ -20,6 +20,8 @@ import org.sic4change.domain.Person
 import org.sic4change.domain.Case
 import org.sic4change.domain.ClosedReason
 import org.sic4change.domain.Resource
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("url")
 fun ImageView.bindUrl(url: String?) {
@@ -162,4 +164,11 @@ fun Chip.setSelected(selected: Boolean) {
     } else {
         setTextColor(resources.getColor(R.color.gray))
     }
+}
+
+@BindingAdapter("dateString")
+fun TextView.dateString(dateMilis: Long) = dateMilis.run {
+    val sdf = SimpleDateFormat("dd/MM/yyyy")
+    val newDate = Date(dateMilis*1000L)
+    text = sdf.format(newDate)
 }

@@ -93,7 +93,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:textSize="12sp"
-                    android:text="@{viewmodel.case.date}" />
+                    app:dateString="@{viewmodel.case.date}" />
 
             <ImageView
                     android:id="@+id/ivHour"

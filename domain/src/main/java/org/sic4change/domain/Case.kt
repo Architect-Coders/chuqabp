@@ -5,7 +5,7 @@ data class Case (
     val person: String = "",
     val name: String = "",
     val surnames: String = "",
-    val date: String = "",
+    val date: Long = 0,
     val hour: String = "",
     val place: String = "",
     val physic: Boolean = false,

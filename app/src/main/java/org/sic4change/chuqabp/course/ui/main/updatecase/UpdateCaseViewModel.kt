@@ -13,6 +13,8 @@ import org.sic4change.usescases.cases.UpdateCase
 import org.sic4change.usescases.persons.FindPersonById
 import org.sic4change.usescases.persons.GetPersonsToSelect
 import org.sic4change.usescases.resources.GetResources
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UpdateCaseViewModel(private val caseId: String, private val findCaseById: FindCaseById,
                           private val updateCase: UpdateCase, private val getPersonsToSelect: GetPersonsToSelect,
@@ -55,9 +57,11 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
     init {
         launch {
             _case.value = findCaseById.invoke(caseId)
+            val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+            val dateChanged = dateformatddMMyyyy.format(_case.value!!.date)
             if (_case.value != null) {
                 _person.value = findPersonById.invoke(_case.value!!.person)
-                _date.value = _case.value!!.date
+                _date.value = dateChanged
                 _hour.value = _case.value!!.hour
                 _currentLocation.value = _case.value!!.place
                 _description.value = _case.value!!.description
@@ -132,7 +136,9 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
         hour: String, place: String, physic: Boolean, sexual: Boolean, psycological: Boolean, social: Boolean,
         economic: Boolean, description: String) {
         launch{
-            updateCase.invoke(Case(id, person, name, surnames, date, hour, place, physic, sexual,
+            val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy")
+            val dateChanged = dateformatddMMyyyy.parse(date)
+            updateCase.invoke(Case(id, person, name, surnames, dateChanged.time/1000, hour, place, physic, sexual,
                 psycological, social, economic, description, _resourcesSelected.value.toString()
             ))
         }

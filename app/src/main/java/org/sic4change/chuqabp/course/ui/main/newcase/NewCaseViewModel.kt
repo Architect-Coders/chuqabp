@@ -14,6 +14,7 @@ import org.sic4change.usescases.locations.GetLocation
 import org.sic4change.usescases.persons.FindPersonById
 import org.sic4change.usescases.persons.GetPersonsToSelect
 import org.sic4change.usescases.resources.GetResources
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NewCaseViewModel (private val personId: String, private val findPersonById: FindPersonById,
@@ -104,7 +105,9 @@ class NewCaseViewModel (private val personId: String, private val findPersonById
                               physical: Boolean, sexual: Boolean, psycological: Boolean,
                               social: Boolean, economic: Boolean, description: String) {
         launch {
-            createCase.invoke(Case(Date().time.toString() + person, person, name, surnames, date, hour, place,
+            val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy")
+            val dateChanged = dateformatddMMyyyy.parse(date)
+            createCase.invoke(Case(Date().time.toString() + person, person, name, surnames, dateChanged.time/1000, hour, place,
                 physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString(),
                 "open", "", "", ""
             ))

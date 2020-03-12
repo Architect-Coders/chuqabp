@@ -128,7 +128,7 @@
                                 android:layout_marginEnd="@dimen/margin_default"
                                 android:layout_marginBottom="@dimen/margin_default"
                                 android:textSize="@dimen/form_text_size"
-                                android:text="@{viewmodel.case.date}"
+                                app:dateString="@{viewmodel.case.date}"
                                 android:hint="@string/hint_select_date"
                                 android:textColor="@color/colorPrimaryDark"
                                 app:layout_constraintBottom_toBottomOf="parent"

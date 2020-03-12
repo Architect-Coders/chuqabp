@@ -33,7 +33,7 @@ data class Case (
     @Exclude val name: String = "",
     @Exclude val surnames: String = "",
     @Exclude val mentorId: String? = "",
-    @Exclude val date: String = "",
+    @Exclude val date: Long = 0,
     @Exclude val hour: String = "",
     @Exclude val place: String = "",
     @Exclude val physic: Boolean = false,

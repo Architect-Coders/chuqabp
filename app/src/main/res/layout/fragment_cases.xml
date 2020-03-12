@@ -182,7 +182,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/clFilter"
-                android:layout_marginBottom="@dimen/hight_bottom_navigation">
+                android:layout_marginBottom="@dimen/margin_default">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler"

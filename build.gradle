@@ -12,6 +12,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.3'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.2.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.0.0-beta02'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -85,11 +86,13 @@ allprojects {
         ]
 
         firebase = [
-                auth      : 'com.google.firebase:firebase-auth:19.2.0',
-                storage   : 'com.google.firebase:firebase-storage:19.1.0',
-                firestore : 'com.google.firebase:firebase-firestore:21.3.1',
-                core      : 'com.google.firebase:firebase-core:17.2.2',
-                messaging : 'com.google.firebase:firebase-messaging:20.1.0'
+                auth       : 'com.google.firebase:firebase-auth:19.2.0',
+                storage    : 'com.google.firebase:firebase-storage:19.1.0',
+                firestore  : 'com.google.firebase:firebase-firestore:21.3.1',
+                core       : 'com.google.firebase:firebase-core:17.2.2',
+                messaging  : 'com.google.firebase:firebase-messaging:20.1.0',
+                analytics  : 'com.google.firebase:firebase-analytics:17.2.3',
+                crashlitic : 'com.google.firebase:firebase-crashlytics:17.0.0-beta01'
         ]
 
         ui = [

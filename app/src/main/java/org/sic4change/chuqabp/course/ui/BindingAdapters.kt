@@ -169,6 +169,6 @@ fun Chip.setSelected(selected: Boolean) {
 @BindingAdapter("dateString")
 fun TextView.dateString(dateMilis: Long) = dateMilis.run {
     val sdf = SimpleDateFormat("dd/MM/yyyy")
-    val newDate = Date(dateMilis*1000L)
+    val newDate = Date(dateMilis)
     text = sdf.format(newDate)
 }

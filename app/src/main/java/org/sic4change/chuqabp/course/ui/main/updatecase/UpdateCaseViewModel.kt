@@ -138,7 +138,7 @@ class UpdateCaseViewModel(private val caseId: String, private val findCaseById: 
         launch{
             val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy")
             val dateChanged = dateformatddMMyyyy.parse(date)
-            updateCase.invoke(Case(id, person, name, surnames, dateChanged.time/1000, hour, place, physic, sexual,
+            updateCase.invoke(Case(id, person, name, surnames, dateChanged.time, hour, place, physic, sexual,
                 psycological, social, economic, description, _resourcesSelected.value.toString()
             ))
         }

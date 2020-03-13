@@ -107,7 +107,7 @@ class NewCaseViewModel (private val personId: String, private val findPersonById
         launch {
             val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy")
             val dateChanged = dateformatddMMyyyy.parse(date)
-            createCase.invoke(Case(Date().time.toString() + person, person, name, surnames, dateChanged.time/1000, hour, place,
+            createCase.invoke(Case(Date().time.toString() + person, person, name, surnames, dateChanged.time, hour, place,
                 physical, sexual, psycological, social, economic, description, _resourcesSelected.value.toString(),
                 "open", "", "", ""
             ))

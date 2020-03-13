@@ -148,8 +148,8 @@ class RoomDataSource(db : ChuqabpDatabase) : LocalDataSource {
             if (!rangeDate.isNullOrEmpty()) {
                 val dates = rangeDate.split(" - ")
                 val dateformatddMMyyyy = SimpleDateFormat("dd/MM/yyyy")
-                val startDate = dateformatddMMyyyy.parse(dates[0]).time/1000
-                val endDate = dateformatddMMyyyy.parse(dates[1]).time/1000
+                val startDate = dateformatddMMyyyy.parse(dates[0]).time
+                val endDate = dateformatddMMyyyy.parse(dates[1]).time
                 cases.addAll(chuqabpDao.filterCasesByDateRange(startDate, endDate).map { it.toDomainCase() })
             }
             if (physic != null) {

@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.sic4change.chuqabp.R
+import org.sic4change.chuqabp.course.ui.main.casedetail.CaseDetailFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,8 +37,6 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (title.contains(":")) {
             finishAffinity()
-        } else {
-            super.onBackPressed()
         }
     }
 
